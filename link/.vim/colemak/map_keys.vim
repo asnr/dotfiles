@@ -34,6 +34,7 @@ noremap <C-W>n <C-W>j
 noremap <C-W>e <C-W>k
 noremap <C-W>y <C-W>o
 noremap zy zo
+noremap zY zO
 noremap zp zr
 noremap zP zR
 
