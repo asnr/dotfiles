@@ -106,6 +106,9 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" Allow editing of a different file if current buffer has been modified
+set hidden
+
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -114,7 +117,9 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Allow editing of a different file if current buffer has been modified
-set hidden
+augroup XML
+  autocmd!
+  autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
 
 source ~/.vim/colemak/map_keys.vim

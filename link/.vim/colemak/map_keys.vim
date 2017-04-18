@@ -33,6 +33,9 @@ noremap <C-W>i <C-W>l
 noremap <C-W>n <C-W>j
 noremap <C-W>e <C-W>k
 noremap <C-W>y <C-W>o
+noremap zy zo
+noremap zp zr
+noremap zP zR
 
 inoremap <C-k> <C-n>
 inoremap <C-p> <C-r>
