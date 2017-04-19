@@ -123,4 +123,15 @@ augroup XML
   autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 augroup END
 
+" TODO 'set listchars=tab:>\ ,trail:_' if no multibyte/utf-8
+set listchars=tab:▸\ ,nbsp:␣
+augroup dont_listchars_in_insert_mode
+  autocmd!
+  autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:␣
+  autocmd InsertLeave * set listchars=tab:▸\ ,nbsp:␣,trail:·
+augroup END
+set list
+
+" TODO write function to remove trailing spaces, map to F2
+
 source ~/.vim/colemak/map_keys.vim
