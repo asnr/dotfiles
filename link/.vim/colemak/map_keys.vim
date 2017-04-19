@@ -1,4 +1,5 @@
 noremap n j
+noremap N J
 noremap e k
 noremap i l
 noremap u i
