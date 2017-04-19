@@ -88,3 +88,9 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtHistory(-1)':       [],
   \ 'PrtCurEnd()':          [],
   \ }
+
+" fugitive_no_maps is a misnomer, it only disables <C-R><C-G> and y<C-G>.
+" We really care about disabling the latter, because that makes the remapped
+" colemak 'y' open a new line instantly, instead of having to wait in case you
+" want to add an extra <C-G>
+let g:fugitive_no_maps=1
