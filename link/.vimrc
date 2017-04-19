@@ -137,4 +137,7 @@ set list
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
+set splitright  " open vertical splits on the right
+set splitbelow  " open the horizontal split below
+
 source ~/.vim/colemak/map_keys.vim
