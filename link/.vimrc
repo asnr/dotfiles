@@ -134,4 +134,7 @@ set list
 
 " TODO write function to remove trailing spaces, map to F2
 
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1200
+
 source ~/.vim/colemak/map_keys.vim
