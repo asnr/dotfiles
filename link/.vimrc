@@ -140,4 +140,8 @@ set synmaxcol=1200
 set splitright  " open vertical splits on the right
 set splitbelow  " open the horizontal split below
 
+" Set reasonble indenting defaults
+set tabstop=2 shiftwidth=2  " a tab is two spaces
+set expandtab               " use spaces, not tabs
+
 source ~/.vim/colemak/map_keys.vim
