@@ -56,6 +56,7 @@ cnoremap <C-s> <C-d>
 let mapleader=","
 noremap ,a :CtrlP<CR>
 noremap ,r :NERDTreeToggle<CR>
+noremap ,; :r !pbpaste<CR>
 
 " Map CtrlP to an out of the way combination so that it doesn't conflict with
 " redo (<C-R>)
