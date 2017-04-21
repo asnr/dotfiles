@@ -71,9 +71,13 @@ noremap \w :w<CR>
 " redo (<C-R>)
 let g:ctrlp_map = '<C-\>'
 
-" The default mapping of NERDTreeMapOpenExpl to 'e' stuffs up my Colemak-adjusted up navigation; remap it to where Colemak maps 'e'.
-let NERDTreeMapActivateNode = 'y'
+" Make NERDTree mappings play well with my Colemak adjusted mappings.
+" For example, by default NERDTreeMapOpenExpl = 'e' stuffs up my
+" Colemak-adjusted up navigation so we remap it to where Colemak maps
+" 'e'.
 let NERDTreeMapOpenExpl = 'f'
+let NERDTreeMapActivateNode = 'y'
+let NERDTreeMapOpenRecursively = 'Y'
 let NERDTreeMapOpenSplit = 'u'
 let NERDTreeShowHidden = 1
 
