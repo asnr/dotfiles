@@ -53,10 +53,19 @@ cnoremap <C-p> <C-r>
 cnoremap <C-n> <C-j>
 cnoremap <C-s> <C-d>
 
-let mapleader=","
-noremap ,a :CtrlP<CR>
-noremap ,r :NERDTreeToggle<CR>
-noremap ,; :r !pbpaste<CR>
+" We really want <space> to be leader, but if we mapleader=' ', then we don't
+" get any visual indication in the bottom right of the command corner when we
+" press the leader key
+let mapleader='\'
+map <space> \
+noremap \a :CtrlP<CR>
+noremap \r :NERDTreeToggle<CR>
+noremap \; :r !pbpaste<CR>
+noremap \h <C-w>h
+noremap \n <C-w>j
+noremap \e <C-w>k
+noremap \i <C-w>l
+noremap \w :w<CR>
 
 " Map CtrlP to an out of the way combination so that it doesn't conflict with
 " redo (<C-R>)
