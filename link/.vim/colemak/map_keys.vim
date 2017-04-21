@@ -66,6 +66,9 @@ noremap \n <C-w>j
 noremap \e <C-w>k
 noremap \i <C-w>l
 noremap \w :w<CR>
+noremap \q :q<CR>
+noremap \x :split<CR>
+noremap \v :vsplit<CR>
 
 " Map CtrlP to an out of the way combination so that it doesn't conflict with
 " redo (<C-R>)
