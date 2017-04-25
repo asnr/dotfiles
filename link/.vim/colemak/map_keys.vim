@@ -58,8 +58,8 @@ cnoremap <C-s> <C-d>
 " press the leader key
 let mapleader='\'
 map <space> \
-noremap \a :CtrlP<CR>
-noremap \r :NERDTreeToggle<CR>
+noremap \s :CtrlP<CR>
+noremap \t :NERDTreeToggle<CR>
 noremap \; :r !pbpaste<CR>
 noremap \h <C-w>h
 noremap \n <C-w>j
@@ -76,7 +76,7 @@ let g:ctrlp_map = '<C-\>'
 
 " Make NERDTree mappings play well with my Colemak adjusted mappings.
 " For example, by default NERDTreeMapOpenExpl = 'e' stuffs up my
-" Colemak-adjusted up navigation so we remap it to where Colemak maps
+" Colemak-adjusted up-navigation so we remap it to where Colemak maps
 " 'e'.
 let NERDTreeMapOpenExpl = 'f'
 let NERDTreeMapActivateNode = 'y'
