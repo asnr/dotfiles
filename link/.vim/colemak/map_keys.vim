@@ -83,10 +83,15 @@ let g:ctrlp_map = '<C-\>'
 " For example, by default NERDTreeMapOpenExpl = 'e' stuffs up my
 " Colemak-adjusted up-navigation so we remap it to where Colemak maps
 " 'e'.
+let NERDTreeMapRefresh = 'p'
+let NERDTreeMapRefreshRoot = 'P'
 let NERDTreeMapOpenExpl = 'f'
 let NERDTreeMapActivateNode = 'y'
 let NERDTreeMapOpenRecursively = 'Y'
 let NERDTreeMapOpenSplit = 'u'
+let NERDTreeMapOpenVSplit = 'r'
+let NERDTreeMapJumpFirstChild = 'E'
+let NERDTreeMapJumpLastChild = 'N'
 let NERDTreeShowHidden = 1
 
 " Fix surround.vim to work with my Colemak bindings
