@@ -2,6 +2,7 @@ noremap n j
 noremap N J
 noremap e k
 noremap i l
+noremap I L
 noremap u i
 noremap U I
 noremap s d
@@ -29,6 +30,10 @@ noremap <C-u> <C-i>
 noremap j y
 noremap o ;
 noremap O :
+noremap g t
+noremap ug it
+noremap ag at
+noremap t f
 noremap dt gf
 noremap <C-W>i <C-W>l
 noremap <C-W>n <C-W>j
