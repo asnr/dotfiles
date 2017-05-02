@@ -145,4 +145,16 @@ set splitbelow  " open the horizontal split below
 set tabstop=2 shiftwidth=2  " a tab is two spaces
 set expandtab               " use spaces, not tabs
 
+" TODO undofile -> put into a tmp file
+" TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
+" buftype=nowrite ... MORE ASK FENDY
+
+" vim -w keylog -- vim keylogger
+" :mks! session-name  -- remember vim sessions for reopening windows, state,
+" etc
+" write root-only file: :w ! sudo tee %
+" TODO add fat caps lock warning
+" TODO mapping for q:
+" TODO ctags  -- where is this method/function/etc. defined?
+" TODO cscope  -- where is this method/function/etc. called?
 source ~/.vim/colemak/map_keys.vim
