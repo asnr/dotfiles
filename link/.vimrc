@@ -24,6 +24,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
