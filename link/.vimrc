@@ -25,6 +25,7 @@ Plugin 'joukevandermaas/vim-ember-hbs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'scrooloose/nerdcommenter'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
@@ -144,6 +145,9 @@ set splitbelow  " open the horizontal split below
 " Set reasonble indenting defaults
 set tabstop=2 shiftwidth=2  " a tab is two spaces
 set expandtab               " use spaces, not tabs
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " TODO undofile -> put into a tmp file
 " TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
