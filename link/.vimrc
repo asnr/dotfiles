@@ -165,4 +165,13 @@ cabbr <expr> %h expand('%:h')
 " TODO mapping for q:
 " TODO ctags  -- where is this method/function/etc. defined?
 " TODO cscope  -- where is this method/function/etc. called?
-source ~/.vim/colemak/map_keys.vim
+
+" system() opens a non-interactive shell, which inits using the file defined
+" in $BASH_ENV (see `man bash`). We could pass it all of ~/.bash_profile, but
+" evaluating it all takes too long. We only need bash functions, so just
+" evaluate those.
+let $BASH_ENV = "~/.bash_functions"
+let keyboard_layout = system("current_keyboard_layout")
+if keyboard_layout ==# "Colemak\n"
+  source ~/.vim/colemak/map_keys.vim
+endif

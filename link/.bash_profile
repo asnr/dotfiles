@@ -12,39 +12,6 @@ function setjdk() {
 # Default java version is 8
 setjdk 1.8
 
-function current_keyboard_layout() {
-  defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | \
-    sed 's:.*\.\([[:alpha:]]*\)$:\1:'
-}
-
-function next_keyboard_layout() {
-  # Simulate pressing Ctrl+Opt+Space
-  # This is very brittle, should try and find a more semantic approach
-  osascript -e 'tell application "System Events"' \
-            -e 'keystroke space using {control down, option down}' \
-            -e 'end tell'
-}
-
-function qwerty() {
-  local TEMP_VIMRC=~/.vimrc.$(date +"%Y%m%d_%H%M%S").tmp
-  sed 's:^\(source .*/map_keys\.vim\)$:" \1:' ~/.vimrc > $TEMP_VIMRC
-  mv $TEMP_VIMRC ~/.vimrc
-
-  if test $(current_keyboard_layout) != Australian; then
-    next_keyboard_layout
-  fi
-}
-
-function colemak() {
-  local TEMP_VIMRC=~/.vimrc.$(date +"%Y%m%d_%H%M%S").tmp
-  sed 's:^" \(source .*/map_keys\.vim\)$:\1:' ~/.vimrc > $TEMP_VIMRC
-  mv $TEMP_VIMRC ~/.vimrc
-
-  if test $(current_keyboard_layout) != Colemak; then
-    next_keyboard_layout
-  fi
-}
-
 # Setup for virtualenvwrapper, as outlined in
 #   https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file
 export WORKON_HOME=$HOME/.virtualenvs
@@ -53,6 +20,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # Setup for RVM
 source ~/.profile
+
 
 ## Shell config ##
 
@@ -64,15 +32,19 @@ stty discard undef
 stty -ixon -ixoff
 
 
-## Shell tools ##
+## Interactive shell tools ##
 
-# Setup liquidprompt (as installed by homebrew)
-if [ -f /usr/local/share/liquidprompt ]; then
-	. /usr/local/share/liquidprompt
+# shell is interactive <=> $PS1 is set
+if [ ${PS1+isset} == 'isset' ]; then
+  # Setup liquidprompt (as installed by homebrew)
+  if [ -f /usr/local/share/liquidprompt ]; then
+    . /usr/local/share/liquidprompt
+  fi
+
+  # Setup autojump (as installed by homebrew)
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
+    . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
-
-# Setup autojump (as installed by homebrew)
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 
 ## Shell variables ##
@@ -87,10 +59,18 @@ export CLICOLOR=1
 export EDITOR=vim
 
 
-## Aliases ##
+## Aliases and functions ##
 
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Keep functions in separate file that way shells spawned by vim can evalaute
+# just those. Evaluating all of .bash_profile is too slow.
+[ -f ~/.bash_functions ] && . ~/.bash_functions
+
+
+## Load RVM functions at end because that's where RVM put them :/ ##
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
