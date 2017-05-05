@@ -1,9 +1,32 @@
+## Shell variables ##
 
 # Add Postgres.app (v9.4) SQL command line tools to PATH
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 # Add yarn to PATH
 export PATH="$PATH:`yarn global bin`"
+
+# See `man bash`
+export HISTCONTROL=$HISTCONTROL:ignoredups
+export HISTIGNORE=$HISTIGNORE:fg
+
+# Make `ls` colour output, see `man ls`
+export CLICOLOR=1
+
+export EDITOR=vim
+
+
+## Shell config ##
+
+# Enable ⌃+O (ctrl+O): execute command and bring up the next command in
+# the history file
+stty discard undef
+
+# Enable ^+s (ctrl+s): forward-search-history
+stty -ixon -ixoff
+
+
+## Miscellaneous ##
 
 # From Xin Guo
 function setjdk() {
@@ -22,16 +45,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/.profile
 
 
-## Shell config ##
-
-# Enable ⌃+O (ctrl+O): execute command and bring up the next command in
-# the history file
-stty discard undef
-
-# Enable ^+s (ctrl+s): forward-search-history
-stty -ixon -ixoff
-
-
 ## Interactive shell tools ##
 
 # shell is interactive <=> $PS1 is set
@@ -47,23 +60,9 @@ if [ ${PS1+isset} == 'isset' ]; then
 fi
 
 
-## Shell variables ##
-
-# See `man bash`
-export HISTCONTROL=$HISTCONTROL:ignoredups
-export HISTIGNORE=$HISTIGNORE:fg
-
-# Make `ls` colour output, see `man ls`
-export CLICOLOR=1
-
-export EDITOR=vim
-
-
 ## Aliases and functions ##
 
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # Keep functions in separate file that way shells spawned by vim can evalaute
 # just those. Evaluating all of .bash_profile is too slow.
