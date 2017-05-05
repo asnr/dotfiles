@@ -84,6 +84,8 @@ export HISTIGNORE=$HISTIGNORE:fg
 # Make `ls` colour output, see `man ls`
 export CLICOLOR=1
 
+export EDITOR=vim
+
 
 ## Aliases ##
 
