@@ -149,6 +149,10 @@ set expandtab               " use spaces, not tabs
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" In the command line, substitute the current files directory for '%%'.
+" E.g. if editing ~/foo/bar.txt, %% will evaluate to ~/foo
+cabbr <expr> %h expand('%:h')
+
 " TODO undofile -> put into a tmp file
 " TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
 " buftype=nowrite ... MORE ASK FENDY
