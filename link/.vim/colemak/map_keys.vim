@@ -74,6 +74,7 @@ noremap \w :w<CR>
 noremap \q :q<CR>
 noremap \x :split<CR>
 noremap \v :vsplit<CR>
+noremap \k :noh<CR>
 " These three aren't working for some reason. Try with single character
 " shortcut?
 " noremap \cu <plug>NERDCommenterInvert
