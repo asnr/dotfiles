@@ -74,6 +74,11 @@ noremap \w :w<CR>
 noremap \q :q<CR>
 noremap \x :split<CR>
 noremap \v :vsplit<CR>
+" These three aren't working for some reason. Try with single character
+" shortcut?
+" noremap \cu <plug>NERDCommenterInvert
+" noremap \ci <plug>NERDCommenterAlignLeft
+" noremap \cl <plug>NERDCommenterUncomment
 
 " Map CtrlP to an out of the way combination so that it doesn't conflict with
 " redo (<C-R>)
