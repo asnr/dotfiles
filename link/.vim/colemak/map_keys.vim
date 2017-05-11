@@ -43,6 +43,7 @@ noremap zy zo
 noremap zY zO
 noremap zp zr
 noremap zP zR
+noremap zg zt
 
 inoremap <C-k> <C-n>
 inoremap <C-p> <C-r>
