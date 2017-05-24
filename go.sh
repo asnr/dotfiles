@@ -9,7 +9,7 @@ echo
 
 LINK_DIR=link
 
-for file_to_link in $(find $LINK_DIR -type f); do
+for file_to_link in $(find $LINK_DIR ! -name '*~' ! -name '*.swp' -type f); do
   SOURCE_PATH=$DOTFILES_DIR/$file_to_link
   LINK_TO_CREATE=$HOME/${file_to_link#$LINK_DIR/}
 
