@@ -2,7 +2,7 @@
 
 set -eu
 
-DOTFILES_DIR=$(pwd)
+DOTFILES_DIR=$PWD
 
 echo Linking files from link/ into $HOME
 echo
