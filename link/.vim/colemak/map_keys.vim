@@ -16,6 +16,7 @@ noremap P R
 noremap <C-p> <C-r>
 noremap <C-P> <C-R>
 noremap ; p
+noremap : P
 noremap f e
 noremap d g
 noremap dd gg
