@@ -173,5 +173,27 @@ cabbr <expr> %h expand('%:h')
 let $BASH_ENV = "~/.bash_functions"
 let keyboard_layout = system("current_keyboard_layout")
 if keyboard_layout ==# "Colemak\n"
-  source ~/.vim/colemak/map_keys.vim
+  if empty($VIM_KEY_MAP_METHOD)
+    source ~/.vim/colemak/map_keys.vim
+  elseif $VIM_KEY_MAP_METHOD ==# "none"
+    " Don't do any extra mapping. This comes in handy when debugging key maps.
+  elseif $VIM_KEY_MAP_METHOD ==# "langmap"
+    " In theory, I should be able to use qwerty bindings for everything except
+    " insert mode using the following langmap setting:
+    set langmap=pr,fe,FE,PR,gt,GT,jy,JY,lu,LU,ui,UI,yo,YO,\\;p,:P,rs,RS,sd,SD,tf,TF,dg,DG,nj,NJ,ek,EK,il,IL,o\\;,O:,kn,KN
+    " I have tried this and run into undesirable behaviour in plugins that is
+    " very hard to debug, although I have isolated the langmap pairs that are
+    " misbehaving. After only a little testing I found these two issues:
+    "
+    " 1)
+    " set langmap=yo
+    " Open vim and enter :CtrlP. A new line will be erroneously created below
+    " the cursor.
+    "
+    " 2)
+    " set langmap=:P,O:
+    " Open vim and enter :NERDTreeToggle. Press ?. The help text should
+    " appear, but instead this error will be thrown:
+    "   E21: Cannot make changes, 'modifiable' is off
+  endif
 endif
