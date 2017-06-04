@@ -131,6 +131,8 @@ augroup XML
   autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 augroup END
 
+" Make trailing spaces visible, but not in insert mode, otherwise it gets
+" distracting.
 " TODO 'set listchars=tab:>\ ,trail:_' if no multibyte/utf-8
 set listchars=tab:▸\ ,nbsp:␣
 augroup dont_listchars_in_insert_mode
