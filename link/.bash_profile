@@ -6,6 +6,9 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # Add yarn to PATH
 export PATH="$PATH:`yarn global bin`"
 
+# Add python bin to path (really just for the aws CLI tool)
+export PATH="$PATH:~/Library/Python/2.7/bin/"
+
 # See `man bash`
 export HISTCONTROL=$HISTCONTROL:ignoredups
 export HISTIGNORE=$HISTIGNORE:fg
