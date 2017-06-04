@@ -149,6 +149,9 @@ set expandtab               " use spaces, not tabs
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" Instruct NERDTree to display dot files
+let NERDTreeShowHidden = 1
+
 " In the command line, substitute the current files directory for '%h'.
 " E.g. if editing ~/foo/bar.txt, %h will evaluate to ~/foo
 cabbr <expr> %h expand('%:h')

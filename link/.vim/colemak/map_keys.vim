@@ -105,7 +105,6 @@ let NERDTreeMapOpenVSplit = '<leader>v'
 let NERDTreeMapPreviewVSplit = 'dv'
 let NERDTreeMapJumpFirstChild = 'E'
 let NERDTreeMapJumpLastChild = 'N'
-let NERDTreeShowHidden = 1
 
 " Fix surround.vim to work with my Colemak bindings
 let g:surround_no_mappings = 1
