@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
@@ -119,6 +120,11 @@ if executable('ag')
   " --hidden includes dotfiles in searches, which forces us to --ignore .git/
   let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git/ --hidden -g ""'
 endif
+
+" Turn on vim-colors-solarized. Taken from the README.md.
+syntax enable
+set background=light
+colorscheme solarized
 
 augroup XML
   autocmd!
