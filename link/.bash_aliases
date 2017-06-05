@@ -1,6 +1,8 @@
 alias xv6path='export PATH=/usr/local/xv6/bin:$PATH && echo $PATH'
 
 alias gs="git status"
+alias gl="git log"
+alias glo="git log --oneline"
 alias gap="git add -p"
 alias gc="git commit"
 alias gcm="git commit -m"
