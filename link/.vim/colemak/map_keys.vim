@@ -39,8 +39,11 @@ noremap ag at
 noremap t f
 noremap dt gf
 noremap <C-W>i <C-W>l
+noremap <C-w>I <C-w>L
 noremap <C-W>n <C-W>j
+noremap <C-w>N <C-w>J
 noremap <C-W>e <C-W>k
+noremap <C-W>E <C-W>K
 noremap <C-W>y <C-W>o
 noremap zy zo
 noremap zY zO
