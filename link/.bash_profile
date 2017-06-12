@@ -1,13 +1,19 @@
 ## Shell variables ##
 
-# Add Postgres.app (v9.4) SQL command line tools to PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+if [ "$(uname)" = "Darwin" ]; then
+    # The order of /etc/paths isn't the same on my macs, one has /usr/local/bin
+    # first and the other has it last. Force it forward.
+    export PATH="/usr/local/bin:$PATH"
+
+    # Add Postgres.app (v9.4) SQL command line tools to PATH
+    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+    # Add python bin to path (the AWS CLI tool made me do it)
+    export PATH="$PATH:~/Library/Python/2.7/bin/"
+fi
 
 # Add yarn to PATH
 export PATH="$PATH:`yarn global bin`"
-
-# Add python bin to path (really just for the aws CLI tool)
-export PATH="$PATH:~/Library/Python/2.7/bin/"
 
 # See `man bash`
 export HISTCONTROL=$HISTCONTROL:ignoredups
