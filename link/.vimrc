@@ -113,8 +113,9 @@ endif
 set hidden
 
 if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  " Use Ag over Grep. --hidden includes dotfiles in searches, which forces us
+  " to --ignore .git/
+  set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git/
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   " --hidden includes dotfiles in searches, which forces us to --ignore .git/
