@@ -16,16 +16,19 @@ for file_to_link in $(find $LINK_DIR ! -name '*~' ! -name '*.swp' -type f); do
   # If symlink already exists, do nothing. If file exists, back it up
   # else create link
   if test $SOURCE_PATH -ef $LINK_TO_CREATE; then
-    echo Link to $SOURCE_PATH already exists, moving on
+    echo "Link to $SOURCE_PATH already exists, moving on"
   elif test ! -e $LINK_TO_CREATE; then
-    echo Creating a link at $LINK_TO_CREATE pointing to $SOURCE_PATH
+    echo "Creating link $LINK_TO_CREATE -> $SOURCE_PATH"
+    if test ! -d $(dirname $LINK_TO_CREATE); then
+      mkdir -p $(dirname $LINK_TO_CREATE)
+    fi
     ln -s $SOURCE_PATH $LINK_TO_CREATE
   else
-    echo $LINK_TO_CREATE already exists but is not a symlink to $SOURCE_PATH
-    echo Aborting
+    echo "$LINK_TO_CREATE already exists but is not a symlink to $SOURCE_PATH"
+    echo "Aborting"
     exit 1
   fi
 done
 
 echo
-echo Done
+echo "Done"
