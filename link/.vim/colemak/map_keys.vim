@@ -50,6 +50,8 @@ noremap zY zO
 noremap zp zr
 noremap zP zR
 noremap zg zt
+noremap dg gt
+noremap dG gT
 
 inoremap <C-k> <C-n>
 inoremap <C-p> <C-r>
