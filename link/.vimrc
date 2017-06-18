@@ -124,7 +124,7 @@ endif
 
 " Turn on vim-colors-solarized. Taken from the README.md.
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 
 augroup XML
