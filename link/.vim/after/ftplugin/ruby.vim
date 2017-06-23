@@ -21,3 +21,5 @@ set colorcolumn=81
 " press Shift Enter in field Keyboard Shortcut ->
 " action: Send Text with “vim” Special Char -> past in `\n\nend\x1B-cc`
 imap <S-CR> <CR><CR>end<Esc>-cc
+
+let g:ruby_indent_block_style = 'do'
