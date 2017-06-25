@@ -123,7 +123,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git/ --hidden -g ""'
 endif
 
-" Turn on vim-colors-solarized. Taken from the README.md.
+" Turn on vim-colors-solarized. Taken from the vim-colors-solarized README.md.
 syntax enable
 set background=dark
 colorscheme solarized
