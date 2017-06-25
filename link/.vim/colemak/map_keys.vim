@@ -16,9 +16,7 @@ noremap P R
 noremap <C-p> <C-r>
 noremap <C-P> <C-R>
 noremap ; p
-" Can't enable this map until we fix fugitive mappings, otherwise there's no
-" way to enter command mode from a fugitive window.
-" noremap : P
+noremap : P
 noremap f e
 noremap d g
 noremap dd gg
