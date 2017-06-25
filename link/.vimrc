@@ -27,6 +27,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-ruby/vim-ruby'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
