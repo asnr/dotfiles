@@ -146,6 +146,14 @@ set list
 
 " TODO write function to remove trailing spaces, map to F2
 
+" Added the line below to get rid of the delay between pressing ESC in
+" commandline mode and returning to normal mode. I'm not entirely clear on all
+" the ramifications of adding this line, I may have to tweak/remove it in the
+" future. Taken from
+"   https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+" which has explanation.
+set timeoutlen=1000 ttimeoutlen=0
+
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
