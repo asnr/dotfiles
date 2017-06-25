@@ -164,7 +164,23 @@ let NERDTreeShowHidden = 1
 
 " In the command line, substitute the current files directory for '%h'.
 " E.g. if editing ~/foo/bar.txt, %h will evaluate to ~/foo
-cabbr <expr> %h expand('%:h')
+cabbrev <expr> %h expand('%:h')
+
+" SetupCommandAlias function taken from
+"   https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim#answer-3879737
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+
+" Command line abbreviations for fugitive plugin commands
+call SetupCommandAlias("gs",    "Gstatus")
+call SetupCommandAlias("gc",    "Gcommit")
+call SetupCommandAlias("gap",   "!git add --patch")
+call SetupCommandAlias("gpush", "!git push")
+call SetupCommandAlias("grp",   "!git pull --rebase")
+call SetupCommandAlias("gmp",   "!git pull")
 
 " TODO undofile -> put into a tmp file
 " TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
