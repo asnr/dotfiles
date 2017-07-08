@@ -22,3 +22,8 @@ function colemak() {
     next_keyboard_layout
   fi
 }
+
+function mkcd() {
+  mkdir $1
+  cd $1
+}
