@@ -170,6 +170,9 @@ let g:NERDSpaceDelims = 1
 " Instruct NERDTree to display dot files
 let NERDTreeShowHidden = 1
 
+" NERDTree should not display files ending in ~ or .pyc
+let NERDTreeIgnore = ['\~$[[file]]', '\.pyc$[[file]]']
+
 " In the command line, substitute the current file's directory for '%h'.
 " E.g. if editing ~/foo/bar.txt, %h will evaluate to ~/foo
 cabbrev <expr> %h expand('%:h')
