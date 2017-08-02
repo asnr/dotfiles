@@ -15,3 +15,5 @@ alias setasnr='git config user.name asnr && git config user.email asnr@users.nor
 alias initasnr='git init && setasnr'
 
 alias be="bundle exec"
+
+alias ssh_hosts='grep -w -i "Host" ~/.ssh/config | sed s/Host//'
