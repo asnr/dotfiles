@@ -5,6 +5,9 @@ if [ "$(uname)" = "Darwin" ]; then
     # first and the other has it last. Force it forward.
     export PATH="/usr/local/bin:$PATH"
 
+    # The macOS version of openssl is old, prefer the one we get from homebrew
+    export PATH="/usr/local/opt/openssl/bin:$PATH"
+
     # Add Postgres.app (v9.4) SQL command line tools to PATH
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
