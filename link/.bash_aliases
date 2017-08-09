@@ -11,6 +11,8 @@ alias gcm="git commit -m"
 alias gpu="git push"
 alias grp="git pull --rebase"
 alias gmp="git pull"
+alias gss="git stash"
+alias gsp="git stash pop"
 alias setasnr='git config user.name asnr && git config user.email asnr@users.noreply.github.com && git config --list | grep user'
 alias initasnr='git init && setasnr'
 
