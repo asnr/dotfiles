@@ -22,4 +22,6 @@ set colorcolumn=81
 " action: Send Text with “vim” Special Char -> past in `\n\nend\x1B-cc`
 imap <S-CR> <CR><CR>end<Esc>-cc
 
+abbreviate cop !bundle exec rubocop
+
 let g:ruby_indent_block_style = 'do'
