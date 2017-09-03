@@ -28,6 +28,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'scrooloose/syntastic'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
@@ -163,6 +164,18 @@ set splitbelow  " open the horizontal split below
 " Set reasonble indenting defaults
 set tabstop=2 shiftwidth=2  " a tab is two spaces
 set expandtab               " use spaces, not tabs
+
+" Syntastic plugin settings. Copied from README
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
