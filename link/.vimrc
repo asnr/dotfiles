@@ -29,6 +29,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/syntastic'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
@@ -128,6 +130,10 @@ endif
 syntax enable
 set background=dark
 colorscheme solarized
+
+" Set vim airline (status/tab line) theme to solarized
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 augroup XML
   autocmd!
