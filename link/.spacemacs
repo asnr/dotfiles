@@ -361,8 +361,9 @@ you should place your code here."
     (evil-define-key 'evilified neotree-mode-map "s" 'neotree-delete-node))
 
   (with-eval-after-load 'evil-magit
-    (evil-magit-define-key evil-magit-state magit-mode-map "n" evil-next-line)
-    (evil-magit-define-key evil-magit-state magit-mode-map "e" evil-previous-visual-line))
+    (evil-define-key evil-magit-state magit-mode-map "n" 'evil-next-line)
+    (evil-define-key evil-magit-state magit-mode-map "e" 'evil-previous-line)
+    (evil-define-key evil-magit-state magit-mode-map "i" 'evil-forward-char))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
