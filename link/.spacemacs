@@ -282,6 +282,8 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+   ;; Set theme for neotree
+   neo-theme 'nerd
    ))
 
 (defun dotspacemacs/user-init ()
