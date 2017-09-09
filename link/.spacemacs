@@ -309,6 +309,7 @@ you should place your code here."
   ; The default binding of "i" in the normal map takes precedence over the
   ; motion map binding, so we need to delete it
   (define-key evil-normal-state-map "i" nil)
+  (define-key evil-visual-state-map "i" nil)
 
   (define-key evil-motion-state-map "K" nil) ; 'evil-lookup
 
