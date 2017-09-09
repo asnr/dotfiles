@@ -305,6 +305,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; On macOS the powerline colours are slightly off. Change the powerline
+  ;; separator to minimise the noise.
+  (setq powerline-default-separator 'utf-8)
+
   (define-key evil-motion-state-map "n" 'evil-next-line)
   (define-key evil-motion-state-map "e" 'evil-previous-line)
   (define-key evil-motion-state-map "i" 'evil-forward-char)
