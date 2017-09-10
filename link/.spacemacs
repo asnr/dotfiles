@@ -32,6 +32,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      ruby
+     (ruby :variables ruby-test-runner 'rspec)
+     (ruby :variables ruby-version-manager 'rvm)
      markdown
      javascript
      ;; ----------------------------------------------------------------
