@@ -342,6 +342,7 @@ you should place your code here."
   (define-key evil-motion-state-map "k" 'evil-search-next)
   (define-key evil-normal-state-map "K" nil)
   (define-key evil-motion-state-map "K" 'evil-search-previous)
+  (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
   ; Stop default binding taking precence over undo-tree-redo binding
   (define-key evil-normal-state-map "\C-p" nil)
   (define-key evil-motion-state-map "\C-p" 'undo-tree-redo)
