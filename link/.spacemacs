@@ -373,7 +373,9 @@ you should place your code here."
   (with-eval-after-load 'evil-magit
     (evil-define-key evil-magit-state magit-mode-map "n" 'evil-next-line)
     (evil-define-key evil-magit-state magit-mode-map "e" 'evil-previous-line)
-    (evil-define-key evil-magit-state magit-mode-map "i" 'evil-forward-char))
+    (evil-define-key evil-magit-state magit-mode-map "i" 'evil-forward-char)
+    (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
+    (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
