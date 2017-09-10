@@ -1,0 +1,163 @@
+\ProvidesPackage{andresnotation}
+
+\usepackage{amsmath,amssymb,amsfonts,enumerate}%,tensor
+
+%%%%%%%%%%%% Shortcuts %%%%%%%%%%%%%%%
+\newcommand{\tsup}[1]{\textsuperscript{#1}}
+\newcommand{\f}[2]{\frac{#1}{#2}}
+\newcommand{\ca}[1]{\mathcal{#1}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\dd}[2]{\frac{d#1}{d#2}}
+\newcommand{\pp}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\ppn}[3]{\frac{\partial^{#1}#2}{\partial#3^{#1}}}
+\newcommand{\rd}[1]{\;\text{d}#1} % respect to #1
+\newcommand{\di}[1]{\text{d}#1} % differential #1
+\newcommand{\Implies}{\Longrightarrow}
+
+%%%%%%%%%%%% Set Theory %%%%%%%%%%%%%%%
+\newcommand{\Complement}[1]{#1^c}
+\newcommand{\Setminus}{-}
+
+%%%%%%%%%%%% Functions %%%%%%%%%%%%%%%
+\newcommand{\Placedt}{\bullet}
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\Id}{id}
+\DeclareMathOperator{\Image}{im}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccot}{arccot}
+
+%%%%%%%%%%%% Brackets %%%%%%%%%%%%%%%%
+\newcommand{\lb}{\mathopen{}\mathclose\bgroup\left}
+\newcommand{\rb}{\aftergroup\egroup\right}
+\newcommand{\lab}{\langle}
+\newcommand{\rab}{\rangle}
+
+%%%%%%%%%%%% Common objects %%%%%%%%%%%%
+\newcommand{\Naturals}{\mathbb{N}}
+\newcommand{\Ints}{\mathbb{Z}}
+\newcommand{\PosInts}{\mathbb{Z}^+}
+\newcommand{\Rationals}{\mathbb{Q}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\PField}{\mathbb{F}}
+\newcommand{\RealProjective}{\mathbb{RP}}
+\newcommand{\Sphere}{\mathbb{S}}
+\newcommand{\Disc}{\mathbb{D}}
+\newcommand{\PowerSet}{\mathcal{P}}
+\newcommand{\Projective}{\mathbb{P}}
+
+%%%%%%%%%%%%%% Measure Theory %%%%%%%%%%%%%%%%%
+\newcommand{\SAlgebra}[1]{\mathcal{#1}} %sigma-algebra
+
+%%%%%%%%%%%%%% Probability Theory %%%%%%%%%%%%%%%%%
+\newcommand{\CDF}{cdf}
+\DeclareMathOperator{\Expect}{E}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\newcommand{\Cond}{\,|\,}
+
+%%%%%%%%%%%%%% Geometry/Topology %%%%%%%%%%%%%%%%%
+\newcommand{\RealProj}{\mathbb{RP}}
+\newcommand{\Torus}{\mathbb{T}}
+\newcommand{\ConnectSum}{\#}
+\newcommand{\wedgesum}{\vee}
+\newcommand{\Wedgesum}{\bigvee}
+
+%%%%%%%%%%%%%%% Categories %%%%%%%%%%%%%%%%%%%
+\newcommand{\Catmod}[1]{\mathbf{M}_{#1}}
+\newcommand{\CatLMod}[1]{\tensor[_{#1}]{\mathbf{M}}{}}
+\newcommand{\CatIndLMod}[2]{\tensor*[_{#1}^{#2}]{\mathbf{M}}{}}
+\newcommand{\Chain}[1]{\mathbf{Ch}_{#1}}
+\newcommand{\Cat}[1]{\mathbf{#1}}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Obj}{Obj}
+
+%%%%%%%%%%%%%% Number Theory %%%%%%%%%%%%%%%%%
+\newcommand{\Divs}{\divides}
+
+%%%%%%%%%%%%%%% Factorization %%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Lcm}{lcm}%least common multiple
+
+%%%%%%%%%%%%%%% Polynomials %%%%%%%%%%%%%%%%
+\DeclareMathOperator{\LeadTerm}{LT}
+\DeclareMathOperator{\LeadMon}{LM}
+\DeclareMathOperator{\LeadCo}{LC}
+
+%%%%%%%%%%%%%%% Linear algebra %%%%%%%%%%%%%%%%
+\newcommand{\InnerProd}[2]{\left\langle #1 , #2 \right\rangle}
+\DeclareMathOperator{\Trace}{tr}
+\DeclareMathOperator{\Adjugate}{adj}
+\DeclareMathOperator{\Identity}{I}
+\DeclareMathOperator{\Rank}{rank}
+
+%%%%%%%%%%%%%%% Topology %%%%%%%%%%%%%%
+\newcommand{\Closure}[1]{\overline{#1}}
+\newcommand{\Hausdorff}{\mathbb{H}}
+\newcommand{\Suspension}[1]{\mathcal{S}{#1}}
+\DeclareMathOperator{\Interior}{int}
+\DeclareMathOperator{\Exterior}{ext}
+\newcommand{\Boundary}[1]{\partial{#1}}
+
+%%%%%%%%%%%%% Algebra %%%%%%%%%%%%%%%%%%
+\newcommand{\PID}{PID}
+\DeclareMathOperator{\RingChar}{char}
+\newcommand{\Ideal}[1]{\mathfrak{#1}}
+\newcommand{\NormalSubgroup}{\trianglelefteq}
+\newcommand{\NormalSupgroup}{\trianglerighteq}
+\DeclareMathOperator{\TraceMap}{tr}
+\DeclareMathOperator{\NormMap}{Nm}
+\DeclareMathOperator{\Kernel}{ker}
+\DeclareMathOperator{\Coker}{coker}
+\newcommand{\Tensor}{\otimes}
+\newcommand{\Tensors}{\bigotimes}
+  %Requires superscript/subscript
+\newcommand{\Dsum}{\oplus}
+\newcommand{\Dsums}{\bigoplus}
+ %Requires superscript/subscript
+\newcommand{\ZeroIdeal}{0}
+\DeclareMathOperator{\PrimeSpec}{Spec}
+\newcommand{\Nilradical}{\Ideal R}
+\newcommand{\Jacobsonrad}{\Ideal J}
+\newcommand{\Radical}{r}
+\newcommand{\TorsionSub}{T}
+\DeclareMathOperator{\Ann}{ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Supp}{Supp}
+\newcommand{\Regseq}[1]{\boldsymbol{#1}}%regular sequence
+\DeclareMathOperator{\Depth}{depth}
+
+%%%%%%%%%%% Field Theory %%%%%%%%%
+\newcommand{\ExtDeg}[2]{[#1:#2]}
+
+%%%%%%%%%%% Homolog Alg %%%%%%%%%
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+
+%%%%%%%%%%% Algebraic Geometry %%%%%%%%%
+\newcommand{\Zar}{V}
+\newcommand{\Variety}{V}
+\newcommand{\VarIdeal}{I}
+\newcommand{\MonomialPowers}[1]{\Ints^{#1}_{\geq0}}
+
+%%%%%%%%%%% Algebraic Topology %%%%%%%%%
+\newcommand{\Fundgp}{\pi_1}
+
+%%%%%%%%%%% Complex Analysis %%%%%%%%%
+\newcommand{\Conjugate}[1]{\overline{#1}}
+\DeclareMathOperator{\Log}{Log}
+
+%%%%%%%%%%% Statistics %%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\ExpDist}{Exp}
+\DeclareMathOperator{\GammaDist}{Gamma}
+\DeclareMathOperator{\PoissonDist}{Poisson}
+\newcommand{\NormalDist}{\mathcal{N}}
+
+%%%%%%%%%%% Logic %%%%%%%%%%%%%%%%%%%%
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+
+%%%%%%%%%%% Names %%%%%%%%%%%%%%%%%%%%
+\newcommand{\Grobner}{Gr\"{o}bner}
+\newcommand{\Bezout}{B\'{e}zout}
