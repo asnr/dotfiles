@@ -312,6 +312,11 @@ you should place your code here."
   ;; separator to minimise the noise.
   (setq powerline-default-separator 'utf-8)
 
+  ;; When opening a symlink, actually open the original file the symlink
+  ;; points to. Especially useful when editing dotfiles that symlink into
+  ;; my dotfiles repo.
+  (setq find-file-visit-truename t)
+
   (define-key evil-motion-state-map "n" 'evil-next-line)
   (define-key evil-motion-state-map "e" 'evil-previous-line)
   (define-key evil-motion-state-map "i" 'evil-forward-char)
