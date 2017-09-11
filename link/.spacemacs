@@ -367,8 +367,9 @@ you should place your code here."
   (spacemacs/set-leader-keys "we" 'evil-window-up)
   (spacemacs/set-leader-keys "wi" 'evil-window-right)
 
-  ;(define-key evil-evilified-state-map "n" 'evil-next-visual-line)
-  (define-key evil-evilified-state-map "e" 'evil-previous-visual-line)
+  ;; This breaks n mapping for Neotree for some reason
+  ;; (define-key evil-evilified-state-map "n" 'evil-next-line)
+  (define-key evil-evilified-state-map "e" 'evil-previous-line)
   (define-key evil-evilified-state-map "i" 'evil-forward-char)
   (define-key evil-evilified-state-map "dd" 'evil-goto-first-line)
   (define-key evil-evilified-state-map "D" 'evil-goto-line)
@@ -383,7 +384,9 @@ you should place your code here."
     (evil-define-key 'evilified neotree-mode-map "n" 'neotree-next-line)
     (evil-define-key 'evilified neotree-mode-map "e" 'neotree-previous-line)
     (evil-define-key 'evilified neotree-mode-map "p" 'neotree-rename-node)
-    (evil-define-key 'evilified neotree-mode-map "s" 'neotree-delete-node))
+    (evil-define-key 'evilified neotree-mode-map "s" 'neotree-delete-node)
+    (evil-define-key 'evilified neotree-mode-map "y" 'neotree-quick-look)
+    (evil-define-key 'evilified neotree-mode-map "x" 'spacemacs/neotree-collapse-or-up))
 
   (with-eval-after-load 'evil-magit
     (evil-define-key evil-magit-state magit-mode-map "n" 'evil-next-line)
