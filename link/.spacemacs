@@ -373,6 +373,12 @@ you should place your code here."
   (define-key evil-evilified-state-map "dd" 'evil-goto-first-line)
   (define-key evil-evilified-state-map "D" 'evil-goto-line)
 
+  (define-key Info-mode-map "n" nil)
+  (define-key Info-mode-map "\C-n" 'Info-next)  ; originally mapped to "n"
+  (define-key Info-mode-map "e" nil)
+  (define-key Info-mode-map "i" nil) ; originally Info-index
+  (define-key Info-mode-map "\M-h" 'Info-help)
+
   (with-eval-after-load 'neotree
     (evil-define-key 'evilified neotree-mode-map "n" 'neotree-next-line)
     (evil-define-key 'evilified neotree-mode-map "e" 'neotree-previous-line)
