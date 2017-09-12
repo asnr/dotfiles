@@ -342,6 +342,7 @@ you should place your code here."
   (define-key evil-motion-state-map "D" 'end-of-buffer)
   (define-key evil-motion-state-map "E" 'evil-lookup)
   (define-key evil-motion-state-map "k" 'evil-search-next)
+  ; Stop default binding taking precedence over evil-search-previous
   (define-key evil-normal-state-map "K" nil)
   (define-key evil-motion-state-map "K" 'evil-search-previous)
   (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
@@ -360,6 +361,7 @@ you should place your code here."
   (define-key evil-normal-state-map "O" 'evil-ex)
   (define-key evil-normal-state-map "p" 'evil-replace)
   (define-key evil-normal-state-map "P" 'evil-replace-state)
+  (define-key evil-normal-state-map "N" 'evil-join)
 
   (define-key evil-operator-state-map "u" evil-inner-text-objects-map)
 
