@@ -328,8 +328,6 @@ you should place your code here."
   (define-key evil-normal-state-map "i" nil)
   (define-key evil-visual-state-map "i" nil)
 
-  (define-key evil-motion-state-map "K" nil) ; 'evil-lookup
-
   (define-key evil-motion-state-map "f" 'evil-forward-word-end)
   (define-key evil-motion-state-map "F" 'evil-forward-WORD-end)
   (define-key evil-motion-state-map "T" 'evil-find-char-backward)
