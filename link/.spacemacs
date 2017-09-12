@@ -383,7 +383,9 @@ you should place your code here."
   (with-eval-after-load 'helm-ag
     ;; Only do this because can't use more general evil-evilified-state-map
     ;; for "n", see comment above.
-    (evil-define-key 'evilified helm-ag-mode-map "n" 'evil-next-line))
+    (evil-define-key 'evilified helm-ag-mode-map "n" 'evil-next-line)
+    (evil-define-key 'evilified helm-ag-mode-map "e" 'evil-previous-line)
+    (evil-define-key 'evilified helm-ag-mode-map "i" 'evil-forward-char))
 
   (with-eval-after-load 'neotree
     (evil-define-key 'evilified neotree-mode-map "n" 'neotree-next-line)
