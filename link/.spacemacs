@@ -362,6 +362,9 @@ you should place your code here."
   (define-key evil-normal-state-map "P" 'evil-replace-state)
   (define-key evil-normal-state-map "N" 'evil-join)
 
+  ;; \C-p was originally mapped to 'evil-complete-previous
+  (define-key evil-insert-state-map "\C-p" 'evil-paste-from-register)
+
   (define-key evil-operator-state-map "u" evil-inner-text-objects-map)
 
   (spacemacs/set-leader-keys "wn" 'evil-window-down)
