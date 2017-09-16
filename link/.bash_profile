@@ -16,7 +16,7 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 # Add yarn to PATH
-export PATH="$PATH:`yarn global bin`"
+command -v yarn >/dev/null 2>&1 && export PATH="$PATH:`yarn global bin`"
 
 # See `man bash`
 export HISTCONTROL=$HISTCONTROL:ignoredups
