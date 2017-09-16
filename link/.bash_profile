@@ -53,9 +53,13 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-# Setup for RVM
-source ~/.profile
-
+# Setup ruby version manager
+if [ command -v rbenv >/dev/null 2>&1 ]; then
+    eval "$(rbenv init -)"
+elif [ -f ~/.profile ]; then
+    # Setup RVM
+    source ~/.profile
+fi
 
 ## Interactive shell tools ##
 
