@@ -321,6 +321,11 @@ you should place your code here."
   ;; my dotfiles repo.
   (setq find-file-visit-truename t)
 
+  ;; Include underscore in word motions
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
   (define-key evil-motion-state-map "n" 'evil-next-line)
   (define-key evil-motion-state-map "e" 'evil-previous-line)
   (define-key evil-motion-state-map "i" 'evil-forward-char)
