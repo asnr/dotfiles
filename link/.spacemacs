@@ -321,6 +321,10 @@ you should place your code here."
   ;; my dotfiles repo.
   (setq find-file-visit-truename t)
 
+  ;; Increase length of filenames in Helm mini (used when swapping between
+  ;; buffers) before they are truncated
+  (setq helm-buffer-max-length 30)
+
   ;; Include underscore in word motions
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
