@@ -380,6 +380,9 @@ you should place your code here."
   (spacemacs/set-leader-keys "we" 'evil-window-up)
   (spacemacs/set-leader-keys "wi" 'evil-window-right)
 
+  (spacemacs/declare-prefix "o" "user")
+  (spacemacs/set-leader-keys "of" 'fill-region)
+
   ;; This breaks n mapping for Neotree for some reason
   ;; (define-key evil-evilified-state-map "n" 'evil-next-line)
   (define-key evil-evilified-state-map "e" 'evil-previous-line)
