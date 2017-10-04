@@ -357,6 +357,8 @@ you should place your code here."
   ; Stop default binding taking precence over undo-tree-redo binding
   (define-key evil-normal-state-map "\C-p" nil)
   (define-key evil-motion-state-map "\C-p" 'undo-tree-redo)
+  (define-key evil-motion-state-map "\C-y" 'evil-jump-backward)
+  (define-key evil-motion-state-map "\C-u" 'evil-jump-forward)
 
   (define-key evil-normal-state-map "s" 'evil-delete)
   (define-key evil-normal-state-map "u" 'evil-insert)
