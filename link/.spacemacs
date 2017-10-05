@@ -373,6 +373,8 @@ you should place your code here."
   (define-key evil-normal-state-map "P" 'evil-replace-state)
   (define-key evil-normal-state-map "N" 'evil-join)
 
+  (define-key evil-visual-state-map "O" 'evil-ex)
+
   ;; \C-p was originally mapped to 'evil-complete-previous
   (define-key evil-insert-state-map "\C-p" 'evil-paste-from-register)
 
