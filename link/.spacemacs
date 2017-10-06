@@ -380,6 +380,7 @@ you should place your code here."
   (define-key evil-insert-state-map "\C-p" 'evil-paste-from-register)
 
   (define-key evil-operator-state-map "u" evil-inner-text-objects-map)
+  (evil-define-key 'operator evil-surround-mode-map "r" 'evil-surround-edit)
 
   (spacemacs/set-leader-keys "wn" 'evil-window-down)
   (spacemacs/set-leader-keys "we" 'evil-window-up)
