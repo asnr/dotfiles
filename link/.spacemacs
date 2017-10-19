@@ -403,6 +403,14 @@ you should place your code here."
   (define-key Info-mode-map "e" nil)
   (define-key Info-mode-map "i" nil) ; originally Info-index
   (define-key Info-mode-map "\M-h" 'Info-help)
+  ;; Info-mode-map has an auxiliary motion state keymap inside of it with its
+  ;; own mapping for "k", which we need to override separately from the
+  ;; evil-motion-state-map. This may have been added by a call to
+  ;; evil-add-hjkl-bindings in evil-integration.el. The letters "h" "i" "j" "k"
+  ;; "l" are hard coded in that source file, a better fix (that will also
+  ;; probably remove a lot of other keymap code in this
+  ;; dotspacemacs/user-config) would be to add configuration to evil.
+  (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-search-next)
 
   (with-eval-after-load 'helm-ag
     ;; Only do this because can't use more general evil-evilified-state-map
