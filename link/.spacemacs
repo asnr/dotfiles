@@ -412,6 +412,9 @@ you should place your code here."
   ;; dotspacemacs/user-config) would be to add configuration to evil.
   (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-search-next)
 
+  (with-eval-after-load 'helm
+    (define-key helm-map "\C-e" 'helm-previous-line))
+
   (with-eval-after-load 'helm-ag
     ;; Only do this because can't use more general evil-evilified-state-map
     ;; for "n", see comment above.
