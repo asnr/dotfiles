@@ -294,6 +294,9 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ;; Set theme for neotree
    neo-theme 'nerd
+   ;; Javascript and JSON indentation
+   js2-basic-offset 2
+   js-indent-level 2
    ))
 
 (defun dotspacemacs/user-init ()
