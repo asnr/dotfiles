@@ -298,6 +298,8 @@ values."
    ;; Javascript and JSON indentation
    js2-basic-offset 2
    js-indent-level 2
+   js2-strict-trailing-comma-warning nil
+   js2-ignored-warnings '("msg.no.side.effects" "msg.no.console")
    ))
 
 (defun dotspacemacs/user-init ()
