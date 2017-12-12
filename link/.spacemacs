@@ -332,6 +332,9 @@ you should place your code here."
   ;; buffers) before they are truncated
   (setq helm-buffer-max-length 30)
 
+  ;; Set indent width of CSS and SCSS to 2 characters
+  (setq css-indent-offset 2)
+
   ;; Include underscore in word motions
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
