@@ -86,15 +86,6 @@ This function is called at the very startup of Spacemacs initialization
 before layers configuration.
 You should not put any user code in there besides modifying the variable
 values."
-
-  ;; Help emacs find macOS system certificate authorities to verify the Let's
-  ;; Encrypt certificates used by MELPA. See
-  ;;   https://emacs.stackexchange.com/questions/18045/how-can-i-retrieve-an-https-url-on-mac-os-x-without-warnings-about-an-untrusted#answer-35953
-  ;; and
-  ;;   https://blog.vifortech.com/posts/emacs-tls-fix/
-  (require 'gnutls)
-  (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
-
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
