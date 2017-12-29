@@ -12,7 +12,7 @@ if [ "$(uname)" = "Darwin" ]; then
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
     # Add python bin to path (the AWS CLI tool made me do it)
-    export PATH="$PATH:~/Library/Python/2.7/bin/"
+    export PATH="$PATH:~/Library/Python/2.7/bin"
 fi
 
 # Add yarn to PATH
