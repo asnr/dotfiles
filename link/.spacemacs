@@ -335,6 +335,14 @@ you should place your code here."
   ;; Set indent width of CSS and SCSS to 2 characters
   (setq css-indent-offset 2)
 
+  ;; When opening magit status buffer, start the point at a useful place
+  (defun asnr-adjust-magit-status-point ()
+    (when (derived-mode-p 'magit-status-mode)
+      (goto-char (point-min))
+      (let ((search-result (search-forward-regexp "^Unstaged" nil t)))
+        (when search-result (forward-line)))))
+  (add-hook 'magit-refresh-buffer-hook 'asnr-adjust-magit-status-point)
+
   ;; Include underscore in word motions
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
