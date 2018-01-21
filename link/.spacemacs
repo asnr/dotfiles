@@ -349,6 +349,9 @@ you should place your code here."
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
+  ;; Include dash in word motions
+  (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+
   (define-key evil-motion-state-map "n" 'evil-next-line)
   (define-key evil-motion-state-map "e" 'evil-previous-line)
   (define-key evil-motion-state-map "i" 'evil-forward-char)
