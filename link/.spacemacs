@@ -336,6 +336,21 @@ you should place your code here."
   ;; Set indent width of CSS and SCSS to 2 characters
   (setq css-indent-offset 2)
 
+  ;; Adjust ediff faces so that 'fine' diffs (that is, diffs in parts of a line)
+  ;; stand out more
+  (defun asnr-adjust-ediff-colours ()                      ;; ~originally~
+    (set-face-foreground 'ediff-current-diff-A "#d69399")  ;; #f2241f
+    (set-face-background 'ediff-current-diff-A "#512e31")  ;; #512e31
+    (set-face-foreground 'ediff-fine-diff-A    "#f4b8bd")  ;; <undefined>
+    (set-face-background 'ediff-fine-diff-A    "#8d252e")  ;; <undefined>
+    (set-face-bold       'ediff-fine-diff-A    nil)        ;; bold
+    (set-face-foreground 'ediff-current-diff-B "#93cb5c")  ;; #67b11d
+    (set-face-background 'ediff-current-diff-B "#062c0c")  ;; #29422d
+    (set-face-foreground 'ediff-fine-diff-B    "#9bd363")  ;; <undefined>
+    (set-face-background 'ediff-fine-diff-B    "#186123")  ;; <undefined>
+    (set-face-bold       'ediff-fine-diff-B    nil))       ;; bold
+  (add-hook 'ediff-load-hook 'asnr-adjust-ediff-colours)
+
   ;; When opening magit status buffer, start the point at a useful place
   (defun asnr-adjust-magit-status-point ()
     (when (derived-mode-p 'magit-status-mode)
