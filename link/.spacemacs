@@ -493,4 +493,10 @@ you should place your code here."
     (evil-define-key evil-magit-state magit-mode-map "i" 'evil-forward-char)
     (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
+
+  (defun asnr-ediff-colemak-bindings ()
+    (define-key ediff-mode-map "k" 'ediff-next-difference)
+    (define-key ediff-mode-map "n" 'evil-ediff-scroll-down-1)
+    (define-key ediff-mode-map "e" 'evil-ediff-scroll-up-1))
+  (add-hook 'ediff-startup-hook 'asnr-ediff-colemak-bindings)
   )
