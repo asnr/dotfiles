@@ -367,6 +367,8 @@ you should place your code here."
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
+  (autoload 'sql-mssql "~/.config/spacemacs/sql-mssql.el" nil t)
+
   (asnr-configure-colemak-bindings)
   )
 
