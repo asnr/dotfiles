@@ -65,14 +65,19 @@ fi
 
 # shell is interactive <=> $PS1 is set
 if [ ${PS1+isset} == 'isset' ]; then
-  # Setup liquidprompt (as installed by homebrew)
-  if [ -f /usr/local/share/liquidprompt ]; then
-    . /usr/local/share/liquidprompt
-  fi
-
   # Setup autojump (as installed by homebrew)
   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
     . $(brew --prefix)/etc/profile.d/autojump.sh
+
+  # Setup liquidprompt (as installed by homebrew).
+  # Note that this needs to be loaded *after* any changes to $PROMPT_COMMAND,
+  # otherwise the 'display runtime of last command' feature will break and
+  # you'll just a timer showing elapsed time since the terminal loaded. See my
+  # comments and the last comment by Rycieos in
+  # https://github.com/nojhan/liquidprompt/issues/481
+  if [ -f /usr/local/share/liquidprompt ]; then
+      . /usr/local/share/liquidprompt
+  fi
 fi
 
 
