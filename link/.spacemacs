@@ -389,6 +389,22 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  )
 
+(defun abc-recently-played ()
+  "Run and display the output of the `abc_recently_played' commandline utility"
+  (interactive)
+  (let ((output-buffer-name "*ABC-radio-recently-played*"))
+    (with-output-to-temp-buffer
+      output-buffer-name
+      (let ((original-max-mini-window-height max-mini-window-height))
+        (unwind-protect
+            (progn
+              (setq max-mini-window-height 1)
+              (shell-command "abc_recently_played jazz"
+                             output-buffer-name
+                             output-buffer-name)
+              (pop-to-buffer output-buffer-name))
+          (setq max-mini-window-height original-max-mini-window-height))))))
+
 (defun asnr-configure-colemak-bindings ()
   (define-key evil-motion-state-map "n" 'evil-next-line)
   (define-key evil-motion-state-map "e" 'evil-previous-line)
