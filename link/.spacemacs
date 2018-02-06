@@ -353,8 +353,7 @@ you should place your code here."
 
   ;; When opening magit status buffer, start the point at a useful place
   (defun asnr-adjust-magit-status-point ()
-    (when (derived-mode-p 'magit-status-mode)
-      (goto-char (point-min))
+    (when (and (derived-mode-p 'magit-status-mode) (bobp))
       (let ((search-result (search-forward-regexp "^Unstaged" nil t)))
         (when search-result (forward-line)))))
   (add-hook 'magit-refresh-buffer-hook 'asnr-adjust-magit-status-point)
