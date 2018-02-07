@@ -336,6 +336,9 @@ you should place your code here."
   ;; Set indent width of CSS and SCSS to 2 characters
   (setq css-indent-offset 2)
 
+  ;; Make magit status buffer show fine diffs
+  (setq magit-diff-refine-hunk 'all)
+
   ;; Adjust ediff faces so that 'fine' diffs (that is, diffs in parts of a line)
   ;; stand out more
   (defun asnr-adjust-ediff-colours ()                      ;; ~originally~
