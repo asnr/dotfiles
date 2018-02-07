@@ -392,9 +392,14 @@ you should place your code here."
   "Run and display the output of the `abc_recently_played' commandline utility"
   (interactive)
   (let ((output-buffer-name "*ABC-radio-recently-played*"))
+    ;; with-output-to-temp-buffer is a hack to open the new buffer in Help mode.
     (with-output-to-temp-buffer
       output-buffer-name
       (let ((original-max-mini-window-height max-mini-window-height))
+        ;; We set max-mini-window-height to 1 to stop `shell-command' from
+        ;; writing stdout to the minibuffer *as well* as the buffer we specify.
+        ;; We then have to reset it to what it was previously, hence the
+        ;; unwind-protect shenanigans.
         (unwind-protect
             (progn
               (setq max-mini-window-height 1)
