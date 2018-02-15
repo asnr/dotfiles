@@ -325,6 +325,9 @@ you should place your code here."
   ;; separator to minimise the noise.
   (setq powerline-default-separator 'utf-8)
 
+  ;; Save all open buffers on focus-out.
+  (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
+
   ;; When opening a symlink, actually open the original file the symlink
   ;; points to. Especially useful when editing dotfiles that symlink into
   ;; my dotfiles repo.
