@@ -343,6 +343,11 @@ you should place your code here."
   ;; Make magit status buffer show fine diffs
   (setq magit-diff-refine-hunk 'all)
 
+  ;; When the autocomplete window is open, C-w should still delete backwards.
+  ;; See https://github.com/syl20bnr/spacemacs/issues/4243.
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
+
   ;; Adjust ediff faces so that 'fine' diffs (that is, diffs in parts of a line)
   ;; stand out more
   (defun asnr-adjust-ediff-colours ()                      ;; ~originally~
