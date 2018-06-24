@@ -443,7 +443,10 @@ you should place your code here."
 
   (define-key evil-motion-state-map "f" 'evil-forward-word-end)
   (define-key evil-motion-state-map "F" 'evil-forward-WORD-end)
+  (define-key evil-motion-state-map "t" 'evil-find-char)
   (define-key evil-motion-state-map "T" 'evil-find-char-backward)
+  (define-key evil-motion-state-map "g" 'evil-find-char-to)
+  (define-key evil-normal-state-map "g" nil)
   (define-key evil-motion-state-map "G" 'evil-find-char-to-backward)
   (define-key evil-motion-state-map "j" 'evil-yank)
   (define-key evil-normal-state-map "d" nil)
