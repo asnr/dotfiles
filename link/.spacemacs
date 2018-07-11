@@ -501,6 +501,7 @@ you should place your code here."
 
   (spacemacs/declare-prefix "o" "user")
   (spacemacs/set-leader-keys "of" 'fill-region)
+  (spacemacs/set-leader-keys "os" 'asnr-spread-list-to-newlines)
 
   ;; This breaks n mapping for Neotree for some reason
   ;; (define-key evil-evilified-state-map "n" 'evil-next-line)
@@ -555,3 +556,83 @@ you should place your code here."
     (define-key ediff-mode-map "e" 'evil-ediff-scroll-up-1))
   (add-hook 'ediff-startup-hook 'asnr-ediff-colemak-bindings)
   )
+
+(defun asnr-spread-list-to-newlines ()
+  (interactive)
+  (save-excursion
+    (asnr-last-point-in-open-parens-class)
+    (let* ((open-parens-char (char-after))
+           (close-parens-char (asnr-matching-parens-character open-parens-char)))
+      (forward-char)
+      (asnr-newline-indented)
+      (asnr-spread-list-contents-to-newlines open-parens-char
+                                             close-parens-char))))
+
+(defun asnr-spread-list-contents-to-newlines (open-parens-char close-parens-char)
+  (let ((next-token (regexp-opt (list (string open-parens-char)
+                                      (string close-parens-char)
+                                      ","))))
+    (re-search-forward next-token)  ;; TODO: error handling
+    (let ((matched-char (char-before)))
+      (while (not (= matched-char close-parens-char))
+        (cond ((= matched-char ?,) (asnr-newline-indented))
+              ((= matched-char open-parens-char) (progn
+                                                   (backward-char)
+                                                   (forward-list))))
+        (re-search-forward next-token)
+        (setq matched-char (char-before))))))
+
+(defun asnr-last-point-in-open-parens-class ()
+  (interactive)
+  (let* ((open-parens-strings (mapcar 'string (asnr-open-parens-characters)))
+         (open-parens-regex (regexp-opt open-parens-strings)))
+    ;; Move forward to deal with case where cursor is at open parens
+    (forward-char)
+    (re-search-backward open-parens-regex)))
+
+(defun asnr-matching-parens-character (open-parens-character)
+  "Return the matching parenthesis character as defined by the current syntax
+table."
+  (let* ((raw-syntax-descriptor (char-table-range (syntax-table)
+                                                  open-parens-character))
+         (matching-parens-character (cdr raw-syntax-descriptor)))
+    matching-parens-character))
+
+(defun asnr-newline-indented ()
+  (newline)
+  (indent-according-to-mode))
+
+(defun asnr-characters-in-syntax-class (syntax-class-code)
+  "Returns a list containing all the characters that belong to
+the syntax class defined by the integer SYNTAX-CLASS-CODE (e.g. 4
+for open parenthesis syntax class), as defined by the current
+syntax table.
+
+Note that this function does not examine parent syntax tables,
+so the list may appear incomplete."
+  (let* ((parens-group ())
+         (add-to-group (lambda (key value)
+                         (let ((syntax-class (car value)))
+                           (when (= syntax-class syntax-class-code)
+                             (setq parens-group (cons key parens-group)))))))
+    (map-char-table add-to-group (syntax-table))
+    parens-group))
+
+(defun asnr-open-parens-characters ()
+  "Returns list of characters that are in the 'open paranthesis'
+syntax class as defined in the current syntax table.
+
+Note that we our implementation is hacky: we start with a list of
+likely open parenthesis characters and we check which ones are
+actually in the open paranthesis syntax table.
+
+A more robust solution would traverse the syntax table and
+collect all of the characters in the syntax class, but this is a
+huge pain in the arse; see `asnr-characters-in-syntax-class'."
+  (let* ((possible-open-parens '(?\( ?\{ ?\[))
+         (OPEN-PARENS-SYNTAX-CLASS ?\()
+         (valid-open-parens-p (lambda (c) (= OPEN-PARENS-SYNTAX-CLASS
+                                             (char-syntax c))))
+         (open-parens-characters (seq-filter valid-open-parens-p
+                                             possible-open-parens)))
+    open-parens-characters))
