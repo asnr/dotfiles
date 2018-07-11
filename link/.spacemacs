@@ -395,6 +395,14 @@ you should place your code here."
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
+  (defvar asnr-close-parens-keep-at-end-of-line ()
+    "A list of close parens characters that `asnr-spread-list-to-newlines' will
+keep at the end of the last line of arguments.")
+  (make-variable-buffer-local 'asnr-close-parens-keep-at-end-of-line)
+
+  (add-hook 'csharp-mode-hook
+            #'(lambda () (setq asnr-close-parens-keep-at-end-of-line '(?\)))))
+
   (autoload 'sql-mssql "~/.config/spacemacs/sql-mssql.el" nil t)
 
   (asnr-configure-colemak-bindings)
@@ -580,7 +588,15 @@ you should place your code here."
                                                    (backward-char)
                                                    (forward-list))))
         (re-search-forward next-token)
-        (setq matched-char (char-before))))))
+        (setq matched-char (char-before)))
+      (when (asnr-close-parens-on-newline-p close-parens-char)
+        (backward-char)
+        (when (= (char-before) ?\s) (backward-char))
+        (insert ",")
+        (asnr-newline-indented)))))
+
+(defun asnr-close-parens-on-newline-p (close-parens-char)
+  (not (seq-contains asnr-close-parens-keep-at-end-of-line close-parens-char)))
 
 (defun asnr-last-point-in-open-parens-class ()
   (interactive)
