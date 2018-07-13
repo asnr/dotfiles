@@ -31,7 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     (auto-completion :disabled-for react)
+     auto-completion
      erc
      sql
      terraform
