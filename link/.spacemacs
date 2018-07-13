@@ -419,26 +419,26 @@ keep at the end of the last line of arguments.")
  ;; If there is more than one, they won't work right.
  )
 
-(defun abc-recently-played ()
-  "Run and display the output of the `abc_recently_played' commandline utility"
-  (interactive)
-  (let ((output-buffer-name "*ABC-radio-recently-played*"))
-    ;; with-output-to-temp-buffer is a hack to open the new buffer in Help mode.
-    (with-output-to-temp-buffer
-      output-buffer-name
-      (let ((original-max-mini-window-height max-mini-window-height))
-        ;; We set max-mini-window-height to 1 to stop `shell-command' from
-        ;; writing stdout to the minibuffer *as well* as the buffer we specify.
-        ;; We then have to reset it to what it was previously, hence the
-        ;; unwind-protect shenanigans.
-        (unwind-protect
-            (progn
-              (setq max-mini-window-height 1)
-              (shell-command "abc_recently_played jazz"
-                             output-buffer-name
-                             output-buffer-name)
-              (pop-to-buffer output-buffer-name))
-          (setq max-mini-window-height original-max-mini-window-height))))))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yasnippet-snippets symon string-inflection spaceline-all-the-icons all-the-icons memoize ruby-refactor ruby-hash-syntax rjsx-mode pippel pipenv password-generator overseer nameless magit-svn json-navigator hierarchy importmagic epc ctable concurrent deferred impatient-mode htmlize helm-xref helm-purpose window-purpose imenu-list gitignore-templates ghub let-alist evil-lion evil-goggles evil-cleverparens paredit editorconfig counsel-projectile counsel swiper ivy company-terraform centered-cursor-mode font-lock+ dotenv-mode winum fuzzy groovy-mode omnisharp shut-up csharp-mode helm-company helm-c-yasnippet company-web web-completion-data company-tern tern company-statistics company-auctex company-anaconda company auto-yasnippet ac-ispell auto-complete erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks sql-indent terraform-mode hcl-mode flycheck-pos-tip pos-tip flycheck nginx-mode dockerfile-mode docker tablist docker-tramp auctex-latexmk projectile-rails inflections feature-mode yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode auctex yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby mmm-mode markdown-toc markdown-mode gh-md smeargle orgit org magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
 
 (defun asnr-configure-colemak-bindings ()
   (define-key evil-motion-state-map "n" 'evil-next-line)
@@ -558,6 +558,27 @@ keep at the end of the last line of arguments.")
     (define-key ediff-mode-map "e" 'evil-ediff-scroll-up-1))
   (add-hook 'ediff-startup-hook 'asnr-ediff-colemak-bindings)
   )
+
+(defun abc-recently-played ()
+  "Run and display the output of the `abc_recently_played' commandline utility"
+  (interactive)
+  (let ((output-buffer-name "*ABC-radio-recently-played*"))
+    ;; with-output-to-temp-buffer is a hack to open the new buffer in Help mode.
+    (with-output-to-temp-buffer
+      output-buffer-name
+      (let ((original-max-mini-window-height max-mini-window-height))
+        ;; We set max-mini-window-height to 1 to stop `shell-command' from
+        ;; writing stdout to the minibuffer *as well* as the buffer we specify.
+        ;; We then have to reset it to what it was previously, hence the
+        ;; unwind-protect shenanigans.
+        (unwind-protect
+            (progn
+              (setq max-mini-window-height 1)
+              (shell-command "abc_recently_played jazz"
+                             output-buffer-name
+                             output-buffer-name)
+              (pop-to-buffer output-buffer-name))
+          (setq max-mini-window-height original-max-mini-window-height))))))
 
 (defun asnr-spread-list-to-newlines ()
   (interactive)
