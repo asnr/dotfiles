@@ -463,10 +463,10 @@ This function is called at the very end of Spacemacs initialization."
   (define-key evil-normal-state-map "D" nil)
   (define-key evil-motion-state-map "D" 'end-of-buffer)
   (define-key evil-motion-state-map "E" 'evil-lookup)
-  (define-key evil-motion-state-map "k" 'evil-search-next)
+  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
   ; Stop default binding taking precedence over evil-search-previous
   (define-key evil-normal-state-map "K" nil)
-  (define-key evil-motion-state-map "K" 'evil-search-previous)
+  (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
   (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
   ; Stop default binding taking precence over undo-tree-redo binding
   (define-key evil-normal-state-map "\C-p" nil)
