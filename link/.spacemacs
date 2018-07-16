@@ -529,6 +529,24 @@ This function is called at the very end of Spacemacs initialization."
   ;; dotspacemacs/user-config) would be to add configuration to evil.
   (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-search-next)
 
+  (with-eval-after-load 'evil-iedit-state
+    (define-key evil-iedit-state-map "N" 'iedit-expand-down-a-line)
+    (define-key evil-iedit-state-map "E" 'iedit-expand-up-a-line)
+    (define-key evil-iedit-state-map "I" 'iedit-restrict-current-line)
+    (define-key evil-iedit-state-map "k" 'iedit-next-occurrence)
+    (define-key evil-iedit-state-map "K" 'iedit-prev-occurrence)
+    (define-key evil-iedit-state-map "dd" 'iedit-goto-first-occurrence)
+    (define-key evil-iedit-state-map "D" 'iedit-goto-last-occurrence)
+    (define-key evil-iedit-state-map "S" 'iedit-delete-occurrences)
+    (define-key evil-iedit-state-map "r" 'evil-iedit-state/evil-substitute)
+    (define-key evil-iedit-state-map "R" 'evil-iedit-state/substitute)
+    ;; This isn't a Colemak fix, just aligning change with how it works with
+    ;; other forms of selection, like visual and vertical visual selection.
+    (define-key evil-iedit-state-map "c" 'evil-iedit-state/substitute)
+    (define-key evil-iedit-state-map "T" 'iedit-restrict-function)
+    (define-key evil-iedit-state-map "L" 'iedit-upcase-occurrences)
+    (define-key evil-iedit-state-map (kbd "C-L") 'iedit-downcase-occurrences))
+
   (with-eval-after-load 'helm
     (define-key helm-map "\C-e" 'helm-previous-line))
 
