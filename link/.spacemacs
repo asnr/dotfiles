@@ -507,6 +507,7 @@ This function is called at the very end of Spacemacs initialization."
   (spacemacs/declare-prefix "o" "user")
   (spacemacs/set-leader-keys "of" 'fill-region)
   (spacemacs/set-leader-keys "os" 'asnr-spread-list-to-newlines)
+  (spacemacs/set-leader-keys "om" 'asnr-focus-on-buffer)
 
   ;; This breaks n mapping for Neotree for some reason
   ;; (define-key evil-evilified-state-map "n" 'evil-next-line)
@@ -600,6 +601,11 @@ This function is called at the very end of Spacemacs initialization."
                              output-buffer-name)
               (pop-to-buffer output-buffer-name))
           (setq max-mini-window-height original-max-mini-window-height))))))
+
+(defun asnr-focus-on-buffer ()
+  (interactive)
+  (spacemacs/toggle-maximize-buffer)
+  (split-window-right-and-focus))
 
 (defun asnr-spread-list-to-newlines ()
   (interactive)
