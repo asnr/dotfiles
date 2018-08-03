@@ -458,6 +458,11 @@ This function is called at the very end of Spacemacs initialization."
   (define-key evil-motion-state-map "T" 'evil-find-char-backward)
   (define-key evil-motion-state-map "g" 'evil-find-char-to)
   (define-key evil-normal-state-map "g" nil)
+  (define-key evil-visual-state-map "g" nil)
+  ; Override the mapping inside an auxiliary keymap taking precedence over the
+  ; binding for `evil-find-char-to'
+  (with-eval-after-load 'evil-surround
+    (define-key (cdr (assoc 'visual-state evil-surround-mode-map)) "g" nil))
   (define-key evil-motion-state-map "G" 'evil-find-char-to-backward)
   (define-key evil-motion-state-map "j" 'evil-yank)
   (define-key evil-normal-state-map "d" nil)
