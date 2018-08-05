@@ -609,7 +609,7 @@ This function is called at the very end of Spacemacs initialization."
 
 (defun asnr-focus-on-buffer ()
   (interactive)
-  (spacemacs/toggle-maximize-buffer)
+  (when (< 1 (length (window-list))) (spacemacs/toggle-maximize-buffer))
   (split-window-right-and-focus))
 
 (defun asnr-spread-list-to-newlines ()
