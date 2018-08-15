@@ -648,11 +648,22 @@ This function is called at the very end of Spacemacs initialization."
 
 (defun asnr-last-point-in-open-parens-class ()
   (interactive)
-  (let* ((open-parens-strings (mapcar 'string (asnr-open-parens-characters)))
-         (open-parens-regex (regexp-opt open-parens-strings)))
+  (let* ((open-parens-characters (asnr-open-parens-characters))
+         (close-parens-characters (mapcar 'asnr-matching-parens-character
+                                          open-parens-characters))
+         (open-parens-strings (mapcar 'string open-parens-characters))
+         (close-parens-strings (mapcar 'string close-parens-characters))
+         (parens-regex (regexp-opt (append open-parens-strings
+                                           close-parens-strings))))
     ;; Move forward to deal with case where cursor is at open parens
     (forward-char)
-    (re-search-backward open-parens-regex)))
+    (re-search-backward parens-regex)
+    (let ((matched-char (char-after)))
+      (while (seq-contains close-parens-characters matched-char)
+        (forward-char)
+        (backward-list)
+        (re-search-backward parens-regex)
+        (setq matched-char (char-after))))))
 
 (defun asnr-matching-parens-character (open-parens-character)
   "Return the matching parenthesis character as defined by the current syntax
@@ -686,13 +697,13 @@ so the list may appear incomplete."
   "Returns list of characters that are in the 'open paranthesis'
 syntax class as defined in the current syntax table.
 
-Note that we our implementation is hacky: we start with a list of
+Note that this implementation is hacky: we start with a list of
 likely open parenthesis characters and we check which ones are
 actually in the open paranthesis syntax table.
 
 A more robust solution would traverse the syntax table and
 collect all of the characters in the syntax class, but this is a
-huge pain in the arse; see `asnr-characters-in-syntax-class'."
+huge pain in the rear; see `asnr-characters-in-syntax-class'."
   (let* ((possible-open-parens '(?\( ?\{ ?\[))
          (OPEN-PARENS-SYNTAX-CLASS ?\()
          (valid-open-parens-p (lambda (c) (= OPEN-PARENS-SYNTAX-CLASS
