@@ -402,6 +402,11 @@ keep at the end of the last line of arguments.")
 
   (autoload 'sql-mssql "~/.config/spacemacs/sql-mssql.el" nil t)
 
+  (spacemacs/declare-prefix "o" "user")
+  (spacemacs/set-leader-keys "of" 'fill-region)
+  (spacemacs/set-leader-keys "os" 'asnr-spread-list-to-newlines)
+  (spacemacs/set-leader-keys "om" 'asnr-focus-on-buffer)
+
   (asnr-configure-colemak-bindings)
   )
 
@@ -508,11 +513,6 @@ This function is called at the very end of Spacemacs initialization."
   (spacemacs/set-leader-keys "wn" 'evil-window-down)
   (spacemacs/set-leader-keys "we" 'evil-window-up)
   (spacemacs/set-leader-keys "wi" 'evil-window-right)
-
-  (spacemacs/declare-prefix "o" "user")
-  (spacemacs/set-leader-keys "of" 'fill-region)
-  (spacemacs/set-leader-keys "os" 'asnr-spread-list-to-newlines)
-  (spacemacs/set-leader-keys "om" 'asnr-focus-on-buffer)
 
   ;; This breaks n mapping for Neotree for some reason
   ;; (define-key evil-evilified-state-map "n" 'evil-next-line)
