@@ -407,6 +407,11 @@ keep at the end of the last line of arguments.")
   (spacemacs/set-leader-keys "os" 'asnr-spread-list-to-newlines)
   (spacemacs/set-leader-keys "om" 'asnr-focus-on-buffer)
 
+  (spacemacs/declare-prefix-for-mode 'csharp-mode
+    "mt" "csharp/testing")
+  (spacemacs/set-leader-keys-for-major-mode 'csharp-mode
+    "tt" 'asnr-run-csharp-xunit-test)
+
   (asnr-configure-colemak-bindings)
   )
 
@@ -711,3 +716,14 @@ huge pain in the rear; see `asnr-characters-in-syntax-class'."
          (open-parens-characters (seq-filter valid-open-parens-p
                                              possible-open-parens)))
     open-parens-characters))
+
+(defun asnr-run-csharp-xunit-test ()
+  "Run unit test under cursor for service project"
+  (interactive)
+  (save-excursion
+    (re-search-backward (regexp-opt '("[Fact]" "[Theory]")))
+    (re-search-forward (regexp-opt '("public void ")))
+    (let* ((default-directory (projectile-compilation-dir))
+           (test-name (current-word))
+           (make-command (concat "make test-single TEST_NAME=" test-name)))
+      (compile make-command))))
