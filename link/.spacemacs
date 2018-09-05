@@ -149,10 +149,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font `("Source Code Pro"
-                               :size ,(if (and (= (display-pixel-width) 1280)
-                                               (= (display-pixel-height) 800))
-                                         12
-                                       13)
+                               :size ,(asnr-font-size-for-this-monitor)
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -611,6 +608,19 @@ This function is called at the very end of Spacemacs initialization."
                              output-buffer-name)
               (pop-to-buffer output-buffer-name))
           (setq max-mini-window-height original-max-mini-window-height))))))
+
+(defun asnr-font-size-for-this-monitor ()
+  (if (or (asnr-laptop-monitor-p) (asnr-super-wide-screen-monitor-p))
+      12
+    13))
+
+(defun asnr-super-wide-screen-monitor-p ()
+  (and (= (display-pixel-width) 2560)
+       (= (display-pixel-height) 1880)))
+
+(defun asnr-laptop-monitor-p ()
+  (and (= (display-pixel-width) 1280)
+       (= (display-pixel-height) 800)))
 
 (defun asnr-focus-on-buffer ()
   (interactive)
