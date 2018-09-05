@@ -40,6 +40,7 @@ values."
      yaml
      html
      latex
+     c-c++
      csharp
      python
      ruby
@@ -312,6 +313,7 @@ values."
    web-mode-attr-indent-offset 2
    js2-strict-trailing-comma-warning nil
    js2-ignored-warnings '("msg.no.side.effects" "msg.no.console")
+   c-basic-offset 2
    ))
 
 (defun dotspacemacs/user-init ()
