@@ -397,6 +397,12 @@ keep at the end of the last line of arguments.")
   (add-hook 'csharp-mode-hook
             #'(lambda () (setq asnr-close-parens-keep-at-end-of-line '(?\)))))
 
+  ;; The csharp layer maps omnisharp-find-implementations-with-ido to ",gI".
+  ;; Make it add the last position to the evil jump list.
+  ;; This is a bug and I should raise an issue in the spacemacs repo to get this
+  ;; fixed upstream...
+  (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)
+
   (autoload 'sql-mssql "~/.config/spacemacs/sql-mssql.el" nil t)
 
   (spacemacs/declare-prefix "o" "user")
