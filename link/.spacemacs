@@ -336,6 +336,9 @@ you should place your code here."
   ;; separator to minimise the noise.
   (setq powerline-default-separator 'utf-8)
 
+  ;; Automatically save all open buffers when compiling
+  (setq compilation-ask-about-save nil)
+
   ;; Save all open buffers on focus-out.
   (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
