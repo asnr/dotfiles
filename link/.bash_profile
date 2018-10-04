@@ -80,6 +80,9 @@ if [ ${PS1+isset} == 'isset' ]; then
   fi
 fi
 
+if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 ## Aliases and functions ##
 
@@ -88,7 +91,6 @@ fi
 # Keep functions in separate file that way shells spawned by vim can evalaute
 # just those. Evaluating all of .bash_profile is too slow.
 [ -f ~/.bash_functions ] && . ~/.bash_functions
-
 
 ## Load RVM functions at end because that's where RVM put them :/ ##
 
