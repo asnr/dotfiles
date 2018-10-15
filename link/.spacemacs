@@ -499,7 +499,7 @@ This function is called at the very end of Spacemacs initialization."
   (define-key evil-normal-state-map "K" nil)
   (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
   (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
-  ; Stop default binding taking precence over undo-tree-redo binding
+  ; Stop default binding taking precedence over undo-tree-redo binding
   (define-key evil-normal-state-map "\C-p" nil)
   (define-key evil-motion-state-map "\C-p" 'undo-tree-redo)
   (define-key evil-motion-state-map "\C-y" 'evil-jump-backward)
@@ -596,6 +596,10 @@ This function is called at the very end of Spacemacs initialization."
     (evil-define-key evil-magit-state magit-mode-map "h" 'evil-backward-char)
     (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
+
+  (with-eval-after-load 'evil-org
+    ;; Stop default binding taking precedence over colemak mapping
+    (evil-define-key 'normal evil-org-mode-map "O" nil))
 
   (defun asnr-ediff-colemak-bindings ()
     (define-key ediff-mode-map "k" 'ediff-next-difference)
