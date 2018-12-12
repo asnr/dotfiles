@@ -13,6 +13,11 @@ if [ "$(uname)" = "Darwin" ]; then
 
     # Add python bin to path (the AWS CLI tool made me do it)
     export PATH="$PATH:~/Library/Python/2.7/bin"
+
+    # Setup google cloud SDK autocompletion
+    command -v gcloud >/dev/null 2>&1 && \
+        . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc && \
+        . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
 fi
 
 # Add yarn to PATH
