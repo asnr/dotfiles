@@ -53,11 +53,13 @@ stty -ixon -ixoff
 
 ## Miscellaneous ##
 
-# Setup for virtualenvwrapper, as outlined in
-#   https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    # Setup for virtualenvwrapper, as outlined in
+    #   https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Devel
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # Setup ruby version manager
 if command -v rbenv >/dev/null 2>&1; then
