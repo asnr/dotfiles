@@ -18,6 +18,14 @@ if [ "$(uname)" = "Darwin" ]; then
     command -v gcloud >/dev/null 2>&1 && \
         . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc && \
         . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+
+    # From Xin Guo
+    function setjdk() {
+        /usr/libexec/java_home >/dev/null 2>&1 && \
+            export JAVA_HOME=`/usr/libexec/java_home -v $@`
+    }
+    # Default java version is 8
+    setjdk 1.8
 fi
 
 # Add yarn to PATH
@@ -44,13 +52,6 @@ stty -ixon -ixoff
 
 
 ## Miscellaneous ##
-
-# From Xin Guo
-function setjdk() {
-	export JAVA_HOME=`/usr/libexec/java_home -v $@`
-}
-# Default java version is 8
-setjdk 1.8
 
 # Setup for virtualenvwrapper, as outlined in
 #   https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file
