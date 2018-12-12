@@ -127,6 +127,10 @@ if executable('ag')
 endif
 
 " Turn on vim-colors-solarized. Taken from the vim-colors-solarized README.md.
+" Next two lines fix weird colour bug in terminals, see
+"   https://github.com/altercation/vim-colors-solarized/issues/138#issuecomment-408307083
+let g:solarized_termcolors=256
+set t_Co=256
 syntax enable
 set background=dark
 colorscheme solarized
