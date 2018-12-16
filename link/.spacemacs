@@ -495,7 +495,9 @@ This function is called at the very end of Spacemacs initialization."
   (define-key evil-normal-state-map "D" nil)
   (define-key evil-motion-state-map "D" 'end-of-buffer)
   (define-key evil-motion-state-map "E" 'evil-lookup)
-  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
+  (if (asnr-spacemacs-version-at-least-p "0.200.13")
+      (define-key evil-motion-state-map "k" 'evil-search-next)
+    (define-key evil-motion-state-map "k" 'evil-ex-search-next))
   ; Stop default binding taking precedence over evil-search-previous
   (define-key evil-normal-state-map "K" nil)
   (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
@@ -758,3 +760,37 @@ huge pain in the rear; see `asnr-characters-in-syntax-class'."
            (test-name (current-word))
            (make-command (concat "make test-single TEST_NAME=" test-name)))
       (compile make-command))))
+
+(defun asnr-spacemacs-version-at-least-p (minimum-version)
+  (let* ((major-version (asnr-get-major-version spacemacs-version))
+         (minor-version (asnr-get-minor-version spacemacs-version))
+         (patch-version (asnr-get-patch-version spacemacs-version))
+         (minimum-major-version (asnr-get-major-version minimum-version))
+         (minimum-minor-version (asnr-get-minor-version minimum-version))
+         (minimum-patch-version (asnr-get-patch-version minimum-version)))
+    (or (> major-version minimum-major-version)
+        (and (= major-version minimum-major-version)
+             (> minor-version minimum-minor-version))
+        (and (= major-version minimum-major-version)
+             (= minor-version minimum-minor-version)
+             (>= patch-version minimum-patch-version)))))
+
+(defconst asnr-semver-number-regex
+  (concat "\\([[:digit:]]+\\)"
+          "\\."
+          "\\([[:digit:]]+\\)"
+          "\\."
+          "\\([[:digit:]]+\\)")
+  "Regex to find and parse semver compatible version numbers")
+
+(defun asnr-get-major-version (version)
+  (string-match (concat "^" asnr-semver-number-regex "$") version)
+  (string-to-number (match-string 1 version)))
+
+(defun asnr-get-minor-version (version)
+  (string-match (concat "^" asnr-semver-number-regex "$") version)
+  (string-to-number (match-string 2 version)))
+
+(defun asnr-get-patch-version (version)
+  (string-match (concat "^" asnr-semver-number-regex "$") version)
+  (string-to-number (match-string 3 version)))
