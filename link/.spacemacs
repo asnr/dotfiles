@@ -633,7 +633,7 @@ This function is called at the very end of Spacemacs initialization."
           (setq max-mini-window-height original-max-mini-window-height))))))
 
 (defun asnr-font-size-for-this-monitor ()
-  (cond ((asnr-linux-desktop-p) 14)
+  (cond ((or (asnr-macbookpro-2018-monitor-p) (asnr-linux-desktop-p)) 14)
         ((or (asnr-laptop-monitor-p) (asnr-super-wide-screen-monitor-p)) 12)
         (t 13)))
 
@@ -648,6 +648,10 @@ This function is called at the very end of Spacemacs initialization."
 (defun asnr-laptop-monitor-p ()
   (and (= (display-pixel-width) 1280)
        (= (display-pixel-height) 800)))
+
+(defun asnr-macbookpro-2018-monitor-p ()
+  (and (= (display-pixel-width) 1440)
+       (= (display-pixel-height) 900)))
 
 (defun asnr-focus-on-buffer ()
   (interactive)
