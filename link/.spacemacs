@@ -495,9 +495,7 @@ This function is called at the very end of Spacemacs initialization."
   (define-key evil-normal-state-map "D" nil)
   (define-key evil-motion-state-map "D" 'end-of-buffer)
   (define-key evil-motion-state-map "E" 'evil-lookup)
-  (if (asnr-spacemacs-version-at-least-p "0.200.13")
-      (define-key evil-motion-state-map "k" 'evil-search-next)
-    (define-key evil-motion-state-map "k" 'evil-ex-search-next))
+  (define-key evil-motion-state-map "k" 'evil-ex-search-next)
   ; Stop default binding taking precedence over evil-search-previous
   (define-key evil-normal-state-map "K" nil)
   (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
