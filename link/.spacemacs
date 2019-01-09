@@ -334,6 +334,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Hacky workaround to https://github.com/bbatsov/projectile/issues/1270
+  (setq projectile-project-compilation-cmd "")
+
   ;; On macOS the powerline colours are slightly off. Change the powerline
   ;; separator to minimise the noise.
   (setq powerline-default-separator 'utf-8)
