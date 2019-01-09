@@ -601,8 +601,11 @@ This function is called at the very end of Spacemacs initialization."
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
 
   (with-eval-after-load 'evil-org
-    ;; Stop default binding taking precedence over colemak mapping
-    (evil-define-key 'normal evil-org-mode-map "O" nil))
+    ;; Stop default evil-org bindings taking precedence over colemak mapping
+    (evil-define-key 'normal evil-org-mode-map "O" nil)
+    (evil-define-key 'normal evil-org-mode-map "d" nil)
+
+    (evil-define-key 'visual evil-org-mode-map "i" nil))
 
   (defun asnr-ediff-colemak-bindings ()
     (define-key ediff-mode-map "k" 'ediff-next-difference)
