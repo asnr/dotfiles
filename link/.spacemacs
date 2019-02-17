@@ -649,7 +649,8 @@ This function is called at the very end of Spacemacs initialization."
           (setq max-mini-window-height original-max-mini-window-height))))))
 
 (defun asnr-font-size-for-this-monitor ()
-  (cond ((or (asnr-macbookpro-2018-monitor-p) (asnr-linux-desktop-p)) 14)
+  (cond ((asnr-linux-desktop-p) 15)
+        ((asnr-macbookpro-2018-monitor-p) 14)
         ((or (asnr-laptop-monitor-p) (asnr-super-wide-screen-monitor-p)) 12)
         (t 13)))
 
