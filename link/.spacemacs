@@ -359,6 +359,9 @@ you should place your code here."
   ;; buffers) before they are truncated
   (setq helm-buffer-max-length 30)
 
+  ;; --hidden includes dotfiles in searches, which forces us to --ignore .git/
+  (setq helm-ag-base-command "ag --nocolor --nogroup --ignore .git/ --hidden")
+
   ;; Set indent width of CSS and SCSS to 2 characters
   (setq css-indent-offset 2)
 
