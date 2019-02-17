@@ -19,3 +19,4 @@ alias initasnr='git init && setasnr'
 alias be="bundle exec"
 
 alias ssh_hosts='grep -w -i "Host" ~/.ssh/config | sed s/Host//'
+alias psql_hosts='grep "^\[" ~/.pg_service.conf | tr -d []'
