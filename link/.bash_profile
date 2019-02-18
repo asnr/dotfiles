@@ -77,6 +77,9 @@ if [ ${PS1+isset} == 'isset' ]; then
   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
     . $(brew --prefix)/etc/profile.d/autojump.sh
 
+  [[ -s $(brew --prefix)/etc/profile.d/z.sh ]] && \
+    . $(brew --prefix)/etc/profile.d/z.sh
+
   # Setup liquidprompt (as installed by homebrew).
   # Note that this needs to be loaded *after* any changes to $PROMPT_COMMAND,
   # otherwise the 'display runtime of last command' feature will break and
