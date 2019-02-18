@@ -1,0 +1,6 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+LAST_COMMIT_MSG=$(git log --oneline -n 1)
+
+echo -e "# Last commit:\n#   $LAST_COMMIT_MSG" >> $COMMIT_MSG_FILE
