@@ -11,20 +11,22 @@ LINK_DIR=link
 
 for file_to_link in $(find $LINK_DIR ! -name '*~' ! -name '*.swp' -type f); do
   SOURCE_PATH=$DOTFILES_DIR/$file_to_link
-  LINK_TO_CREATE=$HOME/${file_to_link#$LINK_DIR/}
+  LINK_SUFFIX=${file_to_link#$LINK_DIR/}
+  LINK_TO_CREATE=$HOME/$LINK_SUFFIX
+  PRETTY_LINK_TO_CREATE=~/$LINK_SUFFIX
 
   # If symlink already exists, do nothing. If file exists, back it up
   # else create link
   if test $SOURCE_PATH -ef $LINK_TO_CREATE; then
-    echo "Link to $SOURCE_PATH already exists, moving on"
+    echo "Link to $file_to_link already exists, moving on"
   elif test ! -e $LINK_TO_CREATE; then
-    echo "Creating link $LINK_TO_CREATE -> $SOURCE_PATH"
+    echo "Creating link $PRETTY_LINK_TO_CREATE -> $file_to_link"
     if test ! -d $(dirname $LINK_TO_CREATE); then
       mkdir -p $(dirname $LINK_TO_CREATE)
     fi
     ln -s $SOURCE_PATH $LINK_TO_CREATE
   else
-    echo "$LINK_TO_CREATE already exists but is not a symlink to $SOURCE_PATH"
+    echo "$PRETTY_LINK_TO_CREATE already exists but is not a symlink to $SOURCE_PATH"
     echo "Aborting"
     exit 1
   fi
