@@ -368,6 +368,9 @@ you should place your code here."
   ;; Make magit status buffer show fine diffs
   (setq magit-diff-refine-hunk 'all)
 
+  ;; Automatically save file-visiting buffers before doing magit things
+  (setq magit-save-repository-buffers 'dontask)
+
   ;; When the autocomplete window is open, C-w should still delete backwards.
   ;; See https://github.com/syl20bnr/spacemacs/issues/4243.
   (with-eval-after-load 'company
