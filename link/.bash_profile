@@ -162,7 +162,9 @@ fi
 # just those. Evaluating all of .bash_profile is too slow.
 [ -f ~/.bash_functions ] && . ~/.bash_functions
 
-## Load RVM functions at end because that's where RVM put them :/ ##
+# Not version controlled! Contains scripts for the day job.
+[ -f ~/.bash_for_work.sh ] && . ~/.bash_for_work.sh
 
+## Load RVM functions at end because that's where RVM put them :/ ##
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
