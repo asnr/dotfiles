@@ -18,5 +18,10 @@ alias initasnr='git init && setasnr'
 
 alias be="bundle exec"
 
+alias kc="kubectl"
+# Make kubectl autocomplete work for kc alias
+complete -o default -F __start_kubectl kc
+alias kx="kubectx"
+
 alias ssh_hosts='grep -w -i "Host" ~/.ssh/config | sed s/Host//'
 alias psql_hosts='grep "^\[" ~/.pg_service.conf | tr -d []'
