@@ -1,4 +1,8 @@
-## Shell variables ##
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
 
 if [ "$(uname)" = "Darwin" ]; then
     # The order of /etc/paths isn't the same on my macs, one has /usr/local/bin
@@ -13,6 +17,14 @@ if [ "$(uname)" = "Darwin" ]; then
 
     # Add python bin to path (the AWS CLI tool made me do it)
     export PATH="$PATH:~/Library/Python/2.7/bin"
+
+    # Autojump directory changing
+    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
+        . $(brew --prefix)/etc/profile.d/autojump.sh
+
+    # z directory changing
+    [[ -s $(brew --prefix)/etc/profile.d/z.sh ]] && \
+        . $(brew --prefix)/etc/profile.d/z.sh
 
     # Setup google cloud SDK autocompletion
     command -v gcloud >/dev/null 2>&1 && \
@@ -106,13 +118,6 @@ fi
 
 # shell is interactive <=> $PS1 is set
 if [ ${PS1+isset} == 'isset' ]; then
-  # Setup autojump (as installed by homebrew)
-  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
-    . $(brew --prefix)/etc/profile.d/autojump.sh
-
-  [[ -s $(brew --prefix)/etc/profile.d/z.sh ]] && \
-    . $(brew --prefix)/etc/profile.d/z.sh
-
   # Setup liquidprompt (as installed by homebrew).
   # Note that this needs to be loaded *after* any changes to $PROMPT_COMMAND,
   # otherwise the 'display runtime of last command' feature will break and
