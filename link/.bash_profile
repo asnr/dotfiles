@@ -111,7 +111,7 @@ fi
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
-# Keep functions in separate file that way shells spawned by vim can evalaute
+# Keep functions in separate file that way shells spawned by vim can evaluate
 # just those. Evaluating all of .bash_profile is too slow.
 [ -f ~/.bash_functions ] && . ~/.bash_functions
 
