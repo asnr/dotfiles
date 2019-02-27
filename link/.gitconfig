@@ -1,3 +1,6 @@
 [core]
 	hooksPath = ~/.config/git
 	editor = vim
+[user]
+	name = asnr
+	email = ansr@users.noreply.github.com
