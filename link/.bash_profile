@@ -136,6 +136,7 @@ if [ ${PS1+isset} == 'isset' ]; then
       # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
       PRIMARY_FONT="\001\033[01;94m\002"  # light magenta, bold
       SECONDARY_FONT="\001\033[94m\002" # light magenta
+      TERTIARY_FONT="\001\033[38;5;245m\002"
       FONT_END="\001\033[m\002"
       # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
       # app) break slightly with this PS1 value (it's the '\W' that does it).
@@ -143,7 +144,7 @@ if [ ${PS1+isset} == 'isset' ]; then
       # appear in the wrong position of the line. To fix this on macOS install a
       # new version of bash using 'brew install bash' and then in Terminal
       # preferences set "Shells open with" to "/usr/local/bin/bash"
-      export PS1="\n${SECONDARY_FONT}\u${FONT_END} ${PRIMARY_FONT}\W${FONT_END}${SECONDARY_FONT}\n\$ ${FONT_END}"
+      export PS1="\n${SECONDARY_FONT}\h${FONT_END} ${TERTIARY_FONT}as${FONT_END} ${SECONDARY_FONT}\u${FONT_END} ${TERTIARY_FONT}in${FONT_END} ${PRIMARY_FONT}\W${FONT_END}${SECONDARY_FONT}\n\$ ${FONT_END}"
   fi
 fi
 
