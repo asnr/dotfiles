@@ -109,9 +109,6 @@ fi
 # Setup ruby version manager
 if command -v rbenv >/dev/null 2>&1; then
     eval "$(rbenv init -)"
-elif [ -f ~/.profile ]; then
-    # Setup RVM
-    source ~/.profile
 fi
 
 unset KUBECONFIG
