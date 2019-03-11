@@ -71,6 +71,9 @@ elif [ "$(uname)" = "Linux" ]; then
             . /etc/bash_completion
         fi
     fi
+
+    # z directory changing
+    [[ -s ~/.local/bin/z.sh ]] && . ~/.local/bin/z.sh
 fi
 
 # Add yarn to PATH
