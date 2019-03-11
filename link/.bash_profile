@@ -145,7 +145,7 @@ if [ ${PS1+isset} == 'isset' ]; then
       # appear in the wrong position of the line. To fix this on macOS install a
       # new version of bash using 'brew install bash' and then in Terminal
       # preferences set "Shells open with" to "/usr/local/bin/bash"
-      export PS1="\n${SECONDARY_FONT}\h${FONT_END} ${TERTIARY_FONT}as${FONT_END} ${SECONDARY_FONT}\u${FONT_END} ${TERTIARY_FONT}in${FONT_END} ${PRIMARY_FONT}\W${FONT_END}${SECONDARY_FONT}\n\$ ${FONT_END}"
+      export PS1="\n${SECONDARY_FONT}\h${FONT_END} ${TERTIARY_FONT}as${FONT_END} ${SECONDARY_FONT}\u${FONT_END} ${TERTIARY_FONT}in${FONT_END} ${PRIMARY_FONT}\w${FONT_END}${SECONDARY_FONT}\n\$ ${FONT_END}"
   fi
 fi
 
