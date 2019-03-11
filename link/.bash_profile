@@ -117,8 +117,6 @@ for f in $(find "${HOME}/.kube/config.d" -type f); do
     export KUBECONFIG="$KUBECONFIG:$f"
 done
 
-[ command -v kubectl >/dev/null 2>&1 ] && source <(kubectl completion bash)
-
 
 ## Interactive shell tools ##
 
