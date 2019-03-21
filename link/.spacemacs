@@ -570,7 +570,7 @@ This function is called at the very end of Spacemacs initialization."
   ;; "l" are hard coded in that source file, a better fix (that will also
   ;; probably remove a lot of other keymap code in this
   ;; dotspacemacs/user-config) would be to add configuration to evil.
-  (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-search-next)
+  (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-ex-search-next)
 
   (with-eval-after-load 'evil-iedit-state
     (define-key evil-iedit-state-map "N" 'iedit-expand-down-a-line)
@@ -613,7 +613,9 @@ This function is called at the very end of Spacemacs initialization."
     (evil-define-key evil-magit-state magit-mode-map "e" 'evil-previous-line)
     (evil-define-key evil-magit-state magit-mode-map "i" 'evil-forward-char)
     (evil-define-key evil-magit-state magit-mode-map "h" 'evil-backward-char)
-    (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
+    ;; Need to decide on a better keybinding for this
+    ;; (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
+    (evil-define-key evil-magit-state magit-mode-map "k" 'evil-ex-search-next)
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
 
   (with-eval-after-load 'evil-org
