@@ -616,7 +616,8 @@ This function is called at the very end of Spacemacs initialization."
     ;; Need to decide on a better keybinding for this
     ;; (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
     (evil-define-key evil-magit-state magit-mode-map "k" 'evil-ex-search-next)
-    (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward))
+    (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward)
+    (define-key magit-blame-read-only-mode-map "n" nil))
 
   (with-eval-after-load 'evil-org
     ;; Stop default evil-org bindings taking precedence over colemak mapping
