@@ -620,8 +620,8 @@ This function is called at the very end of Spacemacs initialization."
     ;; Stop default evil-org bindings taking precedence over colemak mapping
     (evil-define-key 'normal evil-org-mode-map "O" nil)
     (evil-define-key 'normal evil-org-mode-map "d" nil)
-
-    (evil-define-key 'visual evil-org-mode-map "i" nil))
+    (evil-define-key 'visual evil-org-mode-map "i" nil)
+    (evil-define-key 'motion evil-org-mode-map "g" nil))
 
   (defun asnr-ediff-colemak-bindings ()
     (define-key ediff-mode-map "k" 'ediff-next-difference)
