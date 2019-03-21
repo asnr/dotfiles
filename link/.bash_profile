@@ -119,9 +119,11 @@ fi
 
 unset KUBECONFIG
 KUBECONFIG="${HOME}/.kube/config"
-for f in $(find "${HOME}/.kube/config.d" -type f); do
-    export KUBECONFIG="$KUBECONFIG:$f"
-done
+if [ -d "${HOME}/.kube/config.d" ]; then
+  for f in $(find "${HOME}/.kube/config.d" -type f); do
+      export KUBECONFIG="$KUBECONFIG:$f"
+  done
+fi
 
 
 ## Interactive shell tools ##
