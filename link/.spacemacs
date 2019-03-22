@@ -617,6 +617,9 @@ This function is called at the very end of Spacemacs initialization."
     ;; (evil-define-key evil-magit-state magit-mode-map "k" 'magit-section-forward)
     (evil-define-key evil-magit-state magit-mode-map "k" 'evil-ex-search-next)
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward)
+    ;; Need to clear bindings so that yank works correctly
+    (evil-define-key evil-magit-state magit-mode-map "j" nil)
+    (define-key magit-status-mode-map "j" nil)
     (define-key magit-blame-read-only-mode-map "n" nil))
 
   (with-eval-after-load 'evil-org
