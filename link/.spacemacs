@@ -421,9 +421,11 @@ keep at the end of the last line of arguments.")
             #'(lambda () (setq asnr-close-parens-keep-at-end-of-line '(?\)))))
 
   ;; (add-hook 'python-mode-hook 'blacken-mode)
+  (defvar asnr-repos-using-black
+    '("cruise/car-metrics" "cruise/baikal" "cruise/db_metrics" "cruise/drive-review"))
   (add-hook 'python-mode-hook
             #'(lambda ()
-                (when (equal (projectile-project-root) "/home/***REMOVED***/cruise/car-metrics/")
+                (when (string-match-p (regexp-opt asnr-repos-using-black) (projectile-project-root))
                   (blacken-mode))))
 
   ;; The csharp layer maps omnisharp-find-implementations-with-ido to ",gI".
