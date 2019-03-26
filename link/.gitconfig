@@ -1,6 +1,8 @@
 [core]
 	hooksPath = ~/.config/git
 	editor = vim
+[submodule]
+	recurse = true
 [user]
 	name = asnr
 	email = ansr@users.noreply.github.com
