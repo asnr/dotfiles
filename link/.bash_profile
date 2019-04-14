@@ -9,6 +9,10 @@ if [ "$(uname)" = "Darwin" ]; then
     # first and the other has it last. Force it forward.
     export PATH="/usr/local/bin:$PATH"
 
+    # For the executables linked by go.sh. Eventually will want go.sh to link
+    # these into /usr/local/bin on macs but this will do for now.
+    export PATH="~/.local/bin:$PATH"
+
     # The macOS version of openssl is old, prefer the one we get from homebrew
     export PATH="/usr/local/opt/openssl/bin:$PATH"
 
