@@ -376,6 +376,11 @@ you should place your code here."
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
 
+  (with-eval-after-load 'neotree
+    (setq-default neo-show-hidden-files nil)
+    (setq neo-hidden-regexp-list
+          '("__pycache__" "^\\.git$" "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$")))
+
   ;; Adjust ediff faces so that 'fine' diffs (that is, diffs in parts of a line)
   ;; stand out more
   (defun asnr-adjust-ediff-colours ()                      ;; ~originally~
