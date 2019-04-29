@@ -16,7 +16,7 @@ class Track
     local_timezone_offset = Time.now.strftime("%:z")
     local_time_played = @time_played.localtime(local_timezone_offset)
     pretty_time = local_time_played.strftime('%l:%M:%S%P')
-    "#{pretty_time}  '#{@name}' - #{@album} - #{@artist}"
+    "#{pretty_time}  '#{@name}' * #{@album} * #{@artist}"
   end
 end
 
