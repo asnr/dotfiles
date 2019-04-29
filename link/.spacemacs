@@ -627,7 +627,8 @@ This function is called at the very end of Spacemacs initialization."
     ;; Need to clear bindings so that yank works correctly
     (evil-define-key evil-magit-state magit-mode-map "j" nil)
     (define-key magit-status-mode-map "j" nil)
-    (define-key magit-blame-read-only-mode-map "n" nil))
+    (define-key magit-blame-read-only-mode-map "n" nil)
+    (define-key magit-blob-mode-map "n" nil))
 
   (with-eval-after-load 'evil-org
     ;; Stop default evil-org bindings taking precedence over colemak mapping
