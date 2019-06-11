@@ -33,4 +33,8 @@ for file_to_link in $(find $LINK_DIR ! -name '*~' ! -name '*.swp' -type f); do
 done
 
 echo
+echo Compiling custom less keybindings to $HOME/.less
+lesskey -o $HOME/.less $HOME/.less.source
+
+echo
 echo "Done"

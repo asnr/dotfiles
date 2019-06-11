@@ -1,0 +1,7 @@
+# command
+k   repeat-search
+K   reverse-search
+n   forw-line
+e   back-line
+t   forw-screen
+b   back-screen
