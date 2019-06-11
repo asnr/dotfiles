@@ -144,17 +144,17 @@ if [ ${PS1+isset} == 'isset' ]; then
       . /usr/local/share/liquidprompt
   else
       # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
-      PRIMARY_FONT="\001\033[01;94m\002"  # light magenta, bold
-      SECONDARY_FONT="\001\033[94m\002" # light magenta
-      TERTIARY_FONT="\001\033[38;5;245m\002"
-      FONT_END="\001\033[m\002"
+      PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
+      SEC_FONT="\001\033[94m\002" # light magenta
+      TER_FONT="\001\033[38;5;245m\002"
+      F_END="\001\033[m\002"
       # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
       # app) break slightly with this PS1 value (it's the '\W' that does it).
       # After running a reverse-i-search (ctrl-r), the cursor position will
       # appear in the wrong position of the line. To fix this on macOS install a
       # new version of bash using 'brew install bash' and then in Terminal
       # preferences set "Shells open with" to "/usr/local/bin/bash"
-      export PS1="\n${SECONDARY_FONT}\h${FONT_END} ${TERTIARY_FONT}as${FONT_END} ${SECONDARY_FONT}\u${FONT_END} ${TERTIARY_FONT}in${FONT_END} ${PRIMARY_FONT}\w${FONT_END}${SECONDARY_FONT}\n\$ ${FONT_END}"
+      export PS1="\n${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
   fi
 fi
 
