@@ -158,7 +158,22 @@ if [ ${PS1+isset} == 'isset' ]; then
       # appear in the wrong position of the line. To fix this on macOS install a
       # new version of bash using 'brew install bash' and then in Terminal
       # preferences set "Shells open with" to "/usr/local/bin/bash"
-      export PS1="\n${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
+      PS1_ONE_LINE="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
+      PS1_NEW_LINE_ABOVE="\n$PS1_ONE_LINE"
+
+      # The purpose of the following contortions is to print the first prompt
+      # without an extraneous newline before it, but then add the newline in for
+      # all subsequent prompts. Unsetting the PROMPT_COMMAND means that there's
+      # one less thing we're executing on each read-execute iteration. I know, I
+      # know, but sometimes I get finicky, OK?
+      export PS1="$PS1_ONE_LINE"
+      reset_prompt () {
+          PS1="$PS1_NEW_LINE_ABOVE"
+      }
+      PROMPT_COMMAND='(( PROMPT_CTR-- < 0 )) && {
+          unset PROMPT_COMMAND PROMPT_CTR
+          reset_prompt
+      }'
   fi
 fi
 
