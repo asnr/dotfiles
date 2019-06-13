@@ -73,10 +73,10 @@ map <space> \
 noremap \s :CtrlP<CR>
 noremap \t :NERDTreeToggle<CR>
 noremap \; :r !pbpaste<CR>
-noremap \h <C-w>h
-noremap \n <C-w>j
-noremap \e <C-w>k
-noremap \i <C-w>l
+noremap \wh <C-w>h
+noremap \wn <C-w>j
+noremap \we <C-w>k
+noremap \wi <C-w>l
 noremap \w :w<CR>
 noremap \q :q<CR>
 noremap \x :split<CR>
