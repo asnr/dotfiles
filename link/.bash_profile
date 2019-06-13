@@ -22,6 +22,10 @@ if [ "$(uname)" = "Darwin" ]; then
     # Add python bin to path (the AWS CLI tool made me do it)
     export PATH="$PATH:~/Library/Python/2.7/bin"
 
+    # To customise keybindings for less, we need to use the homebrew version.
+    # Make man also use this version of less, instead of the system version.
+    [ -f /usr/local/bin/less ] && export PAGER=/usr/local/bin/less
+
     # Autojump directory changing
     [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
         . $(brew --prefix)/etc/profile.d/autojump.sh
