@@ -417,6 +417,11 @@ you should place your code here."
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
+  ;; Don't show docs in LSP popups when monitor is small
+  (when (< (display-pixel-width) 1500)
+    (setq lsp-ui-doc-enable nil)
+    (setq lsp-ui-sideline-enable nil))
+
   (when (eq system-type 'darwin)
     (setq racer-rust-src-path
           "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"))
