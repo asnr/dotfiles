@@ -35,16 +35,19 @@ values."
      bazel
      ;; Third party layers
      ansible
+     dap
      go
      auto-completion
      erc
      sql
+     (java :variables java-backend 'lsp)
      terraform
      nginx
      docker
      yaml
      html
      latex
+     lsp
      c-c++
      rust
      csharp
@@ -56,6 +59,7 @@ values."
      markdown
      javascript
      react
+     typescript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
