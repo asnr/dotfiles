@@ -649,6 +649,10 @@ This function is called at the very end of Spacemacs initialization."
     (evil-define-key 'visual evil-org-mode-map "i" nil)
     (evil-define-key 'motion evil-org-mode-map "g" nil))
 
+  (with-eval-after-load 'treemacs-evil
+    (evil-define-key 'treemacs treemacs-mode-map "s" #'treemacs-delete))
+
+
   (defun asnr-ediff-colemak-bindings ()
     (define-key ediff-mode-map "k" 'ediff-next-difference)
     (define-key ediff-mode-map "n" 'evil-ediff-scroll-down-1)
