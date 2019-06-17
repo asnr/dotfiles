@@ -442,6 +442,9 @@ keep at the end of the last line of arguments.")
                 (when (string-match-p (regexp-opt asnr-repos-using-black) (projectile-project-root))
                   (blacken-mode))))
 
+  ;; Align Flake8 linter max line length with Black
+  (setq-default flycheck-flake8-maximum-line-length 88)
+
   ;; The csharp layer maps omnisharp-find-implementations-with-ido to ",gI".
   ;; Make it add the last position to the evil jump list.
   ;; This is a bug and I should raise an issue in the spacemacs repo to get this
