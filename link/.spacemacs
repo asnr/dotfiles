@@ -445,11 +445,13 @@ keep at the end of the last line of arguments.")
   ;; Align Flake8 linter max line length with Black
   (setq-default flycheck-flake8-maximum-line-length 88)
 
-  ;; The csharp layer maps omnisharp-find-implementations-with-ido to ",gI".
-  ;; Make it add the last position to the evil jump list.
-  ;; This is a bug and I should raise an issue in the spacemacs repo to get this
-  ;; fixed upstream...
-  (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)
+
+  ;; These following navigation commands don't leave markers to jump back to
+  ;; with evil-jump-backward (C-o). Make them add the last position to the evil
+  ;; jump list. This is a bug and I should raise an issue in the spacemacs repo
+  ;; to get this fixed upstream...
+  (evil-set-command-property 'anaconda-mode-find-assignments :jump t)  ;; python
+  (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)  ;; csharp
 
   (autoload 'sql-mssql "~/.config/spacemacs/sql-mssql.el" nil t)
 
