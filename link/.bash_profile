@@ -133,6 +133,11 @@ if [ -d "${HOME}/.kube/config.d" ]; then
   done
 fi
 
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+    export FZF_DEFAULT_OPTS='--bind ctrl-n:down,ctrl-e:up'
+fi
+
 
 ## Interactive shell tools ##
 
