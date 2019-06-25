@@ -32,6 +32,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'python/black'
 
 " All of your Vundle managed Plugins must be added before the following line
 call vundle#end()            " required by Vundle
@@ -212,6 +213,9 @@ call SetupCommandAlias("gap",   "!git add --patch")
 call SetupCommandAlias("gpush", "!git push")
 call SetupCommandAlias("grp",   "!git pull --rebase")
 call SetupCommandAlias("gmp",   "!git pull")
+
+" Run black when saving python files
+autocmd BufWritePre *.py execute ':Black'
 
 " TODO undofile -> put into a tmp file
 " TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
