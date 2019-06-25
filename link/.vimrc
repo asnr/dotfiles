@@ -163,6 +163,11 @@ set list
 " which has explanation.
 set timeoutlen=1000 ttimeoutlen=0
 
+" Searches with '/' are case insensitive unless the search string has a
+" capital letter.
+set ignorecase
+set smartcase
+
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
 
