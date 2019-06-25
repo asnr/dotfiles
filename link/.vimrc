@@ -18,7 +18,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'asnr/vim-fugitive'
 Plugin 'tpope/vim-rails'
 Plugin 'joukevandermaas/vim-ember-hbs'
@@ -120,10 +121,6 @@ if executable('ag')
   " Use Ag over Grep. --hidden includes dotfiles in searches, which forces us
   " to --ignore .git/
   set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git/
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " --hidden includes dotfiles in searches, which forces us to --ignore .git/
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git/ --hidden -g ""'
 endif
 
 " Turn on vim-colors-solarized. Taken from the vim-colors-solarized README.md.

@@ -70,7 +70,7 @@ cnoremap <C-s> <C-d>
 " press the leader key
 let mapleader='\'
 map <space> \
-noremap \s :CtrlP<CR>
+noremap \pf :Files<CR>
 noremap \t :NERDTreeToggle<CR>
 noremap \; :r !pbpaste<CR>
 noremap \wh <C-w>h
@@ -88,10 +88,6 @@ noremap \l :SyntasticCheck<CR>
 " noremap \cu <plug>NERDCommenterInvert
 " noremap \ci <plug>NERDCommenterAlignLeft
 " noremap \cl <plug>NERDCommenterUncomment
-
-" Map CtrlP to an out of the way combination so that it doesn't conflict with
-" redo (<C-R>)
-let g:ctrlp_map = '<C-\>'
 
 " Make NERDTree mappings play well with my Colemak adjusted mappings.
 " For example, by default NERDTreeMapOpenExpl = 'e' stuffs up my
@@ -121,17 +117,6 @@ nmap jRr <Plug>YSsurround
 nmap jRR <Plug>YSsurround
 xmap R   <Plug>VSurround
 xmap dR  <Plug>VgSurround
-
-" Fix mapping inside CtrlP's prompt
-" We map some functions to nothing because their default mappings clobber our
-" <c-n>, <c-e> maps
-let g:ctrlp_prompt_mappings = {
-  \ 'PrtClear()':           ['<c-l>'],
-  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-  \ 'PrtSelectMove("k")':   ['<c-e>', '<up>'],
-  \ 'PrtHistory(-1)':       [],
-  \ 'PrtCurEnd()':          [],
-  \ }
 
 " fugitive_no_maps is a misnomer, it only disables <C-R><C-G> and y<C-G>.
 " We really care about disabling the latter, because that makes the remapped
