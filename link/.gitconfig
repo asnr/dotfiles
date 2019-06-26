@@ -6,3 +6,5 @@
 [user]
 	name = asnr
 	email = asnr@users.noreply.github.com
+[includeIf "gitdir:~/work/"]
+	path = .gitconfig_work
