@@ -172,13 +172,15 @@ if [ ${PS1+isset} == 'isset' ]; then
       # one less thing we're executing on each read-execute iteration. I know, I
       # know, but sometimes I get finicky, OK?
       export PS1="$PS1_ONE_LINE"
-      reset_prompt () {
+      export _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
+      reset_prompt_and_prompt_command () {
           PS1="$PS1_NEW_LINE_ABOVE"
+          PROMPT_COMMAND="$_OLD_PROMPT_COMMAND"
       }
-      PROMPT_COMMAND='(( PROMPT_CTR-- < 0 )) && {
+      PROMPT_COMMAND="$_OLD_PROMPT_COMMAND (( PROMPT_CTR-- < 0 )) && {
           unset PROMPT_COMMAND PROMPT_CTR
-          reset_prompt
-      }'
+          reset_prompt_and_prompt_command
+      }"
   fi
 fi
 
