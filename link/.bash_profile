@@ -189,6 +189,7 @@ if [ ${PS1+isset} == 'isset' ]; then
       # one less thing we're executing on each read-execute iteration. I know, I
       # know, but sometimes I get finicky, OK?
       export PS1="$PS1_ONE_LINE"
+      # Always preserve the current PROMPT_COMMAND because z needs it to work!
       export _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
       reset_prompt_and_prompt_command () {
           recalculate_prompt
