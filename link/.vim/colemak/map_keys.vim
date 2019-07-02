@@ -70,7 +70,7 @@ cnoremap <C-s> <C-d>
 " press the leader key
 let mapleader='\'
 map <space> \
-noremap \pf :Files<CR>
+noremap \pf :GFiles<CR>
 noremap \t :NERDTreeToggle<CR>
 noremap \; :r !pbpaste<CR>
 noremap \wh <C-w>h
