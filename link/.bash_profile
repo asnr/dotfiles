@@ -34,10 +34,13 @@ if [ "$(uname)" = "Darwin" ]; then
     [[ -s $(brew --prefix)/etc/profile.d/z.sh ]] && \
         . $(brew --prefix)/etc/profile.d/z.sh
 
-    # Setup google cloud SDK autocompletion
-    command -v gcloud >/dev/null 2>&1 && \
-        . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc && \
-        . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+    # Update PATH for the Google Cloud SDK.
+    [ -f "$HOME/.local/google-cloud-sdk/path.bash.inc" ] && \
+        . "$HOME/.local/google-cloud-sdk/path.bash.inc"
+
+    # Enable shell command completion for gcloud.
+    [ -f "$HOME/.local/google-cloud-sdk/completion.bash.inc" ] && \
+        . "$HOME/.local/google-cloud-sdk/completion.bash.inc"
 
     # From Xin Guo
     function setjdk() {
