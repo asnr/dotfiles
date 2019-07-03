@@ -413,6 +413,7 @@ you should place your code here."
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'react-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'c-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
