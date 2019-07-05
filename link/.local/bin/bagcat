@@ -1,17 +1,35 @@
 #!/usr/bin/env python
 
+from argparse import ArgumentParser
+from collections import deque
 import sys
 import rosbag
 
 
-def main(bag_file, topic):
+def parse_args():
+    parser = ArgumentParser(description="List messages in a topic")
+    parser.add_argument("file_path", type=str, help="path of bag file to read")
+    parser.add_argument("topic", type=str, help="topic to read messages from")
+    parser.add_argument(
+        "--last", type=int, default=None, help="number of messages to display from end"
+    )
+    return parser.parse_args()
+
+
+def main(bag_file, topic, num_last_messages_to_print):
     bag = rosbag.Bag(bag_file)
     if not contains_topic(bag, topic):
-        print('ERROR: {} does not contain topic {}'.format(bag_file, topic))
+        print("ERROR: {} does not contain topic {}".format(bag_file, topic))
         sys.exit(1)
 
-    for message in bag.read_messages(topic):
-        print(message)
+    if num_last_messages_to_print:
+        printer = LastMessagesPrinter(num_last_messages_to_print)
+    else:
+        printer = ImmediatePrinter()
+
+    with printer as printer:
+        for message in bag.read_messages(topic):
+            printer.output(message)
 
 
 def contains_topic(bag, topic):
@@ -19,7 +37,36 @@ def contains_topic(bag, topic):
     return topic in topic_list
 
 
-if __name__ == '__main__':
-    bag_file = sys.argv[1]
-    topic = sys.argv[2]
-    main(bag_file, topic)
+class ImmediatePrinter(object):
+    def __init__(self):
+        pass
+
+    def output(self, ros_message):
+        print(ros_message)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        pass
+
+
+class LastMessagesPrinter(object):
+    def __init__(self, num_messages_to_print=1):
+        self._num_messages_to_print = num_messages_to_print
+        self._message_buffer = deque(maxlen=num_messages_to_print)
+
+    def output(self, ros_message):
+        self._message_buffer.append(ros_message)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        for ros_message in self._message_buffer:
+            print(ros_message)
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    main(args.file_path, args.topic, num_last_messages_to_print=args.last)
