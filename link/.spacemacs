@@ -380,6 +380,11 @@ you should place your code here."
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
 
+  (with-eval-after-load 'treemacs
+    (defun asnr-treemacs-files-to-ignore (filename absolute-path)
+      (string-suffix-p ".pyc" filename))
+    (add-to-list 'treemacs-ignored-file-predicates #'asnr-treemacs-files-to-ignore))
+
   (with-eval-after-load 'neotree
     (setq-default neo-show-hidden-files nil)
     (setq neo-hidden-regexp-list
