@@ -600,6 +600,7 @@ This function is called at the very end of Spacemacs initialization."
   (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-ex-search-next)
 
   (with-eval-after-load 'evil-iedit-state
+    (define-key evil-iedit-state-map "n" nil)
     (define-key evil-iedit-state-map "N" 'iedit-expand-down-a-line)
     (define-key evil-iedit-state-map "E" 'iedit-expand-up-a-line)
     (define-key evil-iedit-state-map "I" 'iedit-restrict-current-line)
