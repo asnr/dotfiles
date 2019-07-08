@@ -6,7 +6,7 @@ VAULT_DIRECTORY="$1"
 
 for SECRET_NAME in $(vault list "$VAULT_DIRECTORY" | tail -n +3)
 do
-  SECRET_VALUE=$(vault read "${VAULT_DIRECTORY}/${SECRET_NAME}" | tail -n 1 | tail --bytes +21)
+  SECRET_VALUE=$(vault read "${VAULT_DIRECTORY}/${SECRET_NAME}" | tail -n 1 | tail -c +21)
   echo "${SECRET_NAME}"
   echo "  ${SECRET_VALUE}"
 done
