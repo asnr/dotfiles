@@ -85,6 +85,8 @@ elif [ "$(uname)" = "Linux" ]; then
 
     # z directory changing
     [[ -s ~/.local/bin/z.sh ]] && . ~/.local/bin/z.sh
+
+    alias utc2epoch="date +'%s' --utc --date"
 fi
 
 export NVM_DIR="$HOME/.nvm"
