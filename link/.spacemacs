@@ -440,13 +440,13 @@ keep at the end of the last line of arguments.")
   (add-hook 'csharp-mode-hook
             #'(lambda () (setq asnr-close-parens-keep-at-end-of-line '(?\)))))
 
-  ;; (add-hook 'python-mode-hook 'blacken-mode)
-  (defvar asnr-repos-using-black
-    '("cruise/car-metrics" "cruise/baikal" "cruise/db_metrics" "cruise/drive-review"))
-  (add-hook 'python-mode-hook
-            #'(lambda ()
-                (when (string-match-p (regexp-opt asnr-repos-using-black) (projectile-project-root))
-                  (blacken-mode))))
+  (add-hook 'python-mode-hook 'blacken-mode)
+  ;; (defvar asnr-repos-using-black
+  ;;   '("cruise/car-metrics" "cruise/baikal" "cruise/db_metrics" "cruise/drive-review"))
+  ;; (add-hook 'python-mode-hook
+  ;;           #'(lambda ()
+  ;;               (when (string-match-p (regexp-opt asnr-repos-using-black) (projectile-project-root))
+  ;;                 (blacken-mode))))
 
   ;; Align Flake8 linter max line length with Black
   (setq-default flycheck-flake8-maximum-line-length 88)
