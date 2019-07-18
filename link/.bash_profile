@@ -148,63 +148,53 @@ fi
 
 # shell is interactive <=> $PS1 is set
 if [ ${PS1+isset} == 'isset' ]; then
-  # Setup liquidprompt (as installed by homebrew).
-  # Note that this needs to be loaded *after* any changes to $PROMPT_COMMAND,
-  # otherwise the 'display runtime of last command' feature will break and
-  # you'll just a timer showing elapsed time since the terminal loaded. See my
-  # comments and the last comment by Rycieos in
-  # https://github.com/nojhan/liquidprompt/issues/481
-  if [ -f /usr/local/share/liquidprompt ]; then
-      . /usr/local/share/liquidprompt
-  else
-      # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
-      PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
-      SEC_FONT="\001\033[94m\002" # light magenta
-      TER_FONT="\001\033[38;5;245m\002" # light grey
-      WARN_FONT="\001\033[01;91m\002" # light red
-      F_END="\001\033[m\002"
+    # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
+    PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
+    SEC_FONT="\001\033[94m\002" # light magenta
+    TER_FONT="\001\033[38;5;245m\002" # light grey
+    WARN_FONT="\001\033[01;91m\002" # light red
+    F_END="\001\033[m\002"
 
-      recalculate_prompt () {
-          # Cheers liquidprompt for the mad predicates
-          if [[ "${VIRTUAL_ENV-}${CONDA_DEFAULT_ENV-}" = ?* ]]; then
-              if [[ -n "${VIRTUAL_ENV-}" ]]; then
-                  PY_VENV_PROMPT=" ${TER_FONT}py${F_END} ${WARN_FONT}${VIRTUAL_ENV##*/}${F_END}"
-              else
-                  PY_VENV_PROMPT=" ${TER_FONT}conda${F_END} ${WARN_FONT}${CONDA_DEFAULT_ENV##*/}${F_END}"
-              fi
-          else
-              PY_VENV_PROMPT=
-          fi
+    recalculate_prompt () {
+        # Cheers liquidprompt for the mad predicates
+        if [[ "${VIRTUAL_ENV-}${CONDA_DEFAULT_ENV-}" = ?* ]]; then
+            if [[ -n "${VIRTUAL_ENV-}" ]]; then
+                PY_VENV_PROMPT=" ${TER_FONT}py${F_END} ${WARN_FONT}${VIRTUAL_ENV##*/}${F_END}"
+            else
+                PY_VENV_PROMPT=" ${TER_FONT}conda${F_END} ${WARN_FONT}${CONDA_DEFAULT_ENV##*/}${F_END}"
+            fi
+        else
+            PY_VENV_PROMPT=
+        fi
 
-          # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
-          # app) break slightly with this PS1 value (it's the '\W' that does it).
-          # After running a reverse-i-search (ctrl-r), the cursor position will
-          # appear in the wrong position of the line. To fix this on macOS install a
-          # new version of bash using 'brew install bash' and then in Terminal
-          # preferences set "Shells open with" to "/usr/local/bin/bash"
-          PS1_ONE_LINE="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
-          PS1_NEW_LINE_ABOVE="\n$PS1_ONE_LINE"
-          PS1="$PS1_NEW_LINE_ABOVE"
-      }
-      recalculate_prompt
+        # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
+        # app) break slightly with this PS1 value (it's the '\W' that does it).
+        # After running a reverse-i-search (ctrl-r), the cursor position will
+        # appear in the wrong position of the line. To fix this on macOS install a
+        # new version of bash using 'brew install bash' and then in Terminal
+        # preferences set "Shells open with" to "/usr/local/bin/bash"
+        PS1_ONE_LINE="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
+        PS1_NEW_LINE_ABOVE="\n$PS1_ONE_LINE"
+        PS1="$PS1_NEW_LINE_ABOVE"
+    }
+    recalculate_prompt
 
-      # The purpose of the following contortions is to print the first prompt
-      # without an extraneous newline before it, but then add the newline in for
-      # all subsequent prompts. Unsetting the PROMPT_COMMAND means that there's
-      # one less thing we're executing on each read-execute iteration. I know, I
-      # know, but sometimes I get finicky, OK?
-      export PS1="$PS1_ONE_LINE"
-      # Always preserve the current PROMPT_COMMAND because z needs it to work!
-      export _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
-      reset_prompt_and_prompt_command () {
-          recalculate_prompt
-          PROMPT_COMMAND="$_OLD_PROMPT_COMMAND recalculate_prompt;"
-      }
-      PROMPT_COMMAND="$_OLD_PROMPT_COMMAND (( PROMPT_CTR-- < 0 )) && {
-          unset PROMPT_COMMAND PROMPT_CTR
-          reset_prompt_and_prompt_command
-      }"
-  fi
+    # The purpose of the following contortions is to print the first prompt
+    # without an extraneous newline before it, but then add the newline in for
+    # all subsequent prompts. Unsetting the PROMPT_COMMAND means that there's
+    # one less thing we're executing on each read-execute iteration. I know, I
+    # know, but sometimes I get finicky, OK?
+    export PS1="$PS1_ONE_LINE"
+    # Always preserve the current PROMPT_COMMAND because z needs it to work!
+    export _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
+    reset_prompt_and_prompt_command () {
+        recalculate_prompt
+        PROMPT_COMMAND="$_OLD_PROMPT_COMMAND recalculate_prompt;"
+    }
+    PROMPT_COMMAND="$_OLD_PROMPT_COMMAND (( PROMPT_CTR-- < 0 )) && {
+        unset PROMPT_COMMAND PROMPT_CTR
+        reset_prompt_and_prompt_command
+    }"
 fi
 
 if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
