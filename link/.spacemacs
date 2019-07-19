@@ -423,6 +423,18 @@ you should place your code here."
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
+  (setq lsp-java-format-settings-url
+        "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml")
+  (setq lsp-java-format-settings-profile "GoogleStyle")
+  (add-hook 'java-mode-hook
+            #'(lambda ()
+                ;; lsp-java formatter indentation settings get overridden by
+                ;; tab-width, make sure tab-width is right. See
+                ;; https://github.com/emacs-lsp/lsp-java/issues/76.
+                (setq tab-width 4 foo-bar-fish "woohoo")
+                ;; Le sigh also need to negotiate with c-indent-line-or-region
+                (setq c-basic-offset 4)))
+
   ;; Don't show docs in LSP popups when monitor is small
   (when (< (display-pixel-width) 1500)
     (setq lsp-ui-doc-enable nil)
