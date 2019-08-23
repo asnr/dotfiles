@@ -16,6 +16,8 @@ if [ "$(uname)" = "Darwin" ]; then
     # The macOS version of openssl is old, prefer the one we get from homebrew
     export PATH="/usr/local/opt/openssl/bin:$PATH"
 
+    export PATH="$PATH:/Library/TeX/texbin"
+
     # Add Postgres.app (v9.4) SQL command line tools to PATH
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
