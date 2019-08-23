@@ -59,6 +59,7 @@ values."
      markdown
      javascript
      react
+     scheme
      typescript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -422,6 +423,10 @@ you should place your code here."
 
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (add-hook 'scheme-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+
+  ;; Originally equal to '(guile racket chicken chez mit chibi)
+  (setf geiser-active-implementations '(mit))
 
   (setq lsp-java-format-settings-url
         "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml")
