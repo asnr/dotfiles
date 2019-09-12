@@ -5,3 +5,5 @@ n   forw-line
 e   back-line
 t   forw-screen
 b   back-screen
+d   goto-line
+D   goto-end
