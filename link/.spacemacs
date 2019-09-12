@@ -440,10 +440,9 @@ you should place your code here."
                 ;; Le sigh also need to negotiate with c-indent-line-or-region
                 (setq c-basic-offset 4)))
 
-  ;; Don't show docs in LSP popups when monitor is small
-  (when (< (display-pixel-width) 1500)
-    (setq lsp-ui-doc-enable nil)
-    (setq lsp-ui-sideline-enable nil))
+  ;; Don't display docs in LSP popups, they're distracting
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-sideline-enable nil)
 
   (when (eq system-type 'darwin)
     (setq racer-rust-src-path
