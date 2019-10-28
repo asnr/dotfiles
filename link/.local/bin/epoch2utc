@@ -4,5 +4,8 @@ set -euo pipefail
 
 epoch_timestamp="$1"
 
-# May not work for macOS, which uses BSD version of date
-date --utc --date "@$epoch_timestamp"
+if [ "$(uname)" = "Darwin" ]; then
+    date -u -r "$epoch_timestamp"
+else
+    date --utc --date "@$epoch_timestamp"
+fi
