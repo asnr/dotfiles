@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Don't use -a for logical and because it always evaluates both predicates
+if [ "${2+set}" = "set" ] && [ $2 = "message" ]; then
+    # When setting the commit message using "git commit -m", do nothing.
+    # Otherwise, any extra comments appended to the commit message by this
+    # script will be included in the final commit message.
+    exit 0
+fi
+
 COMMIT_MSG_FILE=$1
 LAST_COMMIT_MSG=$(git log --oneline -n 1)
 
