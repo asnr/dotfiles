@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Convert seconds since epoch to local time
+
+set -euo pipefail
+
+epoch_timestamp="$1"
+
+# May not work for macOS, which uses BSD version of date
+date --date "@$epoch_timestamp"
