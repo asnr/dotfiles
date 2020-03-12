@@ -413,6 +413,9 @@ you should place your code here."
         (when search-result (forward-line)))))
   (add-hook 'magit-refresh-buffer-hook 'asnr-adjust-magit-status-point)
 
+  ;; Enable word wrap in org mode
+  (add-hook 'org-mode-hook #'toggle-truncate-lines)
+
   ;; Include underscore in word motions
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
