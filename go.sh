@@ -13,6 +13,14 @@ find $LINK_DIR ! -name '*~' ! -name '*.swp' -type f | while read file_to_link
 do
   SOURCE_PATH="$DOTFILES_DIR/$file_to_link"
   LINK_SUFFIX="${file_to_link#$LINK_DIR/}"
+
+  # Need this workaround because VSCode expects settings.json to be in different
+  # directories depending on the OS.
+  if [ "$LINK_SUFFIX" = '.config/Code/User/settings.json' -a \
+       "$(uname)" = "Darwin" ]; then
+    LINK_SUFFIX='Library/Application Support/Code/User/settings.json'
+  fi
+
   LINK_TO_CREATE="$HOME/$LINK_SUFFIX"
   PRETTY_LINK_TO_CREATE="~/$LINK_SUFFIX"
 
