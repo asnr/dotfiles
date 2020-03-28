@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Solarized Light",
+    "editor.fontSize": 13,
+    "workbench.activityBar.visible": false,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "editor.lineNumbers": "off"
+}
