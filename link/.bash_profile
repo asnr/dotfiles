@@ -52,6 +52,8 @@ if [ "$(uname)" = "Darwin" ]; then
     # Default java version is 8
     setjdk 1.8
 
+    alias utc2epoch="gdate +'%s' --utc --date"
+
 elif [ "$(uname)" = "Linux" ]; then
     # append to the history file, don't overwrite it. (From ubuntu .bashrc)
     shopt -s histappend
