@@ -1,6 +1,6 @@
 #! /bin/sh
 
-set -eu
+set -euo pipefail
 
 DOTFILES_DIR=$PWD
 
