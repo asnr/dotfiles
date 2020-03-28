@@ -19,7 +19,7 @@ do
   # If symlink already exists, do nothing. If file exists, back it up
   # else create link
   if test "$SOURCE_PATH" -ef "$LINK_TO_CREATE"; then
-    echo "Link to $file_to_link already exists, moving on"
+    echo $'\342\234\224' "$PRETTY_LINK_TO_CREATE" # $'\342\234\224' = ✔
   elif test ! -e "$LINK_TO_CREATE"; then
     echo "Creating link $PRETTY_LINK_TO_CREATE -> $file_to_link"
     if test ! -d "$(dirname "$LINK_TO_CREATE")"; then
