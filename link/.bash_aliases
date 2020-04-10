@@ -1,4 +1,4 @@
-; -*-sh-*-
+#; -*-sh-*-
 
 alias xv6path='export PATH=/usr/local/xv6/bin:$PATH && echo $PATH'
 

@@ -1,4 +1,4 @@
-; -*-sh-*-
+#; -*-sh-*-
 
 function current_keyboard_layout() {
   defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | \
