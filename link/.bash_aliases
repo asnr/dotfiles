@@ -23,8 +23,10 @@ alias be="bundle exec"
 alias kc="kubectl"
 # Make kubectl autocomplete work for kc alias. Taken from
 #   https://stackoverflow.com/a/52907262/1662788
-command -v kubectl >/dev/null 2>&1 && \
-    source <(kubectl completion bash | sed 's/__start_kubectl kubectl/__start_kubectl kc/g')
+#
+# Currently commented out because kubectl is dog slow, which makes opening a new terminal excruciatingly slow.
+#   command -v kubectl >/dev/null 2>&1 && \
+#       source <(kubectl completion bash | sed 's/__start_kubectl kubectl/__start_kubectl kc/g')
 alias kx="kubectx"
 
 alias ssh_hosts='grep -w -i "Host" ~/.ssh/config | sed s/Host//'
