@@ -23,7 +23,8 @@ end
 ABC_RADIO_DOMAIN = 'music.abcradio.net.au'.freeze
 ABC_JAZZ = 'jazz'.freeze
 TRIPLEJ = 'triplej'.freeze
-AVAILABLE_STATIONS = [ABC_JAZZ, TRIPLEJ].freeze
+CLASSIC = 'classic'.freeze
+AVAILABLE_STATIONS = [ABC_JAZZ, TRIPLEJ, CLASSIC].freeze
 
 def main(radio_station)
   number_of_tracks_to_fetch = 5
