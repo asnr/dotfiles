@@ -9,6 +9,25 @@ if [ "${2+set}" = "set" ] && [ "$2" = "message" ]; then
 fi
 
 COMMIT_MSG_FILE=$1
+
+MASTER_HASH=$(git show-ref --hash refs/heads/master)
+CURRENT_HASH=$(git rev-parse HEAD)
+
+# Weirdly I saw a slight delay in execution when running the more obvious '<<<'
+# of this command directly in the shell, which never occurred for this version
+# that uses echo. I'm sure there is some silly reason for this, but I'm not
+# going to investigate right now.
+LAST_JIRA_TICKET=$(echo "$LAST_COMMIT_MSG" | egrep -o '\[.+\]')
+
+# If current branch is master, then the last Jira ticket is probably from the
+# last merge. In this case, it's probably an unrelated ticket and we don't
+# prefill it.
+if [ "$CURRENT_HASH" != "$MASTER_HASH"] && [ "$LAST_JIRA_TICKET" ]; then
+    HINT=$(cat "$COMMIT_MSG_FILE")
+    echo "$LAST_JIRA_TICKET" > "$COMMIT_MSG_FILE"
+    echo "$HINT" >> "$COMMIT_MSG_FILE"
+fi
+
 LAST_COMMIT_MSG=$(git log --oneline -n 1)
 
-echo -e "# Last commit:\n#   $LAST_COMMIT_MSG" >> $COMMIT_MSG_FILE
+echo -e "# Last commit:\n#   $LAST_COMMIT_MSG" >> "$COMMIT_MSG_FILE"
