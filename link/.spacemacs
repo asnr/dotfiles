@@ -427,6 +427,7 @@ you should place your code here."
   ;; Include dash in word motions
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
   (add-hook 'scheme-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
+  (add-hook 'terraform-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
   ;; Originally equal to '(guile racket chicken chez mit chibi)
   (setf geiser-active-implementations '(mit))
