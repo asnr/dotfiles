@@ -14,7 +14,10 @@ if [ "$(uname)" = "Darwin" ]; then
 
     export PATH="$PATH:/Library/TeX/texbin"
 
-    # Add Postgres.app (v9.4) SQL command line tools to PATH
+    # Add postgres CLI tools to PATH. Prefer those installed via
+    #   $ brew install libpq
+    # over those installed by Postgres.app
+    export PATH=$PATH:/usr/local/opt/libpq/bin
     export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
     # Add python bin to path (the AWS CLI tool made me do it)
