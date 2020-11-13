@@ -36,7 +36,7 @@ values."
      ;; Third party layers
      ansible
      dap
-     go
+     (go :variables go-backend 'lsp)
      auto-completion
      erc
      sql
