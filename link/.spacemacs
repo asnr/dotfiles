@@ -51,7 +51,7 @@ values."
      c-c++
      rust
      csharp
-     python
+     (python :variables python-backend 'anaconda)  ;; workaround https://github.com/syl20bnr/spacemacs/issues/11399
      ruby
      (ruby :variables ruby-test-runner 'rspec)
      (ruby :variables ruby-version-manager 'rvm)
