@@ -367,6 +367,18 @@ you should place your code here."
   ;; --hidden includes dotfiles in searches, which forces us to --ignore .git/
   (setq helm-ag-base-command "ag --nocolor --nogroup --ignore .git/ --hidden")
 
+  ;; Patch that inserts the kill ring history after the point.
+  (defun patch-fix-helm-kill-ring-action-yank (old-fn &rest arg)
+    (interactive)
+    (save-excursion
+      (evil-save-state
+        (evil-insert-state)
+        (evil-append 1)
+        (apply old-fn arg)
+        (sit-for 0.001))))
+  (with-eval-after-load 'helm
+    (advice-add 'helm-kill-ring-action-yank :around #'patch-fix-helm-kill-ring-action-yank))
+
   ;; Set indent width of CSS and SCSS to 2 characters
   (setq css-indent-offset 2)
 
