@@ -1,0 +1,2 @@
+[spanner]
+prompt = "[\\d]\\t> "
