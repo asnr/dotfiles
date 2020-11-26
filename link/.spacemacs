@@ -672,8 +672,8 @@ This function is called at the very end of Spacemacs initialization."
     ;; the binding listing from the transient buffer that pops up when you press
     ;; '?' in magit. I should really just move these mappings to C-d and C-D at
     ;; some point rather than removing them completely.
-    (define-key magit-mode-map "d" nil)  ;; originally 'magit-diff
-    (define-key magit-mode-map "D" nil)  ;; originally 'magit-diff-refresh
+    (define-key magit-mode-map "d" nil)
+    (define-key magit-mode-map "D" nil)
     (transient-remove-suffix 'magit-dispatch '(0 0 6))
     (transient-remove-suffix 'magit-dispatch '(0 0 5))
 
