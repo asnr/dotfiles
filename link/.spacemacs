@@ -667,6 +667,16 @@ This function is called at the very end of Spacemacs initialization."
     (evil-define-key evil-magit-state magit-mode-map ";" 'magit-section-backward)
     ;; Need to clear bindings so that yank works correctly
     (evil-define-key evil-magit-state magit-mode-map "j" nil)
+
+    ;; Clear bindings so that jump to start and end work correctly. Also remove
+    ;; the binding listing from the transient buffer that pops up when you press
+    ;; '?' in magit. I should really just move these mappings to C-d and C-D at
+    ;; some point rather than removing them completely.
+    (define-key magit-mode-map "d" nil)  ;; originally 'magit-diff
+    (define-key magit-mode-map "D" nil)  ;; originally 'magit-diff-refresh
+    (transient-remove-suffix 'magit-dispatch '(0 0 6))
+    (transient-remove-suffix 'magit-dispatch '(0 0 5))
+
     (define-key magit-status-mode-map "j" nil)
     (define-key magit-blame-read-only-mode-map "n" nil)
     (define-key magit-blob-mode-map "n" nil))
