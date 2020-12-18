@@ -903,3 +903,22 @@ huge pain in the rear; see `asnr-characters-in-syntax-class'."
 (defun asnr-get-patch-version (version)
   (string-match (concat "^" asnr-semver-number-regex "$") version)
   (string-to-number (match-string 3 version)))
+
+(defun asnr-haskell-make-multiline-string ()
+  "Turn the raw text in the current region into a Haskell multi-line string."
+  (interactive)
+  (save-restriction
+    (narrow-to-region (region-beginning)
+                      ;; Simplify code by never ending region at a newline
+                      (if (= ?\n (char-before (region-end)))
+                          (1- (region-end))
+                        (region-end)))
+    (goto-char (region-beginning))
+    (insert "\"")
+    (while (not (eobp))
+      (end-of-line)
+      (if (eobp)
+          (insert "\"")
+        (insert "\\n\\")
+        (forward-line)
+        (insert "\\")))))
