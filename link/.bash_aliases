@@ -18,6 +18,7 @@ alias gsp="git stash pop"
 alias kshow='echo "kx: $(kubectl config current-context) | ns: $(kubens -c)"'
 alias setasnr='git config user.name asnr && git config user.email asnr@users.noreply.github.com && git config --list | grep user'
 alias initasnr='git init && setasnr'
+[ "$(uname)" = "Darwin" ] && alias pbpretty='pbpaste | jq . | pbcopy'
 
 alias be="bundle exec"
 
