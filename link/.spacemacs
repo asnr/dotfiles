@@ -922,3 +922,32 @@ huge pain in the rear; see `asnr-characters-in-syntax-class'."
         (insert "\\n\\")
         (forward-line)
         (insert "\\")))))
+
+(defun gcp-browse-pubsub-ui ()
+  "Open browser to view pubsub resource at the current point"
+  (interactive)
+  (save-excursion
+    (let* ((subscription-start (progn
+                                 (forward-whitespace -1)
+                                 (forward-whitespace 1)
+                                 (point)))
+           (subscription-end (progn
+                               (forward-whitespace 1)
+                               (forward-whitespace -1)
+                               (point)))
+           (pubsub-full-name (buffer-substring subscription-start subscription-end))
+           (pubsub-url (gcp-build-pubsub-url pubsub-full-name)))
+      (browse-url pubsub-url))))
+
+(defconst gcp-pubsub-full-name-regex
+  (concat "projects/"
+          "\\([-_a-zA-Z0-9]+\\)"
+          "/subscriptions/"
+          "\\([-_a-zA-Z0-9]+\\)"))
+
+(defun gcp-build-pubsub-url (full-name)
+  ;; full-name looks like projects/<project>/subscriptions/<name>
+  (string-match (concat "^" gcp-pubsub-full-name-regex "$") full-name)
+  (let ((project-id (match-string 1 full-name))
+        (name (match-string 2 full-name)))
+    (format "https://console.cloud.google.com/cloudpubsub/subscription/detail/%s?project=%s" name project-id)))
