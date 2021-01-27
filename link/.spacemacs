@@ -927,27 +927,33 @@ huge pain in the rear; see `asnr-characters-in-syntax-class'."
   "Open browser to view pubsub resource at the current point"
   (interactive)
   (save-excursion
-    (let* ((subscription-start (progn
+    (let* ((pubsub-id-start (progn
                                  (forward-whitespace -1)
                                  (forward-whitespace 1)
                                  (point)))
-           (subscription-end (progn
+           (pubsub-id-end (progn
                                (forward-whitespace 1)
                                (forward-whitespace -1)
                                (point)))
-           (pubsub-full-name (buffer-substring subscription-start subscription-end))
-           (pubsub-url (gcp-build-pubsub-url pubsub-full-name)))
+           (pubsub-id (buffer-substring pubsub-id-start pubsub-id-end))
+           (pubsub-url (gcp-build-pubsub-url pubsub-id)))
+      (message "Visiting Pub/Sub URL %s" pubsub-url)
       (browse-url pubsub-url))))
 
-(defconst gcp-pubsub-full-name-regex
+(defconst gcp-pubsub-id-regex
   (concat "projects/"
           "\\([-_a-zA-Z0-9]+\\)"
-          "/subscriptions/"
+          "/\\(topics\\|subscriptions\\)/"
           "\\([-_a-zA-Z0-9]+\\)"))
 
-(defun gcp-build-pubsub-url (full-name)
-  ;; full-name looks like projects/<project>/subscriptions/<name>
-  (string-match (concat "^" gcp-pubsub-full-name-regex "$") full-name)
-  (let ((project-id (match-string 1 full-name))
-        (name (match-string 2 full-name)))
-    (format "https://console.cloud.google.com/cloudpubsub/subscription/detail/%s?project=%s" name project-id)))
+(defun gcp-build-pubsub-url (pubsub-id)
+  ;; pubsub-id looks like projects/<project>/subscriptions/<name>
+  (string-match gcp-pubsub-id-regex pubsub-id)
+  (let* ((project-id (match-string 1 pubsub-id))
+         (type (match-string 2 pubsub-id))
+         (type-slug (if (string= type "topics") "topic" "subscription"))
+         (name (match-string 3 pubsub-id)))
+    (format "https://console.cloud.google.com/cloudpubsub/%s/detail/%s?project=%s"
+            type-slug
+            name
+            project-id)))
