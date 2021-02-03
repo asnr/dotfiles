@@ -34,6 +34,14 @@
 
 (setq evil-snipe-override-evil-repeat-keys nil)  ;; Disable default "," mapping
 
+
+(defun asnr-focus-on-window ()
+  (interactive)
+  (delete-other-windows)
+  (split-window-right))
+
+(map! :leader :desc "Focus on window" "w f" #'asnr-focus-on-window)
+
 ;; keybind to disable search highlighting (like :set noh)
 (map! :leader
       :desc "Clear search highlight"
