@@ -145,10 +145,11 @@ Returns:
 
 ;; These following navigation commands don't leave markers to jump back to
 ;; with evil-jump-backward (C-o). Make them add the last position to the evil
-;; jump list. This is a bug and I should raise an issue in the spacemacs repo
-;; to get this fixed upstream...
+;; jump list. This is a bug and I should raise an issue in the doom-emacs (?)
+;; repo to get this fixed upstream...
 (evil-set-command-property 'anaconda-mode-find-assignments :jump t)  ;; python
 (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)  ;; csharp
+(evil-set-command-property 'end-of-buffer :jump t)
 
 (defun asnr-configure-colemak-bindings ()
   (after! evil
