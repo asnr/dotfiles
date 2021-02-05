@@ -204,7 +204,7 @@ Returns:
 
     (define-key evil-visual-state-map "O" 'evil-ex)
     (define-key evil-visual-state-map "U" 'evil-insert)
-    (evil-define-key 'visual evil-surround-mode-map "R" 'evil-surround-region)
+    (define-key evil-visual-state-map "R" 'evil-surround-region)
 
     ;; \C-p was originally mapped to 'evil-complete-previous
     (define-key evil-insert-state-map "\C-p" 'evil-paste-from-register)
