@@ -286,6 +286,12 @@ Returns:
   ;; ;; dotspacemacs/user-config) would be to add configuration to evil.
   ;; (define-key (cdr (assoc 'motion-state Info-mode-map)) "k" 'evil-ex-search-next)
 
+  (after! (evil-collection grep)
+    ;; grep-mode-map is active in ivy-occur buffers
+    (map! :map grep-mode-map :n "n" nil)
+    (define-key grep-mode-map (kbd "n") nil)
+    (map! :map ivy-occur-grep-mode-map :m "RET" 'next-error))
+
   (after! 'evil-iedit-state
     (define-key evil-iedit-state-map "n" nil)
     (define-key evil-iedit-state-map "N" 'iedit-expand-down-a-line)
