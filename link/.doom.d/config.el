@@ -277,11 +277,6 @@ Returns:
     (define-key Info-mode-map "i" nil)
     (map! :map Info-mode-map :n "\C-n" nil)
     (define-key Info-mode-map "\M-h" 'Info-help))
-  ;; (define-key Info-mode-map "n" nil)
-  ;; (define-key Info-mode-map "\C-n" 'Info-next)  ; originally mapped to "n"
-  ;; (define-key Info-mode-map "e" nil)
-  ;; (define-key Info-mode-map "i" nil) ; originally Info-index
-  ;; (define-key Info-mode-map "\M-h" 'Info-help)
   ;; ;; Info-mode-map has an auxiliary motion state keymap inside of it with its
   ;; ;; own mapping for "k", which we need to override separately from the
   ;; ;; evil-motion-state-map. This may have been added by a call to
