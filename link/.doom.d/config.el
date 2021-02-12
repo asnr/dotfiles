@@ -82,6 +82,8 @@
 (add-hook 'scheme-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 (add-hook 'terraform-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
+(setq js-indent-level 2)
+
 ;; All these "spacemacs/" functions come from spacemacs
 (defun spacemacs/projectile-copy-file-path ()
   "Retrieve the file path relative to project root.
