@@ -292,6 +292,13 @@ Returns:
     (define-key grep-mode-map (kbd "n") nil)
     (map! :map ivy-occur-grep-mode-map :m "RET" 'next-error))
 
+  (after! evil-snipe
+    (evil-define-key '(normal motion) evil-snipe-local-mode-map
+      "r" 'evil-snipe-s
+      "R" 'evil-snipe-S
+      "s" nil
+      "S" nil))
+
   (after! 'evil-iedit-state
     (define-key evil-iedit-state-map "n" nil)
     (define-key evil-iedit-state-map "N" 'iedit-expand-down-a-line)
