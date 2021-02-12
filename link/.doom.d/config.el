@@ -42,6 +42,15 @@
 
 (map! :leader :desc "Focus on window" "w f" #'asnr-focus-on-window)
 
+(after! winum
+  (map! :leader :desc "Window 1" "1" #'winum-select-window-1)
+  (map! :leader :desc "Window 2" "2" #'winum-select-window-2)
+  (map! :leader :desc "Window 3" "3" #'winum-select-window-3)
+  (map! :leader :desc "Window 4" "4" #'winum-select-window-4)
+  (map! :leader :desc "Window 5" "5" #'winum-select-window-5)
+  (map! :leader :desc "Window 6" "6" #'winum-select-window-6))
+
+
 ;; keybind to disable search highlighting (like :set noh)
 (map! :leader
       :desc "Clear search highlight"
@@ -236,13 +245,7 @@ Returns:
   (map! :leader :desc "Window down" "w e" #'evil-window-up)
   (map! :leader :desc "Window down" "w i" #'evil-window-right)
 
-  (after! winum
-    (map! :leader :desc "Window 1" "1" #'winum-select-window-1)
-    (map! :leader :desc "Window 2" "2" #'winum-select-window-2)
-    (map! :leader :desc "Window 3" "3" #'winum-select-window-3)
-    (map! :leader :desc "Window 4" "4" #'winum-select-window-4)
-    (map! :leader :desc "Window 5" "5" #'winum-select-window-5)
-    (map! :leader :desc "Window 6" "6" #'winum-select-window-6))
+
 
   (after! magit
     (map! :map  magit-mode-map
