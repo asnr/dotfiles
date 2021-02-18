@@ -244,6 +244,9 @@ Returns:
     (define-key (cdr (assoc 'visual-state evil-surround-mode-map)) "g" nil))
 
   (after! evil-org
+    ;; Don't include 'textobjects in key theme because it breaks "i" binding in
+    ;; visual mode
+    (evil-org-set-key-theme '(navigation insert additional calendar))
     (map! :map evil-org-mode-map
           ;; Remove conflict
           :n "O" nil))
