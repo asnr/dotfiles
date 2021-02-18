@@ -310,7 +310,12 @@ Returns:
       "r" 'evil-snipe-s
       "R" 'evil-snipe-S
       "s" nil
-      "S" nil))
+      "S" nil)
+    (evil-define-key '(motion) evil-snipe-override-local-mode-map
+      "f" nil
+      "F" nil
+      "t" nil
+      "T" nil))
 
   (after! 'evil-iedit-state
     (define-key evil-iedit-state-map "n" nil)
