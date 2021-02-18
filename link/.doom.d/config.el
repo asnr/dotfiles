@@ -163,6 +163,13 @@ Returns:
 (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)  ;; csharp
 (evil-set-command-property 'end-of-buffer :jump t)
 
+(after! terraform-mode
+  ;; terraform-mode hard codes face values instead of deferring to general
+  ;; faces. Adjust the particularly hard to read faces. A fix similar to this
+  ;; should be made upstream.
+  (setq terraform--resource-name-face 'font-lock-function-name-face)
+  (setq terraform--resource-type-face 'font-lock-function-name-face))
+
 (defun asnr-configure-colemak-bindings ()
   (after! evil
     (define-key evil-motion-state-map "n" 'evil-next-line)
