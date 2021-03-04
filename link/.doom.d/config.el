@@ -30,6 +30,9 @@
 
 (setq confirm-kill-emacs nil)  ;; don't ask for confirmation before quitting
 
+;; Disable to speed up line-by-line scrolling of files with many lines
+(setq doom-modeline-buffer-state-icon nil)
+
 (setq doom-localleader-key ",")
 
 (setq evil-snipe-override-evil-repeat-keys nil)  ;; Disable default "," mapping
