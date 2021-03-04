@@ -167,6 +167,9 @@ Returns:
 (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)  ;; csharp
 (evil-set-command-property 'end-of-buffer :jump t)
 
+(after! org
+  (setq org-startup-folded 'show2levels))
+
 (after! terraform-mode
   ;; terraform-mode hard codes face values instead of deferring to general
   ;; faces. Adjust the particularly hard to read faces. A fix similar to this
