@@ -147,11 +147,6 @@ Returns:
         :desc "Yank project file path" "Y" #'spacemacs/projectile-copy-file-path
         :desc "Yank file path:line no" "L" #'spacemacs/projectile-copy-file-path-with-line)))
 
-;; May not be needed
-;; (when (eq system-type 'darwin)
-;;   (setq racer-rust-src-path
-;;         "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"))
-
 (add-hook 'python-mode-hook 'blacken-mode)
 (add-hook 'python-mode-hook 'asnr-drop-some-py2-symbols)
 
