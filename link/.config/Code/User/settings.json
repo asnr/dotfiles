@@ -9,5 +9,11 @@
     "editor.lineNumbers": "off",
     "window.zoomLevel": 0,
     "python.jediEnabled": false,
-    "python.languageServer": "Microsoft"
+    "python.languageServer": "Microsoft",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }
