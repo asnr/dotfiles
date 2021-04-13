@@ -180,6 +180,40 @@ Returns:
   (setq terraform--resource-name-face 'font-lock-function-name-face)
   (setq terraform--resource-type-face 'font-lock-function-name-face))
 
+(defun gcp-browse-pubsub-ui ()
+  "Open browser to view pubsub resource at the current point."
+  (interactive)
+  (save-excursion
+    (let* ((pubsub-id-start (progn
+                                 (forward-whitespace -1)
+                                 (forward-whitespace 1)
+                                 (point)))
+           (pubsub-id-end (progn
+                               (forward-whitespace 1)
+                               (forward-whitespace -1)
+                               (point)))
+           (pubsub-id (buffer-substring pubsub-id-start pubsub-id-end))
+           (pubsub-url (gcp-build-pubsub-url pubsub-id)))
+      (message "Visiting Pub/Sub URL %s" pubsub-url)
+      (browse-url pubsub-url))))
+
+(defconst gcp-pubsub-id-regex
+  (concat "projects/"
+          "\\([-_a-zA-Z0-9]+\\)"
+          "/\\(topics\\|subscriptions\\)/"
+          "\\([-_a-zA-Z0-9]+\\)"))
+
+(defun gcp-build-pubsub-url (pubsub-id)
+  (string-match gcp-pubsub-id-regex pubsub-id)
+  (let* ((project-id (match-string 1 pubsub-id))
+         (type (match-string 2 pubsub-id))
+         (type-slug (if (string= type "topics") "topic" "subscription"))
+         (name (match-string 3 pubsub-id)))
+    (format "https://console.cloud.google.com/cloudpubsub/%s/detail/%s?project=%s"
+            type-slug
+            name
+            project-id)))
+
 (defun asnr-configure-colemak-bindings ()
   (after! evil
     (define-key evil-motion-state-map "n" 'evil-next-line)
