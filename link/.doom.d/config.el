@@ -153,6 +153,8 @@ Returns:
 ;;         "~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"))
 
 (add-hook 'python-mode-hook 'blacken-mode)
+(add-hook 'python-mode-hook 'asnr-drop-some-py2-symbols)
+
 
 ;; Align Flake8 linter max line length with Black
 (setq-default flycheck-flake8-maximum-line-length 88)
@@ -213,6 +215,36 @@ Returns:
             type-slug
             name
             project-id)))
+
+(defun asnr-drop-some-py2-symbols ()
+  "Stop highlighting some python 2 builtins. They make really good variable names."
+  (setcar (car (nthcdr 3 python-font-lock-keywords-level-2))
+        (rx symbol-start
+          (or
+           "abs" "all" "any" "bin" "bool" "callable" "chr" "classmethod"
+           "compile" "complex" "delattr" "dict" "dir" "divmod" "enumerate"
+           "eval" "filter" "float" "format" "frozenset" "getattr" "globals"
+           "hasattr" "hash" "help" "hex" "id" "input" "int" "isinstance"
+           "issubclass" "iter" "len" "list" "locals" "map" "max" "memoryview"
+           "min" "next" "object" "oct" "open" "ord" "pow" "print" "property"
+           "range" "repr" "reversed" "round" "set" "setattr" "slice" "sorted"
+           "staticmethod" "str" "sum" "super" "tuple" "type" "vars" "zip"
+           "__import__"
+           ;; Python 2 [asnr: I HAVE REMOVED SEVERAL OF THESE]:
+           "basestring" "cmp" "execfile" "long" "reduce"
+           "reload" "unichr" "unicode" "xrange" "apply" "coerce"
+           "intern"
+           ;; Python 3:
+           "ascii" "breakpoint" "bytearray" "bytes" "exec"
+           ;; Special attributes:
+           ;; https://docs.python.org/3/reference/datamodel.html
+           "__annotations__" "__closure__" "__code__"
+           "__defaults__" "__dict__" "__doc__" "__globals__"
+           "__kwdefaults__" "__name__" "__module__" "__package__"
+           "__qualname__"
+           ;; Extras:
+           "__all__")
+          symbol-end)))
 
 (defun asnr-configure-colemak-bindings ()
   (after! evil
