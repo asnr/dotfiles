@@ -167,6 +167,9 @@ Returns:
 (evil-set-command-property 'omnisharp-find-implementations-with-ido :jump t)  ;; csharp
 (evil-set-command-property 'end-of-buffer :jump t)
 
+;; Disable the doom-emacs default Python template.
+(set-file-template! 'python-mode :ignore t)
+
 (after! org
   (setq org-startup-folded 'show2levels))
 
