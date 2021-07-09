@@ -276,7 +276,7 @@ Returns:
     (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
     ; Stop default binding taking precedence over undo-tree-redo binding
     (define-key evil-normal-state-map "\C-p" nil)
-    (define-key evil-motion-state-map "\C-p" 'undo-tree-redo)
+    (define-key evil-motion-state-map "\C-p" 'evil-redo)
     (define-key evil-motion-state-map "\C-y" 'evil-jump-backward)
     (define-key evil-motion-state-map "\C-u" 'evil-jump-forward)
 
