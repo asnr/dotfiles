@@ -2,6 +2,10 @@
 
 1. Run $ ./go.sh
 
+2. vim: install [vundle](https://github.com/VundleVim/Vundle.vim) and then install vim plugins.
+   1. `$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+   2. Open vim and run `:PluginInstall`
+
 
 ## macOS
 
