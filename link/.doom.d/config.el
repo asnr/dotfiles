@@ -244,6 +244,11 @@ Returns:
           symbol-end)))
 
 (defun asnr-configure-colemak-bindings ()
+  ;; After a couple of minutes, I couldn't figure out how to remove the "s"
+  ;; keybindings for evil-snipe. Just disable the mode entirely; I wasn't using
+  ;; it anyway.
+  (remove-hook! 'doom-first-input-hook 'evil-snipe-mode)
+
   (after! evil
     (define-key evil-motion-state-map "n" 'evil-next-line)
     (define-key evil-motion-state-map "e" 'evil-previous-line)
@@ -380,18 +385,6 @@ Returns:
     (map! :map grep-mode-map :n "n" nil)
     (define-key grep-mode-map (kbd "n") nil)
     (map! :map ivy-occur-grep-mode-map :m "RET" 'next-error))
-
-  (after! evil-snipe
-    (evil-define-key '(normal motion) evil-snipe-local-mode-map
-      "r" 'evil-snipe-s
-      "R" 'evil-snipe-S
-      "s" nil
-      "S" nil)
-    (evil-define-key '(motion) evil-snipe-override-local-mode-map
-      "f" nil
-      "F" nil
-      "t" nil
-      "T" nil))
 
   (after! 'evil-iedit-state
     (define-key evil-iedit-state-map "n" nil)
