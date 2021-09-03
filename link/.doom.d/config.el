@@ -244,11 +244,6 @@ Returns:
           symbol-end)))
 
 (defun asnr-configure-colemak-bindings ()
-  ;; After a couple of minutes, I couldn't figure out how to remove the "s"
-  ;; keybindings for evil-snipe. Just disable the mode entirely; I wasn't using
-  ;; it anyway.
-  (remove-hook! 'doom-first-input-hook 'evil-snipe-mode)
-
   (after! evil
     (define-key evil-motion-state-map "n" 'evil-next-line)
     (define-key evil-motion-state-map "e" 'evil-previous-line)
