@@ -49,8 +49,10 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-;; The default evil-snipe bindings interfere with my colemak bindings and I
-;; can't be bothered figure out how to remap the evil-snipe bindings properly.
+;; The default evil-snipe and evil-easymotion bindings interfere with my colemak
+;; bindings and I can't be bothered figure out how to remap the bindings
+;; properly.
 (package! evil-snipe :disable t)
+(package! evil-easymotion :disable t)
 
 (package! blacken)
