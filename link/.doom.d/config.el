@@ -44,6 +44,8 @@
   (split-window-right))
 
 (map! :leader :desc "Focus on window" "w f" #'asnr-focus-on-window)
+;; Overwrite Doom emacs default, counsel-evil-registers
+(map! :leader :desc "Show kill ring" "i r" #'counsel-yank-pop)
 
 (after! winum
   (map! :leader :desc "Window 1" "1" #'winum-select-window-1)
