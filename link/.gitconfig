@@ -8,3 +8,5 @@
 	email = asnr@users.noreply.github.com
 [includeIf "gitdir:~/work/"]
 	path = .gitconfig_work
+[init]
+	defaultBranch = main
