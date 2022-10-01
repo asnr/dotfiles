@@ -89,6 +89,7 @@
 (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'react-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'c-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+(add-hook 'c++-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'terraform-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'yaml-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
