@@ -208,7 +208,10 @@ if [ ${PS1+isset} == 'isset' ]; then
     # double semicolon ";;" doesn't occur, as this invalid bash.
     # Warning: this code will break if $PROMPT_COMMAND has spaces after a
     # final semicolon.
-    PROMPT_COMMAND="${PROMPT_COMMAND%;}; recalculate_prompt"
+    if [ -n "$PROMPT_COMMAND" ]; then
+        PROMPT_COMMAND="${PROMPT_COMMAND%;};"
+    fi
+    PROMPT_COMMAND="${PROMPT_COMMAND} recalculate_prompt"
 fi
 
 if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
