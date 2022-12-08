@@ -11,7 +11,7 @@
 
 ### terminal
 
-**Personalise terminal.** Open the finder window in the terminal directory and open up the terminal preferences window next to it. Drag the terminal/asnr.terminal file from the finder window to the terminal preferences window. Adjust the font size if necessary and set the "asnr" profile to default.
+**Personalise terminal.** Open the terminal preferences window. Under "Profiles", import the profile defined in the terminal/asnr.terminal file. Adjust the font size if necessary and set the "asnr" profile to default.
 
 ### emacs
 
