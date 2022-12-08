@@ -17,7 +17,8 @@
 
 ```
 $ brew uninstall emacs-plus@27
-$ brew install emacs-plus@28 --with-modern-doom3-icon
+$ brew tap d12frosted/emacs-plus
+$ brew install emacs-plus@28 --with-modern-doom3-icon --with-no-titlebar-and-round-corners
 ```
 
 **Make emacs findable from Spotlight.** If installing emacs from brew, make it findable from Spotlight by finding the executable in Finder, right click, "make alias", drag alias file to the Applications folder.
