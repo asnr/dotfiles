@@ -5,35 +5,43 @@ case $- in
 esac
 
 if [ "$(uname)" = "Darwin" ]; then
-    # The order of /etc/paths isn't the same on my macs, one has /usr/local/bin
-    # first and the other has it last. Force it forward.
-    export PATH="/usr/local/bin:$PATH"
+    # Ideally we would define BREW_PREFIX=$(brew --prefix), but at this stage
+    # the brew binary isn't in PATH.
+    if [ "$(uname -m)" = "arm64" ]; then
+        BREW_PREFIX=/opt/homebrew
+    else  # assume $(uname -m) = "x86_64"
+        BREW_PREFIX=/usr/local
+    fi
 
-    # The macOS version of openssl is old, prefer the one we get from homebrew
-    export PATH="/usr/local/opt/openssl/bin:$PATH"
+    # The order of /etc/paths isn't the same on my macs, force homebrew
+    # binaries forward.
+    export PATH="$BREW_PREFIX/bin:$PATH"
+
+    # The macOS version of openssl is old, prefer the homebrew version.
+    export PATH="$BREW_PREFIX/opt/openssl/bin:$PATH"
+
+    # To customise keybindings for less, we need to use the homebrew version.
+    # Make man also use this version of less, instead of the system version.
+    [ -f "$BREW_PREFIX/bin/less" ] && export PAGER="$BREW_PREFIX/bin/less"
+
+    # Autojump directory changing
+    [[ -s $BREW_PREFIX/etc/profile.d/autojump.sh ]] && \
+        . $BREW_PREFIX/etc/profile.d/autojump.sh
+
+    # z directory changing
+    [[ -s $BREW_PREFIX/etc/profile.d/z.sh ]] && \
+        . $BREW_PREFIX/etc/profile.d/z.sh
 
     export PATH="$PATH:/Library/TeX/texbin"
 
     # Add postgres CLI tools to PATH. Prefer those installed via
     #   $ brew install libpq
     # over those installed by Postgres.app
-    export PATH=$PATH:/usr/local/opt/libpq/bin
-    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+    export PATH="$PATH:$BREW_PREFIX/opt/libpq/bin"
+    export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
     # Add python bin to path (the AWS CLI tool made me do it)
     export PATH="$PATH:~/Library/Python/2.7/bin"
-
-    # To customise keybindings for less, we need to use the homebrew version.
-    # Make man also use this version of less, instead of the system version.
-    [ -f /usr/local/bin/less ] && export PAGER=/usr/local/bin/less
-
-    # Autojump directory changing
-    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && \
-        . $(brew --prefix)/etc/profile.d/autojump.sh
-
-    # z directory changing
-    [[ -s $(brew --prefix)/etc/profile.d/z.sh ]] && \
-        . $(brew --prefix)/etc/profile.d/z.sh
 
     # Update PATH for the Google Cloud SDK.
     [ -f "$HOME/.local/google-cloud-sdk/path.bash.inc" ] && \
