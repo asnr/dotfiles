@@ -182,29 +182,25 @@ if [ ${PS1+isset} == 'isset' ]; then
         # After running a reverse-i-search (ctrl-r), the cursor position will
         # appear in the wrong position of the line. To fix this on macOS install a
         # new version of bash using 'brew install bash' and then in Terminal
-        # preferences set "Shells open with" to "/usr/local/bin/bash"
-        PS1_ONE_LINE="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
-        PS1_NEW_LINE_ABOVE="\n$PS1_ONE_LINE"
-        PS1="$PS1_NEW_LINE_ABOVE"
-    }
-    recalculate_prompt
+        # preferences set "Shells open with" to that binary's absolute path.
+        PS1="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
 
-    # The purpose of the following contortions is to print the first prompt
-    # without an extraneous newline before it, but then add the newline in for
-    # all subsequent prompts. Unsetting the PROMPT_COMMAND means that there's
-    # one less thing we're executing on each read-execute iteration. I know, I
-    # know, but sometimes I get finicky, OK?
-    export PS1="$PS1_ONE_LINE"
-    # Always preserve the current PROMPT_COMMAND because z needs it to work!
-    export _OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
-    reset_prompt_and_prompt_command () {
-        recalculate_prompt
-        PROMPT_COMMAND="$_OLD_PROMPT_COMMAND recalculate_prompt;"
+
+        if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
+            PS1_NEWLINE_LOGIN=true
+        else
+            PS1="\n$PS1"
+        fi
     }
-    PROMPT_COMMAND="$_OLD_PROMPT_COMMAND (( PROMPT_CTR-- < 0 )) && {
-        unset PROMPT_COMMAND PROMPT_CTR
-        reset_prompt_and_prompt_command
-    }"
+
+    # Preserve the existing PROMPT_COMMAND because z needs it to work.
+    # Note that 3rd party tools (e.g. z) may insert strings into
+    # PROMPT_COMMAND; these need to be preserved. Those strings may or may not be
+    # terminated with a ";". Add one if it isn't present while ensuring that a
+    # double semicolon ";;" doesn't occur, as this invalid bash.
+    # Warning: this code will break if $PROMPT_COMMAND has spaces after a
+    # final semicolon.
+    PROMPT_COMMAND="${PROMPT_COMMAND%;}; recalculate_prompt"
 fi
 
 if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
