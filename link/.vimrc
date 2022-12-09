@@ -7,37 +7,6 @@ endif
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" required for Vundle
-filetype off
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'asnr/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'joukevandermaas/vim-ember-hbs'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'python/black'
-
-" All of your Vundle managed Plugins must be added before the following line
-call vundle#end()            " required by Vundle
-filetype plugin indent on    " required by Vundle
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -124,19 +93,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --hidden\ --ignore\ .git/
 endif
 
-" Turn on vim-colors-solarized. Taken from the vim-colors-solarized README.md.
-" Next two lines fix weird colour bug in terminals, see
-"   https://github.com/altercation/vim-colors-solarized/issues/138#issuecomment-408307083
-let g:solarized_termcolors=256
-set t_Co=256
-syntax enable
-set background=light
-colorscheme solarized
-
-" Set vim airline (status/tab line) theme to solarized
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-
 augroup XML
   autocmd!
   autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
@@ -178,49 +134,9 @@ set splitbelow  " open the horizontal split below
 set tabstop=2 shiftwidth=2  " a tab is two spaces
 set expandtab               " use spaces, not tabs
 
-" Syntastic plugin settings. Copied from README
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Instruct NERDTree to display dot files
-let NERDTreeShowHidden = 1
-
-" NERDTree should not display files ending in ~ or .pyc
-let NERDTreeIgnore = ['\~$[[file]]', '\.pyc$[[file]]']
-
 " In the command line, substitute the current file's directory for '%h'.
 " E.g. if editing ~/foo/bar.txt, %h will evaluate to ~/foo
 cabbrev <expr> %h expand('%:h')
-
-" SetupCommandAlias function taken from
-"   https://stackoverflow.com/questions/3878692/aliasing-a-command-in-vim#answer-3879737
-fun! SetupCommandAlias(from, to)
-  exec 'cnoreabbrev <expr> '.a:from
-        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
-        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
-endfun
-
-" Command line abbreviations for fugitive plugin commands
-call SetupCommandAlias("gs",    "Gstatus")
-call SetupCommandAlias("gc",    "Gcommit")
-call SetupCommandAlias("gap",   "!git add --patch")
-call SetupCommandAlias("gpush", "!git push")
-call SetupCommandAlias("grp",   "!git pull --rebase")
-call SetupCommandAlias("gmp",   "!git pull")
-
-" Run black when saving python files
-autocmd BufWritePre *.py execute ':Black'
 
 " TODO undofile -> put into a tmp file
 " TODO set eventignore+=FileType | setlocal bufhidden=unload | setlocal
