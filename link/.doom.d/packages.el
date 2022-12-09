@@ -56,3 +56,5 @@
 (package! evil-easymotion :disable t)
 
 (package! blacken)
+
+(package! vimrc-mode)
