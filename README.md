@@ -1,8 +1,18 @@
 # Dotfiles
 
-1. Run $ ./go.sh
+## First time setup
 
-2. vim: install [vundle](https://github.com/VundleVim/Vundle.vim) and then install vim plugins.
+1. Run `$ ./go.sh`
+
+1. For a work computer, create the file `~/.gitconfig_work` with the contents (note indentation is done with tab characters)
+
+   ```
+   [user]
+   	name = ...
+   	email = ...
+   ```
+
+1. vim: install [vundle](https://github.com/VundleVim/Vundle.vim) and then install vim plugins.
    1. `$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
    2. Open vim and run `:PluginInstall`
 
