@@ -10,3 +10,5 @@
 	path = .gitconfig_work
 [init]
 	defaultBranch = main
+[push]
+    autoSetupRemote = true
