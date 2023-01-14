@@ -325,13 +325,35 @@ Returns:
     (evil-org-set-key-theme '(navigation insert additional calendar))
     (map! :map evil-org-mode-map
           ;; Remove conflict
-          :n "O" nil))
+          :n "O" nil)
+
+    ;; Override the mapping inside an auxiliary keymap taking precedence over
+    ;; the binding for `evil-find-char-to'
+    (define-key (cdr (assoc 'motion-state evil-markdown-mode-map)) "g" nil)
+    ;; Move the mappings inside the keymap cleared above to their correct colemak location.
+    ;; Essentially a copy-paste of the body of`evil-org--populate-navigation-bindings'
+    (map! :map evil-org-mode-map
+          :m "th" #'org-up-element
+          :m "ti" #'org-down-element
+          :m "te" #'org-backward-element
+          :m "tn" #'org-forward-element
+          :m "tH" #'evil-org-top))
+
+  (after! evil-markdown
+    ;; Override the mapping inside an auxiliary keymap taking precedence over
+    ;; the binding for `evil-find-char-to'
+    (define-key (cdr (assoc 'motion-state evil-markdown-mode-map)) "g" nil)
+    ;; Move the mappings inside the keymap cleared above to their correct colemak location.
+    ;; Essentially a copy-paste of the body of`evil-markdown--populate-navigation-bindings'
+    (map! :map evil-markdown-mode-map
+          :m "th" 'markdown-up-heading
+          :m "ti" (lambda () (interactive) (markdown-next-heading))
+          :m "te" 'markdown-backward-same-level
+          :m "tn" 'markdown-forward-same-level))
 
   (map! :leader :desc "Window down" "w n" #'evil-window-down)
   (map! :leader :desc "Window down" "w e" #'evil-window-up)
   (map! :leader :desc "Window down" "w i" #'evil-window-right)
-
-
 
   (after! magit
     (map! :map  magit-mode-map
