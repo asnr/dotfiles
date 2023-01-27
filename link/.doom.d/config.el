@@ -329,7 +329,7 @@ Returns:
 
     ;; Override the mapping inside an auxiliary keymap taking precedence over
     ;; the binding for `evil-find-char-to'
-    (define-key (cdr (assoc 'motion-state evil-markdown-mode-map)) "g" nil)
+    (define-key (cdr (assoc 'motion-state evil-org-mode-map)) "g" nil)
     ;; Move the mappings inside the keymap cleared above to their correct colemak location.
     ;; Essentially a copy-paste of the body of`evil-org--populate-navigation-bindings'
     (map! :map evil-org-mode-map
