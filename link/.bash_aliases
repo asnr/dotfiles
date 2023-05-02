@@ -15,6 +15,7 @@ alias grp="git pull --rebase"
 alias gmp="git pull"
 alias gss="git stash"
 alias gsp="git stash pop"
+alias gbc="git branch --show-current"
 alias kshow='echo "kx: $(kubectl config current-context) | ns: $(kubens -c)"'
 alias setasnr='git config user.name asnr && git config user.email asnr@users.noreply.github.com && git config --list | grep user'
 alias initasnr='git init && setasnr'
