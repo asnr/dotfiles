@@ -111,7 +111,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-command -v yarn >/dev/null 2>&1 && export PATH="$PATH:`yarn global bin`"
+# Commented out because `yarn global bin` started to take a long time (maybe
+# after a brew update?) and its output /opt/homebrew/bin was already in PATH
+# anyway.
+#   command -v yarn >/dev/null 2>&1 && export PATH="$PATH:`yarn global bin`"
 
 # See `man bash`
 export HISTCONTROL=$HISTCONTROL:ignoredups
