@@ -25,7 +25,7 @@ LAST_JIRA_TICKET=$(echo "$LAST_COMMIT_MSG" | egrep -o '\[.+\]')
 # prefill it.
 if [ "$CURRENT_HASH" != "$MASTER_HASH" ] && [ "$LAST_JIRA_TICKET" ]; then
     HINT=$(cat "$COMMIT_MSG_FILE")
-    echo " $LAST_JIRA_TICKET" > "$COMMIT_MSG_FILE"
+    echo "$LAST_JIRA_TICKET " > "$COMMIT_MSG_FILE"
     echo "$HINT" >> "$COMMIT_MSG_FILE"
 fi
 
