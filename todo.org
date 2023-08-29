@@ -1,0 +1,18 @@
+#+title: Dotfiles Improvements
+
+* Emacs
+** Can I specify my hjkl as hnei (i.e. colemaks binding) in one place?
+I can see `.left`, `.right`, `.up` and `.down` variable in evil code that look suspicious
+This may fix hjkl, but all of the other colemak keys will need to be remapped too.
+
+* Git
+** Notes on rebase in a PR train
+Say you have a PR train of branches: main <- A <- B <- C. A is branched off main and so on.
+
+If you want to rebase on an updated main, you can checkout C and run `git rebase
+green --update-refs`. This means you will only have to resolve a merge conflict
+between the new main and A once, not for every branch after the merge conflict
+as well.
+
+If A is merged into main, you can rebase  B <- C onto main by checking out C and
+then running `git rebase --onto master A C --update-refs`.
