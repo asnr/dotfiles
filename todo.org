@@ -15,4 +15,4 @@ between the new main and A once, not for every branch after the merge conflict
 as well.
 
 If A is merged into main, you can rebase  B <- C onto main by checking out C and
-then running `git rebase --onto master A C --update-refs`.
+then running `git rebase --onto main A C --update-refs`.
