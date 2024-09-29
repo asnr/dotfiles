@@ -168,7 +168,7 @@ fi
 ## Interactive shell tools ##
 
 # shell is interactive <=> $PS1 is set
-if [ ${PS1+isset} == 'isset' ]; then
+if [ ${PS1+isset} = 'isset' ]; then
     # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
     PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
     SEC_FONT="\001\033[94m\002" # light magenta
