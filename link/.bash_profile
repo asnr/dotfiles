@@ -167,7 +167,7 @@ fi
 ## Interactive shell tools ##
 
 # shell is interactive <=> $PS1 is set
-if [ ${PS1+isset} = 'isset' ]; then
+if [ -n "$BASH_VERSION" ] && [ ${PS1+isset} = 'isset' ]; then
     # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
     PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
     SEC_FONT="\001\033[94m\002" # light magenta
@@ -214,6 +214,11 @@ if [ ${PS1+isset} = 'isset' ]; then
         PROMPT_COMMAND="${PROMPT_COMMAND%;};"
     fi
     PROMPT_COMMAND="${PROMPT_COMMAND} recalculate_prompt"
+
+elif [ -n "$ZSH_VERSION" ] && [ ${PS1+isset} = 'isset' ]; then
+    setopt PROMPT_SUBST
+    PROMPT_NEWLINE=$'\n'
+    PROMPT="${PROMPT_NEWLINE}%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
 fi
 
 if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
