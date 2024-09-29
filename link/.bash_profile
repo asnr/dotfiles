@@ -167,58 +167,61 @@ fi
 ## Interactive shell tools ##
 
 # shell is interactive <=> $PS1 is set
-if [ -n "$BASH_VERSION" ] && [ ${PS1+isset} = 'isset' ]; then
-    # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
-    PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
-    SEC_FONT="\001\033[94m\002" # light magenta
-    TER_FONT="\001\033[38;5;245m\002" # light grey
-    WARN_FONT="\001\033[01;91m\002" # light red
-    F_END="\001\033[m\002"
+if [ ${PS1+isset} = 'isset' ]; then
 
-    recalculate_prompt () {
-        # Cheers liquidprompt for the mad predicates
-        if [[ "${VIRTUAL_ENV-}${CONDA_DEFAULT_ENV-}" = ?* ]]; then
-            if [[ -n "${VIRTUAL_ENV-}" ]]; then
-                PY_VENV_PROMPT=" ${TER_FONT}py${F_END} ${WARN_FONT}${VIRTUAL_ENV##*/}${F_END}"
-            else
-                PY_VENV_PROMPT=" ${TER_FONT}conda${F_END} ${WARN_FONT}${CONDA_DEFAULT_ENV##*/}${F_END}"
-            fi
-        else
-            PY_VENV_PROMPT=
-        fi
+  if [ -n "$ZSH_VERSION" ]; then
+      setopt PROMPT_SUBST
+      PROMPT_NEWLINE=$'\n'
+      PROMPT="${PROMPT_NEWLINE}%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
 
-        # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
-        # app) break slightly with this PS1 value (it's the '\W' that does it).
-        # After running a reverse-i-search (ctrl-r), the cursor position will
-        # appear in the wrong position of the line. To fix this on macOS install a
-        # new version of bash using 'brew install bash' and then in Terminal
-        # preferences set "Shells open with" to that binary's absolute path.
-        PS1="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
+  elif [ -n "$BASH_VERSION" ]; then
+      # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
+      PRIM_FONT="\001\033[01;94m\002"  # light magenta, bold
+      SEC_FONT="\001\033[94m\002" # light magenta
+      TER_FONT="\001\033[38;5;245m\002" # light grey
+      WARN_FONT="\001\033[01;91m\002" # light red
+      F_END="\001\033[m\002"
+
+      recalculate_prompt () {
+          # Cheers liquidprompt for the mad predicates
+          if [[ "${VIRTUAL_ENV-}${CONDA_DEFAULT_ENV-}" = ?* ]]; then
+              if [[ -n "${VIRTUAL_ENV-}" ]]; then
+                  PY_VENV_PROMPT=" ${TER_FONT}py${F_END} ${WARN_FONT}${VIRTUAL_ENV##*/}${F_END}"
+              else
+                  PY_VENV_PROMPT=" ${TER_FONT}conda${F_END} ${WARN_FONT}${CONDA_DEFAULT_ENV##*/}${F_END}"
+              fi
+          else
+              PY_VENV_PROMPT=
+          fi
+
+          # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
+          # app) break slightly with this PS1 value (it's the '\W' that does it).
+          # After running a reverse-i-search (ctrl-r), the cursor position will
+          # appear in the wrong position of the line. To fix this on macOS install a
+          # new version of bash using 'brew install bash' and then in Terminal
+          # preferences set "Shells open with" to that binary's absolute path.
+          PS1="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
 
 
-        if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
-            PS1_NEWLINE_LOGIN=true
-        else
-            PS1="\n$PS1"
-        fi
-    }
+          if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
+              PS1_NEWLINE_LOGIN=true
+          else
+              PS1="\n$PS1"
+          fi
+      }
 
-    # Preserve the existing PROMPT_COMMAND because z needs it to work.
-    # Note that 3rd party tools (e.g. z) may insert strings into
-    # PROMPT_COMMAND; these need to be preserved. Those strings may or may not be
-    # terminated with a ";". Add one if it isn't present while ensuring that a
-    # double semicolon ";;" doesn't occur, as this invalid bash.
-    # Warning: this code will break if $PROMPT_COMMAND has spaces after a
-    # final semicolon.
-    if [ -n "$PROMPT_COMMAND" ]; then
-        PROMPT_COMMAND="${PROMPT_COMMAND%;};"
-    fi
-    PROMPT_COMMAND="${PROMPT_COMMAND} recalculate_prompt"
-
-elif [ -n "$ZSH_VERSION" ] && [ ${PS1+isset} = 'isset' ]; then
-    setopt PROMPT_SUBST
-    PROMPT_NEWLINE=$'\n'
-    PROMPT="${PROMPT_NEWLINE}%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
+      # Preserve the existing PROMPT_COMMAND because z needs it to work.
+      # Note that 3rd party tools (e.g. z) may insert strings into
+      # PROMPT_COMMAND; these need to be preserved. Those strings may or may not be
+      # terminated with a ";". Add one if it isn't present while ensuring that a
+      # double semicolon ";;" doesn't occur, as this invalid bash.
+      # Warning: this code will break if $PROMPT_COMMAND has spaces after a
+      # final semicolon.
+      if [ -n "$PROMPT_COMMAND" ]; then
+          PROMPT_COMMAND="${PROMPT_COMMAND%;};"
+      fi
+      PROMPT_COMMAND="${PROMPT_COMMAND} recalculate_prompt"
+  fi
 fi
 
 if command -v rustup >/dev/null 2>&1 || command -v cargo >/dev/null 2>&1; then
