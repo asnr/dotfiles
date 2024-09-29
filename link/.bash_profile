@@ -52,12 +52,11 @@ if [ "$(uname)" = "Darwin" ]; then
         . "$HOME/.local/google-cloud-sdk/completion.bash.inc"
 
     # From Xin Guo
+    # Set the JDK version
     function setjdk() {
         /usr/libexec/java_home >/dev/null 2>&1 && \
             export JAVA_HOME=`/usr/libexec/java_home -v $@`
     }
-    # Default java version is 8
-    setjdk 1.8
 
     alias utc2epoch="gdate +'%s' --utc --date"
 
