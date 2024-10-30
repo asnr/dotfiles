@@ -155,12 +155,7 @@ let not_macOS = !(system("uname -s") =~ "Darwin")
 if not_macOS
   source ~/.vim/colemak/map_keys.vim
 else
-  " system() opens a non-interactive shell, which inits using the file defined
-  " in $BASH_ENV (see `man bash`). We could pass it all of ~/.bash_profile, but
-  " evaluating it all takes too long. We only need bash functions, so just
-  " evaluate those.
-  let $BASH_ENV = "~/.bash_functions"
-  let keyboard_layout = system("current_keyboard_layout")
+  let keyboard_layout = system('defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID | sed "s:.*\.\([[:alpha:]]*\)$:\1:"')
   if keyboard_layout ==# "Colemak\n"
     if empty($VIM_KEY_MAP_METHOD)
       source ~/.vim/colemak/map_keys.vim
