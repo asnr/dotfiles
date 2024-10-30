@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Solarized Light",
     "editor.fontSize": 13,
-    "workbench.activityBar.visible": true,
     "editor.minimap.enabled": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
