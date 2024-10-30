@@ -185,6 +185,7 @@ if [ ${PS1+isset} = 'isset' ]; then
      # backward one word, opt+del for delete last word, etc. I'm surprised this
      # is not the default zsh.
      bindkey -e
+
      if [ "$(uname)" = "Darwin" ]; then
          bindkey "^[[3~" delete-char  # bind fn+delete
      fi
