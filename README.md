@@ -22,9 +22,9 @@
 ### emacs
 
 ```
-$ brew uninstall emacs-plus@27
+$ brew uninstall emacs-plus@28
 $ brew tap d12frosted/emacs-plus
-$ brew install emacs-plus@28 --with-modern-doom3-icon
+$ brew install emacs-plus@29 --with-modern-doom3-icon
 ```
 
 **Make emacs findable from Spotlight.** If installing emacs from brew, make it findable from Spotlight by finding the executable in Finder, right click, "make alias", drag alias file to the Applications folder.
@@ -35,3 +35,12 @@ $ brew install emacs-plus@28 --with-modern-doom3-icon
 
 If using tmux, install helper binary `$ brew install reattach-to-user-namespace`
 
+
+### zsh
+
+I used the default zsh installed with macOS (version 5.9).
+
+
+## Brew
+
+Install old version of a formula that doesn't have an `@` version available: https://stackoverflow.com/a/76384322.
