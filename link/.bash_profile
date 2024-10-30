@@ -170,9 +170,21 @@ fi
 if [ ${PS1+isset} = 'isset' ]; then
 
   if [ -n "$ZSH_VERSION" ]; then
-      setopt PROMPT_SUBST
-      PROMPT_NEWLINE=$'\n'
-      PROMPT="${PROMPT_NEWLINE}%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
+     setopt PROMPT_SUBST
+     PROMPT_NEWLINE=$'\n'
+     PROMPT="%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
+
+     # Add newline to before prompts except for the first prompt
+     precmd() {
+         precmd() {
+             print ""
+         }
+     }
+
+     # Lots of "emacs" bindings like ctrl-r for reverse search, opt+b for jump
+     # backward one word, opt+del for delete last word, etc. I'm surprised this
+     # is not the default zsh.
+     bindkey -e
 
   elif [ -n "$BASH_VERSION" ]; then
       # "\001" = "\[", "\002" = "\]" and "\033" = "\e"
