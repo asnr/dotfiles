@@ -15,6 +15,16 @@
 
 ## macOS
 
+Setup steps. These don't need to be followed exactly.
+
+1. Install xcode tools by typing running `git` at the terminal, xcode tools download will be autotriggered.
+2. Personalise the terminal, see the "terminal" section below.
+3. Install brew, see https://brew.sh/.
+4. Install a newer version of bash, `brew install bash`, and have terminal.app open this version by default. See the comment above the PS1 code.
+5. `brew install tmux` and see the "tmux" section below.
+6. Install emacs, see the "emacs" section below.
+
+
 ### terminal
 
 **Personalise terminal.** Open the terminal preferences window. Under "Profiles", import the profile defined in the terminal/asnr.terminal file. Adjust the font size if necessary and set the "asnr" profile to default.
@@ -44,3 +54,13 @@ I used the default zsh installed with macOS (version 5.9).
 ## Brew
 
 Install old version of a formula that doesn't have an `@` version available: https://stackoverflow.com/a/76384322.
+
+
+## Music
+
+### Combining songs into an album in Apple Music
+
+1. Go to the "Songs" view.
+2. Multi-select the songs in the song list.
+3. Right-click and select "Get Info".
+4. Select the checkbox "Album is a compilation of songs by various artists".
