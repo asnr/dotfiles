@@ -49,6 +49,11 @@ do
   create_soft_link "$file_to_link" "$LINK_SUFFIX"
 done
 
+# Reuse .bash_profile for .zshrc. I tried having
+#   .zshrc = "source ~/.bash_profile"
+# but that broke something that I've forgotten now.
+create_soft_link link/.bash_profile .zshrc
+
 echo
 echo Compiling custom less keybindings to $HOME/.less
 lesskey -o $HOME/.less $HOME/.less.source
