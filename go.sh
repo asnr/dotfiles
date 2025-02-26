@@ -3,11 +3,11 @@
 set -euo pipefail
 
 DOTFILES_DIR=$PWD
+LINK_DIR=link
 
-echo Linking files from link/ into $HOME
+echo Linking files from "$LINK_DIR"/ into $HOME
 echo
 
-LINK_DIR=link
 
 function create_soft_link() {
   local SOURCE_SUFFIX="$1"
