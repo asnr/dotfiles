@@ -58,6 +58,10 @@ Install old version of a formula that doesn't have an `@` version available: htt
 
 ## Music
 
+### Ripping CDs
+
+Use XLD. Check setting via `cmd ,`, then Navigate to File -> Open Audio CD -> <the CD> and press Extract.
+
 ### Combining songs into an album in Apple Music
 
 1. Go to the "Songs" view.
