@@ -1,0 +1,82 @@
+#!/bin/bash
+
+print_help() {
+    echo "Usage: $(basename "$0") <directory_of_albums> <target_directory>"
+    echo ""
+    echo "This script converts FLAC audio files found in subdirectories of <directory_of_albums>"
+    echo "to M4A (AAC) format and saves them in corresponding subdirectories within <target_directory>."
+    echo "It also attempts to copy 'cover.jpg' if present."
+    echo ""
+    echo "Arguments:"
+    echo "  <directory_of_albums> : The absolute path to the directory containing album subdirectories with FLAC files."
+    echo "  <target_directory>    : The absolute path where the converted M4A albums will be saved."
+    echo ""
+    echo "Options:"
+    echo "  -h, --help            : Display this help message and exit."
+    echo ""
+    echo "Example:"
+    echo "  $(basename "$0") /home/user/Music/FLAC_Albums /home/user/Music/M4A_Albums"
+}
+
+main () {
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        print_help
+        exit 0
+    fi
+
+    if [[ "$#" -ne 2 ]]; then
+        echo "Error: Incorrect number of arguments." >&2
+        print_help
+        exit 1
+    fi
+
+    # Both should be absolute paths
+    local dir_of_albums="$1"
+    local target_dir="$2"
+
+    # Subtract one at the end because `find` will include the parent directory
+    local num_of_subdirs=$(find "$dir_of_albums" -maxdepth 1 -type d | wc -l | awk '{print $1 - 1}')
+    if [ "$num_of_subdirs" = 0 ]; then
+        echo "The dir_of_albums argument $dir_of_albums has no subdirectories, exiting."
+        exit 1
+    else
+        echo "Found $num_of_subdirs to attempt to convert to m4a albums."
+    fi
+
+    for album_dir in "$1"/*/; do
+        album_dir=${album_dir%*/}      # remove the trailing "/"
+        flac_count=$(ls -1 "$album_dir"/*.flac 2>/dev/null | wc -l)
+        if [ $flac_count != 0 ]; then
+            echo "Converting flac files in $album_dir."
+            convert_to_aac "$album_dir" "$target_dir"/"${album_dir##*/}"
+        else
+            echo "Subdirectory $album_dir has no flac files, skipping."
+        fi
+    done
+}
+
+convert_to_aac () {
+    # Both should be absolute paths
+    flac_album_dir="$1"
+    aac_album_dir="$2"
+
+    if [ ! -d "$aac_album_dir" ]; then
+        mkdir -p "$aac_album_dir"
+    fi
+
+    pushd "$flac_album_dir" > /dev/null
+
+    for f in *.flac; do
+        # I couldn't get the aac_at encoder variables to work how I wanted, so
+        # I'm just using the defualt configuration. It looks it compresses with
+        # bitrate 128 kbits/s and sample rate 44100 Hz by default which should
+        # be reasonably good anyhow.
+        ffmpeg -i "$f" -c:a aac_at "$aac_album_dir"/"$(basename "$f" ".flac")".m4a
+    done
+
+    cp cover.jpg "$aac_album_dir"
+
+    popd > /dev/null
+}
+
+main "$@"

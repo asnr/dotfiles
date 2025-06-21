@@ -1,0 +1,62 @@
+#!/bin/bash
+
+print_help() {
+    echo "Usage: $(basename "$0") <flac_album_directory> <aac_target_directory>"
+    echo ""
+    echo "This script converts FLAC audio files from a specified album directory"
+    echo "to M4A (AAC) format and saves them in a target directory."
+    echo "It also attempts to copy 'cover.jpg' if present."
+    echo ""
+    echo "Arguments:"
+    echo "  <flac_album_directory> : The absolute path to the directory containing the FLAC album files."
+    echo "  <aac_target_directory> : The absolute path where the converted M4A album will be saved."
+    echo ""
+    echo "Options:"
+    echo "  -h, --help             : Display this help message and exit."
+    echo ""
+    echo "Example:"
+    echo "  $(basename "$0") /home/user/Music/My_Album_FLAC /home/user/Music/My_Album_M4A"
+}
+
+main () {
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+        print_help
+        exit 0
+    fi
+
+    if [[ "$#" -ne 2 ]]; then
+        echo "Error: Incorrect number of arguments." >&2
+        print_help
+        exit 1
+    fi
+
+    # Pass all arguments directly to the function
+    convert_to_aac "$@"
+}
+
+convert_to_aac () {
+    # Both should be absolute paths
+    local flac_album_dir="$1"
+    local aac_album_dir="$2"
+
+    if [ ! -d "$aac_album_dir" ]; then
+        mkdir -p "$aac_album_dir"
+    fi
+
+    pushd "$flac_album_dir" > /dev/null
+
+    for f in *.flac; do
+        # I couldn't get the aac_at encoder variables to work how I wanted, so
+        # I'm just using the defualt configuration. It looks it compresses with
+        # bitrate 128 kbits/s and sample rate 44100 Hz by default which should
+        # be reasonably good anyhow.
+        ffmpeg -i "$f" -c:a aac_at "$aac_album_dir"/"$(basename "$f" ".flac")".m4a
+    done
+
+    cp cover.jpg "$aac_album_dir"
+
+    popd > /dev/null
+    echo "Conversion complete for '$flac_album_dir'."
+}
+
+main "$@"

@@ -62,6 +62,14 @@ Install old version of a formula that doesn't have an `@` version available: htt
 
 Use XLD. Check setting via `cmd ,`, then Navigate to File -> Open Audio CD -> <the CD> and press Extract.
 
+### Converting from flac to mp4 (AAC)
+
+```
+$ flac_album_to_aac $ABSOLUTE_PATH_TO_FLAC_ALBUM $ABSOLUTE_PATH_TO_MP4_TARGET_DIR
+```
+
+The second argument is probably `$HOME/Music/mp4s/<name_of_album>`.
+
 ### Combining songs into an album in Apple Music
 
 1. Go to the "Songs" view.
