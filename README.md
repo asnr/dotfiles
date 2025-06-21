@@ -62,13 +62,19 @@ Install old version of a formula that doesn't have an `@` version available: htt
 
 Use XLD. Check setting via `cmd ,`, then Navigate to File -> Open Audio CD -> <the CD> and press Extract.
 
-### Converting from flac to mp4 (AAC)
+### Converting from FLAC to MP4 (AAC)
+
+MP4 with the AAC codec is better (less space for better quality) than MP3, apparently.
 
 ```
 $ flac_album_to_aac $ABSOLUTE_PATH_TO_FLAC_ALBUM $ABSOLUTE_PATH_TO_MP4_TARGET_DIR
 ```
 
 The second argument is probably `$HOME/Music/mp4s/<name_of_album>`.
+
+### Import into Apple Music
+
+Open Apple Music. Type `cmd O` (equivalent to File -> Import...) and select the directory. Note this doesn't work for a directory of FLAC files.
 
 ### Combining songs into an album in Apple Music
 
