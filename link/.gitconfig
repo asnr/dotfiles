@@ -6,8 +6,8 @@
 [user]
 	name = asnr
 	email = asnr@users.noreply.github.com
-[includeIf "gitdir:~/work/"]
-	path = .gitconfig_work
+[includeIf "gitdir:~/work/"] # dir must have trailing slash!
+	path = ~/.gitconfig_work
 [init]
 	defaultBranch = main
 [diff]
