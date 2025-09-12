@@ -182,3 +182,21 @@ else
     endif
   endif
 endif
+
+" If commit message bodies are discarded on merge (e.g. because a merge system
+" only preserves titles), allow unbounded commit message lines. Then I can
+" write a PR description in the git commit message and create the PR using
+" `gh pr create --fill-first`
+function! AllowUnboundedCommitMessageLines(repo_pattern)
+  if system('git remote get-url origin 2>/dev/null') =~ a:repo_pattern
+    autocmd FileType gitcommit setlocal textwidth=0
+    " The line above stops line breaks being added to the title line past column
+    " 69. Recover this behaviour by highlighting just title text pats column 69.
+    autocmd FileType gitcommit match ErrorMsg /\%11.\%>70v/
+  endif
+endfunction
+
+" Support additional workplace-specific config. It is expected not to exist on
+" my personal computes, so do not print messages or throw errors if it is not
+" found.
+silent! source ~/.vim/work.vim
