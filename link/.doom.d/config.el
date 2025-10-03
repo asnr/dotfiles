@@ -109,11 +109,11 @@ Returns:
   - A string containing the file path in case of success.
   - `nil' in case the current buffer does not visit a file."
   (interactive)
-    (if-let (file-path (spacemacs--projectile-file-path))
-        (progn
-          (kill-new file-path)
-          (message "%s" file-path))
-      (message "WARNING: Current buffer is not visiting a file!")))
+  (if-let (file-path (spacemacs--projectile-file-path))
+      (progn
+        (kill-new file-path)
+        (message "%s" file-path))
+    (message "WARNING: Current buffer is not visiting a file!")))
 
 ;; Taken straight from spacemacs
 (defun spacemacs--projectile-file-path ()
@@ -147,10 +147,10 @@ Returns:
 
 (map! :leader
       (:prefix "f"
-       (:prefix-map ("y" . "yank")
-        :desc "Yank filename"          "y" #'+default/yank-buffer-filename
-        :desc "Yank project file path" "Y" #'spacemacs/projectile-copy-file-path
-        :desc "Yank file path:line no" "L" #'spacemacs/projectile-copy-file-path-with-line)))
+               (:prefix-map ("y" . "yank")
+                :desc "Yank filename"          "y" #'+default/yank-buffer-filename
+                :desc "Yank project file path" "Y" #'spacemacs/projectile-copy-file-path
+                :desc "Yank file path:line no" "L" #'spacemacs/projectile-copy-file-path-with-line)))
 
 (add-hook 'python-mode-hook 'blacken-mode)
 (add-hook 'python-mode-hook 'asnr-drop-some-py2-symbols)
@@ -187,13 +187,13 @@ Returns:
   (interactive)
   (save-excursion
     (let* ((pubsub-id-start (progn
-                                 (forward-whitespace -1)
-                                 (forward-whitespace 1)
-                                 (point)))
+                              (forward-whitespace -1)
+                              (forward-whitespace 1)
+                              (point)))
            (pubsub-id-end (progn
-                               (forward-whitespace 1)
-                               (forward-whitespace -1)
-                               (point)))
+                            (forward-whitespace 1)
+                            (forward-whitespace -1)
+                            (point)))
            (pubsub-id (buffer-substring pubsub-id-start pubsub-id-end))
            (pubsub-url (gcp-build-pubsub-url pubsub-id)))
       (message "Visiting Pub/Sub URL %s" pubsub-url)
@@ -219,40 +219,40 @@ Returns:
 (defun asnr-drop-some-py2-symbols ()
   "Stop highlighting some python 2 builtins. They make really good variable names."
   (setcar (car (nthcdr 3 python-font-lock-keywords-level-2))
-        (rx symbol-start
-          (or
-           "abs" "all" "any" "bin" "bool" "callable" "chr" "classmethod"
-           "compile" "complex" "delattr" "dict" "dir" "divmod" "enumerate"
-           "eval" "filter" "float" "format" "frozenset" "getattr" "globals"
-           "hasattr" "hash" "help" "hex" "id" "input" "int" "isinstance"
-           "issubclass" "iter" "len" "list" "locals" "map" "max" "memoryview"
-           "min" "next" "object" "oct" "open" "ord" "pow" "print" "property"
-           "range" "repr" "reversed" "round" "set" "setattr" "slice" "sorted"
-           "staticmethod" "str" "sum" "super" "tuple" "type" "vars" "zip"
-           "__import__"
-           ;; Python 2 [asnr: I HAVE REMOVED SEVERAL OF THESE]:
-           "basestring" "cmp" "execfile" "long" "reduce"
-           "reload" "unichr" "unicode" "xrange" "apply" "coerce"
-           "intern"
-           ;; Python 3:
-           "ascii" "breakpoint" "bytearray" "bytes" "exec"
-           ;; Special attributes:
-           ;; https://docs.python.org/3/reference/datamodel.html
-           "__annotations__" "__closure__" "__code__"
-           "__defaults__" "__dict__" "__doc__" "__globals__"
-           "__kwdefaults__" "__name__" "__module__" "__package__"
-           "__qualname__"
-           ;; Extras:
-           "__all__")
-          symbol-end)))
+          (rx symbol-start
+              (or
+               "abs" "all" "any" "bin" "bool" "callable" "chr" "classmethod"
+               "compile" "complex" "delattr" "dict" "dir" "divmod" "enumerate"
+               "eval" "filter" "float" "format" "frozenset" "getattr" "globals"
+               "hasattr" "hash" "help" "hex" "id" "input" "int" "isinstance"
+               "issubclass" "iter" "len" "list" "locals" "map" "max" "memoryview"
+               "min" "next" "object" "oct" "open" "ord" "pow" "print" "property"
+               "range" "repr" "reversed" "round" "set" "setattr" "slice" "sorted"
+               "staticmethod" "str" "sum" "super" "tuple" "type" "vars" "zip"
+               "__import__"
+               ;; Python 2 [asnr: I HAVE REMOVED SEVERAL OF THESE]:
+               "basestring" "cmp" "execfile" "long" "reduce"
+               "reload" "unichr" "unicode" "xrange" "apply" "coerce"
+               "intern"
+               ;; Python 3:
+               "ascii" "breakpoint" "bytearray" "bytes" "exec"
+               ;; Special attributes:
+               ;; https://docs.python.org/3/reference/datamodel.html
+               "__annotations__" "__closure__" "__code__"
+               "__defaults__" "__dict__" "__doc__" "__globals__"
+               "__kwdefaults__" "__name__" "__module__" "__package__"
+               "__qualname__"
+               ;; Extras:
+               "__all__")
+              symbol-end)))
 
 (defun asnr-configure-colemak-bindings ()
   (after! evil
     (define-key evil-motion-state-map "n" 'evil-next-line)
     (define-key evil-motion-state-map "e" 'evil-previous-line)
     (define-key evil-motion-state-map "i" 'evil-forward-char)
-    ; The default binding of "i" in the normal map takes precedence over the
-    ; motion map binding, so we need to delete it
+    ;; The default binding of "i" in the normal map takes precedence over the
+    ;; motion map binding, so we need to delete it
     (define-key evil-normal-state-map "i" nil)
     (define-key evil-visual-state-map "i" nil)
 
