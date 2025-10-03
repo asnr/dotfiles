@@ -184,10 +184,13 @@ if [ ${PS1+isset} = 'isset' ]; then
          }
      }
 
-     # Lots of "emacs" bindings like ctrl-r for reverse search, opt+b for jump
+     # Lots of emacs bindings like ctrl-r for reverse search, opt+b for jump
      # backward one word, opt+del for delete last word, etc. I'm surprised this
      # is not the default in zsh.
      bindkey -e
+     # The emacs bindings above set ctrl+U to delete the whole line. Only delete
+     # before the cursor instead.
+     bindkey '^U' backward-kill-line
 
      if [ "$(uname)" = "Darwin" ]; then
          bindkey "^[[3~" delete-char  # bind fn+delete
