@@ -1,5 +1,12 @@
 # Debugging keymaps
 
+## emacs
+
+- C-h k (describe-key). Press C-h k, then press the key combination you want to check. Emacs will show you what command it's bound to.
+- C-h w (where-is). For when you know the command name and want to find find which keys are bound to it.
+- C-h b (describe-bindings). This displays all current key bindings in a buffer. It's useful for browsing all available bindings in the current mode.
+
+
 ## zsh
 
 ```
