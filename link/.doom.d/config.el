@@ -269,16 +269,16 @@ Returns:
     (define-key evil-normal-state-map "d" nil)
     (define-key evil-motion-state-map "dd" 'evil-goto-first-line)
     (define-key evil-motion-state-map "dc" 'evilnc-comment-operator)
-    ; Stop default binding taking precedence over end-of-buffer
+    ;; Stop default binding taking precedence over end-of-buffer
     (define-key evil-normal-state-map "D" nil)
     (define-key evil-motion-state-map "D" 'end-of-buffer)
     (define-key evil-motion-state-map "E" 'evil-lookup)
     (define-key evil-motion-state-map "k" 'evil-ex-search-next)
-    ; Stop default binding taking precedence over evil-search-previous
+    ;; Stop default binding taking precedence over evil-search-previous
     (define-key evil-normal-state-map "K" nil)
     (define-key evil-motion-state-map "K" 'evil-ex-search-previous)
     (define-key evil-motion-state-map "zg" 'evil-scroll-line-to-top)
-    ; Stop default binding taking precedence over undo-tree-redo binding
+    ;; Stop default binding taking precedence over undo-tree-redo binding
     (define-key evil-normal-state-map "\C-p" nil)
     (define-key evil-motion-state-map "\C-p" 'evil-redo)
     (define-key evil-motion-state-map "\C-y" 'evil-jump-backward)
@@ -314,8 +314,8 @@ Returns:
           :n "gj" nil
           :n "g" nil))
 
-  ; Override the mapping inside an auxiliary keymap taking precedence over the
-  ; binding for `evil-find-char-to'
+  ;; Override the mapping inside an auxiliary keymap taking precedence over the
+  ;; binding for `evil-find-char-to'
   (after! evil-surround
     (define-key (cdr (assoc 'visual-state evil-surround-mode-map)) "g" nil))
 
