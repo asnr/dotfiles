@@ -82,3 +82,12 @@ Open Apple Music. Type `cmd O` (equivalent to File -> Import...) and select the 
 2. Multi-select the songs in the song list.
 3. Right-click and select "Get Info".
 4. Select the checkbox "Album is a compilation of songs by various artists".
+
+### Syncing to phone
+
+1. Plug phone into laptop.
+2. Open Finder
+3. Under "Locations" on the left, open the phone.
+4. Click through to sync the phone.
+5. The laptop will ask whether to encrypt backups and will automatically try to backup the phone. Tell it to skip the backup.
+6. Go to the Music tab, and sync the new songs there.
