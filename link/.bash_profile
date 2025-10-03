@@ -170,6 +170,9 @@ fi
 if [ ${PS1+isset} = 'isset' ]; then
 
   if [ -n "$ZSH_VERSION" ]; then
+     # Define characters to include in words when moving and deleting by word
+     WORDCHARS='._-'
+
      setopt PROMPT_SUBST
      PROMPT_NEWLINE=$'\n'
      PROMPT="%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
