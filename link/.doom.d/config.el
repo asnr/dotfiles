@@ -324,20 +324,16 @@ Returns:
     ;; visual mode
     (evil-org-set-key-theme '(navigation insert additional calendar))
     (map! :map evil-org-mode-map
-          ;; Remove conflict
-          :n "O" nil)
+          ;; Remove conflicts
+          :n "O" nil
+          :n "g" nil
+          :v "i" nil)
 
     ;; Override the mapping inside an auxiliary keymap taking precedence over
-    ;; the binding for `evil-find-char-to'
-    (define-key (cdr (assoc 'motion-state evil-org-mode-map)) "g" nil)
-    ;; Move the mappings inside the keymap cleared above to their correct colemak location.
-    ;; Essentially a copy-paste of the body of`evil-org--populate-navigation-bindings'
-    (map! :map evil-org-mode-map
-          :m "th" #'org-up-element
-          :m "ti" #'org-down-element
-          :m "te" #'org-backward-element
-          :m "tn" #'org-forward-element
-          :m "tH" #'evil-org-top))
+    ;; the binding for `evil-find-char-to'. The mappings inside the keymap
+    ;; cleared below are defined in the body of
+    ;; `evil-org--populate-navigation-bindings'.
+    (define-key (cdr (assoc 'motion-state evil-org-mode-map)) "g" nil))
 
   (after! evil-markdown
     ;; Override the mapping inside an auxiliary keymap taking precedence over
