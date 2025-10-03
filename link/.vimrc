@@ -192,7 +192,7 @@ function! AllowUnboundedCommitMessageLines(repo_pattern)
     autocmd FileType gitcommit setlocal textwidth=0
     " The line above stops line breaks being added to the title line past column
     " 69. Recover this behaviour by highlighting just title text pats column 69.
-    autocmd FileType gitcommit match ErrorMsg /\%11.\%>70v/
+    autocmd FileType gitcommit match ErrorMsg /\%1l.\%>70v/
   endif
 endfunction
 
