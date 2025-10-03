@@ -183,7 +183,7 @@ if [ ${PS1+isset} = 'isset' ]; then
 
      # Lots of "emacs" bindings like ctrl-r for reverse search, opt+b for jump
      # backward one word, opt+del for delete last word, etc. I'm surprised this
-     # is not the default zsh.
+     # is not the default in zsh.
      bindkey -e
 
      if [ "$(uname)" = "Darwin" ]; then
