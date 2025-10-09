@@ -41,7 +41,7 @@ if [ "$(uname)" = "Darwin" ]; then
     export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
     # Add python bin to path (the AWS CLI tool made me do it)
-    export PATH="$PATH:~/Library/Python/2.7/bin"
+    export PATH="$PATH:$HOME/Library/Python/2.7/bin"
 
     # Update PATH for the Google Cloud SDK.
     [ -f "$HOME/.local/google-cloud-sdk/path.bash.inc" ] && \
@@ -101,10 +101,10 @@ fi
 
 # For the executables linked by go.sh. Eventually will want go.sh to link
 # these into /usr/local/bin on macs but this will do for now.
-export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Needed by doom-emacs
-export PATH="~/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
