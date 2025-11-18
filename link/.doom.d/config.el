@@ -173,7 +173,12 @@ Returns:
 (set-file-template! 'python-mode :ignore t)
 
 (after! org
-  (setq org-startup-folded 'show2levels))
+  (setq org-startup-folded 'show2levels)
+
+  ;; Make block delimiters, e.g. "#+begin_src", less distracting.
+  (custom-set-faces
+   '(org-block-begin-line ((t (:foreground "#aaaaaa" :slant italic :height 0.9))))
+   '(org-block-end-line ((t (:foreground "#aaaaaa" :slant italic :height 0.9))))))
 
 (after! terraform-mode
   ;; terraform-mode hard codes face values instead of deferring to general
