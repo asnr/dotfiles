@@ -202,7 +202,7 @@ if [ ${PS1+isset} = 'isset' ]; then
       SEC_FONT="\001\033[94m\002" # light magenta
       TER_FONT="\001\033[38;5;245m\002" # light grey
       WARN_FONT="\001\033[01;91m\002" # light red
-      OK_FONT="\001\033[01;92m\002" # light green
+      OK_FONT="\001\033[32m\002" # green
       F_END="\001\033[m\002"
 
       recalculate_prompt () {
