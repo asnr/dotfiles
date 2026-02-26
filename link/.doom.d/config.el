@@ -100,6 +100,7 @@
 (add-hook 'terraform-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))
 
 (setq js-indent-level 2)
+(setq typescript-indent-level 2)
 
 ;; All these "spacemacs/" functions come from spacemacs
 (defun spacemacs/projectile-copy-file-path ()
