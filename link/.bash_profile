@@ -202,6 +202,7 @@ if [ ${PS1+isset} = 'isset' ]; then
       SEC_FONT="\001\033[94m\002" # light magenta
       TER_FONT="\001\033[38;5;245m\002" # light grey
       WARN_FONT="\001\033[01;91m\002" # light red
+      OK_FONT="\001\033[01;92m\002" # light green
       F_END="\001\033[m\002"
 
       recalculate_prompt () {
@@ -216,13 +217,21 @@ if [ ${PS1+isset} = 'isset' ]; then
               PY_VENV_PROMPT=
           fi
 
+          local git_branch
+          git_branch=$(git branch --show-current 2>/dev/null)
+          if [[ -n "$git_branch" ]]; then
+            GIT_PROMPT=" ${TER_FONT}on${F_END} ${OK_FONT}${git_branch}${F_END}"
+          else
+            GIT_PROMPT=
+          fi
+
           # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
           # app) break slightly with this PS1 value (it's the '\W' that does it).
           # After running a reverse-i-search (ctrl-r), the cursor position will
           # appear in the wrong position of the line. To fix this on macOS install a
           # new version of bash using 'brew install bash' and then in Terminal
           # preferences set "Shells open with" to that binary's absolute path.
-          PS1="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}\n\$ ${F_END}"
+          PS1="${SEC_FONT}\D{%b %d %T}${F_END} ${TER_FONT}on${F_END} ${SEC_FONT}\h${F_END} ${TER_FONT}as${F_END} ${SEC_FONT}\u${F_END}${PY_VENV_PROMPT} ${TER_FONT}in${F_END} ${PRIM_FONT}\w${F_END}${SEC_FONT}${GIT_PROMPT}\n\$ ${F_END}"
 
 
           if [[ -z "${PS1_NEWLINE_LOGIN}" ]]; then
