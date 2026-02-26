@@ -175,7 +175,7 @@ if [ ${PS1+isset} = 'isset' ]; then
 
      setopt PROMPT_SUBST
      PROMPT_NEWLINE=$'\n'
-     PROMPT="%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b${PROMPT_NEWLINE}%F{blue}$%f "
+     PROMPT="%F{blue}%D{%b %f %T}%f %F{245}on%f %F{blue}%m%f %F{245}as%f %F{blue}%n%f %F{245}in%f %B%F{blue}%~%f%b\$(__git_branch_prompt_zsh)${PROMPT_NEWLINE}%F{blue}$%f "
 
      # Add newline to before prompts except for the first prompt
      precmd() {
@@ -262,6 +262,12 @@ fi
 if command -v go >/dev/null 2>&1; then
     export PATH="$PATH:$(go env GOPATH)/bin"
 fi
+
+function __git_branch_prompt_zsh() {
+  local branch
+  branch=$(git branch --show-current 2>/dev/null) || return
+  [[ -n "$branch" ]] && print -n " %F{245}on%f %F{green}${branch}%f"
+}
 
 ## Aliases and functions ##
 
