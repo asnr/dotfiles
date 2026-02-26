@@ -283,3 +283,11 @@ function __git_branch_prompt_zsh() {
 ## Load RVM functions at end because that's where RVM put them :/ ##
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# pnpm
+export PNPM_HOME="/Users/asnr/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
