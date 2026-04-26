@@ -220,9 +220,9 @@ if [ ${PS1+isset} = 'isset' ]; then
           local git_branch
           git_branch=$(git branch --show-current 2>/dev/null)
           if [[ -n "$git_branch" ]]; then
-            GIT_PROMPT=" ${TER_FONT}on${F_END} ${OK_FONT}${git_branch}${F_END}"
+              GIT_PROMPT=" ${TER_FONT}on${F_END} ${OK_FONT}${git_branch}${F_END}"
           else
-            GIT_PROMPT=
+              GIT_PROMPT=
           fi
 
           # Old versions of bash (e.g. v3.2.57, the default bash for macOS Terminal
@@ -264,9 +264,9 @@ if command -v go >/dev/null 2>&1; then
 fi
 
 function __git_branch_prompt_zsh() {
-  local branch
-  branch=$(git branch --show-current 2>/dev/null) || return
-  [[ -n "$branch" ]] && print -n " %F{245}on%f %F{green}${branch}%f"
+    local branch
+    branch=$(git branch --show-current 2>/dev/null) || return
+    [[ -n "$branch" ]] && print -n " %F{245}on%f %F{green}${branch}%f"
 }
 
 ## Aliases and functions ##
